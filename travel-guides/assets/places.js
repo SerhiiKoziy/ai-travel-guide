@@ -9,7 +9,8 @@
   var $ = function (sel, ctx) { return (ctx || document).querySelector(sel); };
   var $$ = function (sel, ctx) { return Array.prototype.slice.call((ctx || document).querySelectorAll(sel)); };
 
-  var state = { mode: 'places', plan: DATA.default, cat: 'all', focus: 0 };
+  var state = { mode: 'places', plan: DATA.default, cat: 'all', focus: 0, hikes: false };
+  var HIKES = DATA.hikes || {};
   try {   // remember the viewer's last choice (per-browser convenience only)
     var saved = JSON.parse(localStorage.getItem('tg-madeira-view') || '{}');
     if (saved.plan && DATA.plans[saved.plan]) state.plan = saved.plan;
@@ -52,7 +53,7 @@
   });
 
   /* ---------- map ---------- */
-  var map, markers = {}, pointMarkers = {}, routeLayer, labelsFn = function () {};
+  var map, markers = {}, pointMarkers = {}, hikeMarkers = {}, routeLayer, trailLayer, labelsFn = function () {};
   var TILE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}';
   var ATTR = 'Tiles &copy; <a href="https://www.esri.com">Esri</a> — Esri, HERE, Garmin, &copy; OpenStreetMap contributors';
 
@@ -81,11 +82,53 @@
     return L.divIcon({ className: 'pin-wrap', html: '<span class="pin base">' + ico + '</span>', iconSize: [30, 30], iconAnchor: [15, 15] });
   }
 
+  function hikeIcon(k) {
+    var h = HIKES[k];
+    return L.divIcon({
+      className: 'pin-wrap',
+      html: '<span class="pin hike-pin" style="--pc:' + h.color + '"><svg width="16" height="16"><use href="#ic-hike"/></svg></span>' +
+            '<span class="pin-label hike-label' + (h.labelLeft ? ' left' : '') + '">' + h.ref + '</span>',
+      // h.shift (px) fans out pins that share a trailhead; it is screen-space, so it holds at any zoom
+      iconSize: [28, 28], iconAnchor: [14 - (h.shift || 0), 14], popupAnchor: [h.shift || 0, -12]
+    });
+  }
+  function hikePopup(k) {
+    var h = HIKES[k];
+    return '<div class="pop">' + (h.thumb ? '<div class="pop-img" style="background-image:url(\'' + h.thumb + '\')"></div>' : '') +
+      '<div class="pop-b"><div class="pop-t"><span class="pop-ref" style="background:' + h.color + '">' + h.ref + '</span>' + h.name + '</div>' +
+      '<div class="pop-c"><span style="color:' + h.color + ';font-weight:800;margin:0">' + h.levelLabel + '</span><span>· ' + h.time + '</span></div>' +
+      '<p>' + h.short + '</p><button type="button" class="pop-more" data-hike="' + k + '">Детальніше ↓</button></div></div>';
+  }
+  function openHike(k) {
+    var card = document.getElementById('hike-' + k);
+    if (!card) return;
+    var det = card.querySelector('details'); if (det) det.open = true;
+    card.classList.add('flash'); setTimeout(function () { card.classList.remove('flash'); }, 1600);
+    card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
   function initMap() {
     if (!window.L || !$('#bigmap')) return;
     map = L.map('bigmap', { scrollWheelZoom: false, zoomSnap: 0.25 });
     L.tileLayer(TILE, { attribution: ATTR, maxZoom: 16 }).addTo(map);
     routeLayer = L.layerGroup().addTo(map);
+    trailLayer = L.layerGroup().addTo(map);
+    // trails that share a trailhead (PR6/PR6.1, PR9/PR9.1) get their pins fanned out sideways
+    var heads = [];
+    Object.keys(HIKES).forEach(function (k) {
+      var h = HIKES[k].head, same = heads.filter(function (p) { return Math.abs(p[0] - h[0]) < 0.0006 && Math.abs(p[1] - h[1]) < 0.0006; }).length;
+      heads.push(h);
+      HIKES[k].pin = h;
+      HIKES[k].shift = same * 34;
+      if (same) Object.keys(HIKES).forEach(function (o) {   // the unshifted twin puts its label on the left
+        var t = HIKES[o].head;
+        if (o !== k && !HIKES[o].shift && Math.abs(t[0] - h[0]) < 0.0006 && Math.abs(t[1] - h[1]) < 0.0006) HIKES[o].labelLeft = true;
+      });
+    });
+    Object.keys(HIKES).forEach(function (k) {
+      hikeMarkers[k] = L.marker(HIKES[k].pin || HIKES[k].head, { icon: hikeIcon(k), zIndexOffset: 200 }).bindPopup('', { maxWidth: 260, minWidth: 220 });
+      hikeMarkers[k].on('popupopen', function (e) { e.popup.setContent(hikePopup(k)); wirePopup(e.popup); });
+    });
     Object.keys(DATA.places).forEach(function (key) {
       markers[key] = L.marker(DATA.places[key].ll, { riseOnHover: true }).bindPopup('', { maxWidth: 260, minWidth: 220 });
       markers[key].on('popupopen', function (e) { e.popup.setContent(popupHtml(key)); wirePopup(e.popup); });
@@ -100,7 +143,10 @@
   }
   function wirePopup(popup) {
     var btn = popup.getElement() && popup.getElement().querySelector('.pop-more');
-    if (btn) btn.addEventListener('click', function () { map.closePopup(); openPlace(btn.getAttribute('data-key')); });
+    if (btn) btn.addEventListener('click', function () {
+      map.closePopup();
+      if (btn.hasAttribute('data-hike')) openHike(btn.getAttribute('data-hike')); else openPlace(btn.getAttribute('data-key'));
+    });
   }
 
   // Show a pin's name only where it fits (right, else left of the pin); route order wins.
@@ -143,6 +189,23 @@
     });
   }
 
+  function drawTrails() {
+    trailLayer.clearLayers();
+    Object.keys(HIKES).forEach(function (k) {
+      var on = state.hikes && !state.focus;
+      if (on && !map.hasLayer(hikeMarkers[k])) hikeMarkers[k].addTo(map);
+      if (!on && map.hasLayer(hikeMarkers[k])) map.removeLayer(hikeMarkers[k]);
+      if (!on) return;
+      HIKES[k].lines.forEach(function (line) {
+        L.polyline(line, { color: '#fff', weight: 7, opacity: 0.9, interactive: false }).addTo(trailLayer);
+        L.polyline(line, { color: HIKES[k].color, weight: 4, opacity: 1, dashArray: '3 6', lineCap: 'round' })
+          .bindTooltip(HIKES[k].ref + ' · ' + HIKES[k].name + ' (' + HIKES[k].levelLabel.toLowerCase() + ')', { sticky: true })
+          .on('click', function () { hikeMarkers[k].openPopup(); })
+          .addTo(trailLayer);
+      });
+    });
+  }
+
   function fit() {
     var pts = [];
     if (state.focus) {
@@ -151,6 +214,7 @@
     } else {
       plan().order.forEach(function (k) { if (visible(k)) pts.push(DATA.places[k].ll); });
       if (state.mode === 'route') plan().days.forEach(function (d) { d.points.forEach(function (p) { pts.push(DATA.points[p].ll); }); });
+      if (state.hikes) Object.keys(HIKES).forEach(function (k) { pts.push(HIKES[k].head); });
     }
     if (pts.length) map.fitBounds(pts, { padding: [28, 28], maxZoom: 13 });
   }
@@ -173,6 +237,7 @@
       if (!on && map.hasLayer(pointMarkers[id])) map.removeLayer(pointMarkers[id]);
     });
     drawRoutes();
+    drawTrails();
     if (refit) fit();
     setTimeout(labelsFn, 0);
   }
@@ -183,7 +248,7 @@
     // cards: reorder by route, renumber, recolour, hide those not in this plan / category
     var list = $('.places');
     p.order.forEach(function (k) { var c = document.getElementById('place-' + k); if (c) list.appendChild(c); });
-    $$('.place').forEach(function (card) {
+    $$('.place[data-key]').forEach(function (card) {
       var k = card.getAttribute('data-key'), d = dayOf(k);
       card.hidden = !visible(k);
       if (!d) return;
@@ -203,6 +268,8 @@
     $$('.plan-summary').forEach(function (el) { el.hidden = el.getAttribute('data-plan') !== state.plan; });
     $$('.itinerary').forEach(function (el) { el.hidden = el.getAttribute('data-plan') !== state.plan; });
     $('.itineraries').hidden = state.mode !== 'route';
+    var hb = $('.hikes'); if (hb) hb.hidden = !state.hikes;
+    var cb = $('#show-hikes'); if (cb) cb.checked = state.hikes;
     $$('.it-day').forEach(function (li) {
       var on = +li.getAttribute('data-day') === state.focus && li.parentNode.getAttribute('data-plan') === state.plan;
       li.classList.toggle('is-focus', on);
@@ -234,7 +301,26 @@
     b.addEventListener('click', function () { state.plan = b.getAttribute('data-plan'); state.focus = 0; state.cat = 'all'; save(); render(true); });
   });
   $$('.cf-btn').forEach(function (b) {
-    b.addEventListener('click', function () { state.cat = b.getAttribute('data-cat'); state.focus = 0; render(true); });
+    b.addEventListener('click', function () {
+      state.cat = b.getAttribute('data-cat'); state.focus = 0;
+      if (state.cat === 'hike') state.hikes = true;   // this category means "show me the trails too"
+      render(true);
+    });
+  });
+  var hikeBox = $('#show-hikes');
+  if (hikeBox) hikeBox.addEventListener('change', function () {
+    state.hikes = hikeBox.checked; state.focus = 0;
+    if (!state.hikes && state.cat === 'hike') state.cat = 'all';
+    render(true);
+  });
+  $$('.hike-ref').forEach(function (badge) {
+    badge.addEventListener('click', function () {
+      var k = badge.closest('.hike').getAttribute('data-hike');
+      if (!map || !hikeMarkers[k]) return;
+      $('#bigmap').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      map.flyTo(HIKES[k].pin || HIKES[k].head, 13, { duration: 0.8 });
+      setTimeout(function () { hikeMarkers[k].openPopup(); }, 850);
+    });
   });
   $('.day-legend').addEventListener('click', function (e) {
     var b = e.target.closest('button[data-day]');
@@ -251,7 +337,7 @@
     });
   });
   // card number -> fly to its pin
-  $$('.place-n').forEach(function (badge) {
+  $$('.place[data-key] .place-n').forEach(function (badge) {
     badge.setAttribute('role', 'button');
     badge.setAttribute('title', 'Показати на карті');
     badge.addEventListener('click', function () {

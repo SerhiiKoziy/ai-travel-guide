@@ -15,13 +15,17 @@ CATS = {
     "view":      ("Красивий вид", "#0e7490"),
     "adventure": ("Цікава пригода", "#e8590c"),
     "drone":     ("Для зйомки дроном", "#7048e8"),
+    "hike":      ("Піші маршрути", "#8a5a2b"),
 }
+
+LEVELS = {"easy": ("Легкий", "#2f9e44"), "medium": ("Середній", "#e67700"), "hard": ("Складний", "#e03131")}
 
 # Custom category icons as an SVG sprite (24x24, stroke-based, currentColor).
 ICON_SPRITE = """<svg width="0" height="0" style="position:absolute" aria-hidden="true">
  <symbol id="ic-history" viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5M4.5 10h15M6 10v8M10 10v8M14 10v8M18 10v8M3.5 20.5h17M4.5 18h15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
  <symbol id="ic-view" viewBox="0 0 24 24"><circle cx="17" cy="6.5" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 19.5 9 9.5l3.6 5.4 2.2-3 6.7 7.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m7.4 12 1.6 1.4 1.5-1.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
  <symbol id="ic-adventure" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m15.8 8.2-2.2 5.4-5.4 2.2 2.2-5.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="1" fill="currentColor"/></symbol>
+ <symbol id="ic-hike" viewBox="0 0 24 24"><path d="M7 3.5h5l.6 6.2 4.9 2.4c1.6.8 2.5 2 2.5 3.6V18H4.5l1-6.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4.5 18v2.5H20V18M12.6 9.7l-2 1.3M14.6 10.7l-1.8 1.4M4.6 14h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
  <symbol id="ic-drone" viewBox="0 0 24 24"><rect x="9" y="9.5" width="6" height="5" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 10 6.2 7.2M15 10l2.8-2.8M9 14l-2.8 2.8M15 14l2.8 2.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><ellipse cx="5.5" cy="6.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="18.5" cy="6.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="5.5" cy="17.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="18.5" cy="17.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="16.6" r=".9" fill="currentColor"/></symbol>
 </svg>"""
 
@@ -144,7 +148,72 @@ def render_itinerary(pid: str, p: dict, locs: dict, num: dict, active: bool) -> 
     return f'<ol class="itinerary" data-plan="{pid}"{hidden}>{"".join(rows)}\n</ol>'
 
 
-def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict) -> str:
+def level_badge(level: str) -> str:
+    label, color = LEVELS[level]
+    return f'<span class="lvl-badge" style="--lc:{color}">{label}</span>'
+
+
+def render_hikes(hikes: list, trails: dict, gallery: dict, locs: dict) -> str:
+    cards = []
+    for h in hikes:
+        photos = gallery.get("hike-" + h["key"], [])
+        thumb = photos[0]["url"] if photos else ""
+        color = LEVELS[h["level"]][1]
+        kid_cls, kid_txt = KID[h["kid"]]
+        near = (f'<span class="near">поруч з локацією туру: <b>{html.escape(short_label(locs[h["tour"]]))}</b></span>'
+                if h.get("tour") else "")
+        cards.append(f"""
+<article class="place hike" id="hike-{h['key']}" data-hike="{h['key']}" data-level="{h['level']}">
+  <div class="place-top">
+    <div class="place-thumb" style="background-image:url('{html.escape(thumb)}')">
+      <span class="hike-ref" style="background:{color}" role="button" title="Показати на карті">{html.escape(h['ref'])}</span>
+    </div>
+    <div class="place-body">
+      <div class="place-head">
+        <h3>{html.escape(h['ua'])}</h3>
+        <span class="place-pt">{html.escape(h['ref'])} · {html.escape(h['name'])}</span>
+      </div>
+      <div class="place-cats">{level_badge(h['level'])}{cat_chip('hike')}</div>
+      <p class="place-short">{h['short']}</p>
+      <ul class="hike-stats">
+        <li title="Довжина">📏 {html.escape(h['dist'])}</li>
+        <li title="Час">⏱ {html.escape(h['time'])}</li>
+        <li title="Набір висоти">⛰ {html.escape(h['gain'])}</li>
+        <li title="Вартість">🎟 {html.escape(h['fee'])}</li>
+      </ul>
+      <div class="place-meta">
+        <span class="kid {kid_cls}">{kid_txt}</span>
+        <a class="gm" href="{html.escape(gm_link(h['q']))}" target="_blank" rel="noopener">📍 Старт у Google Maps</a>
+        {near}
+      </div>
+    </div>
+  </div>
+  <details class="place-more">
+    <summary><span>Детальніше: що очікувати, історія{', ' + str(len(photos)) + ' фото' if photos else ''}</span></summary>
+    <div class="place-full">
+      {slider('hike-' + h['key'], photos)}
+      <div class="place-text">
+        <h4>🥾 Що очікувати</h4>{h['full']}
+        <h4>📜 Історія</h4>{h['history']}
+      </div>
+    </div>
+  </details>
+</article>""")
+    counts = {lv: sum(h["level"] == lv for h in hikes) for lv in LEVELS}
+    legend = " ".join(f'{level_badge(lv)} <span class="muted">×{counts[lv]}</span>' for lv in LEVELS)
+    return f"""
+<div class="hikes" hidden>
+  <h3 class="it-h">🥾 {len(hikes)} найкращих піших маршрутів</h3>
+  <p class="hikes-intro">Опціонально, поза планом туру: для дня, коли малюк з бабусею, для одного з дорослих або для наступної поїздки. Рівень — наша оцінка для сім'ї. Лінії на карті — траси з OpenStreetMap.</p>
+  <div class="lvl-legend">{legend}</div>
+  <div class="places hikes-list">{''.join(cards)}
+  </div>
+  <div class="callout warn"><div class="ic">🎟</div><div class="body"><span class="tag">Бронювання</span><br>Усі маршрути PR — тільки зі слотом на <a href="https://simplifica.madeira.gov.pt" target="_blank" rel="noopener">simplifica.madeira.gov.pt</a> (на сьогодні/завтра), діти до 12 — безкоштовно, але вписати. Після пожеж і зливи маршрути тимчасово закривають — статус там же.</div></div>
+</div>"""
+
+
+def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
+                  hikes: list = None, trails: dict = None) -> str:
     locs = {l["key"]: l for l in locs_list}
     model = plan_model(plans, routes, locs)
     default = plans["default"]
@@ -214,6 +283,13 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict) -> 
                   for pid, p in model.items()},
         "default": default,
         "cats": {k: {"label": v[0], "color": v[1]} for k, v in CATS.items()},
+        "hikes": {h["key"]: {"ref": h["ref"], "name": h["ua"], "level": h["level"],
+                             "levelLabel": LEVELS[h["level"]][0], "color": LEVELS[h["level"]][1],
+                             "short": h["short"], "dist": h["dist"], "time": h["time"],
+                             "thumb": (gallery.get("hike-" + h["key"]) or [{"url": ""}])[0]["url"],
+                             "head": (trails or {}).get(h["key"], {}).get("head", h["start"]),
+                             "lines": (trails or {}).get(h["key"], {}).get("lines", [])}
+                  for h in (hikes or [])},
     }
     plan_btns = "".join(
         f'<button type="button" class="seg-btn{" is-on" if pid == default else ""}" data-plan="{pid}" '
@@ -232,6 +308,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict) -> 
   <div class="seg seg-plan" role="group" aria-label="Тривалість поїздки">
     <span class="seg-label">Тривалість:</span>{plan_btns}
   </div>
+  {f'<label class="hike-toggle"><input type="checkbox" id="show-hikes"> <svg class="cat-ic" width="18" height="18" style="color:{CATS["hike"][1]}" aria-hidden="true"><use href="#ic-hike"/></svg> Показати піші маршрути <b>{len(hikes)}</b></label>' if hikes else ''}
 </div>
 {''.join(summaries)}
 <div class="cat-filter" role="group" aria-label="Фільтр за категорією">{''.join(filters)}</div>
@@ -245,6 +322,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict) -> 
   {''.join(itineraries)}
   <p class="muted it-foot">Час за кермом — оцінка роутера OSRM; з малюком додавайте ~30%. Натисніть на день, щоб виділити його на карті.</p>
 </div>
+{render_hikes(hikes, trails or {}, gallery, locs) if hikes else ''}
 <h3 class="places-h">📍 Локації маршруту</h3>
 <div class="places">{''.join(cards)}
 </div>

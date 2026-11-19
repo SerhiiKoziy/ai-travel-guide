@@ -7,7 +7,8 @@ Writes <dir>/gallery.json          {"key": [{url, page, author, license}, ...]}
 
 Selection: JPEG, landscape (w >= 1.25 h), original width >= 1600 px,
 at most 3 photos per author, spread across the category list, N per location.
-Existing keys in gallery.json are kept unless --refresh is passed.
+Existing keys in gallery.json are kept unless --refresh is passed; --only k1,k2 refetches just those.
+Small categories (<5 picks) fall back to portrait/smaller files and no per-author cap.
 """
 import html
 import json
@@ -44,7 +45,7 @@ def clean(s: str) -> str:
     return re.sub(r"\s+", " ", s).strip()[:80] or "unknown"
 
 
-def category_files(cat: str):
+def category_files(cat: str, relaxed: bool = False):
     params = dict(action="query", generator="categorymembers", gcmtitle="Category:" + cat,
                   gcmtype="file", gcmlimit=50, prop="imageinfo",
                   iiprop="url|size|mime|extmetadata", iiurlwidth=WIDTH,
@@ -56,7 +57,10 @@ def category_files(cat: str):
             if ii.get("mime") != "image/jpeg":
                 continue
             w, h = ii.get("width", 0), ii.get("height", 1)
-            if w < 1600 or w < 1.25 * h:
+            if relaxed:
+                if w < 1000:
+                    continue
+            elif w < 1600 or w < 1.25 * h:
                 continue
             meta = ii.get("extmetadata", {})
             yield {
@@ -71,14 +75,14 @@ def category_files(cat: str):
         params.update(r["continue"])
 
 
-def pick(cands):
+def pick(cands, cap=3):
     out, per_author = [], {}
     if not cands:
         return out
     step = max(1, len(cands) // (N * 2))
     ordered = cands[::step] + [c for i, c in enumerate(cands) if i % step]
     for c in ordered:
-        if per_author.get(c["author"], 0) >= 3:
+        if per_author.get(c["author"], 0) >= cap:
             continue
         per_author[c["author"]] = per_author.get(c["author"], 0) + 1
         out.append(c)
@@ -90,11 +94,14 @@ def pick(cands):
 def main():
     d = Path(sys.argv[1])
     refresh = "--refresh" in sys.argv
+    only = sys.argv[sys.argv.index("--only") + 1].split(",") if "--only" in sys.argv else None
     sources = json.loads((d / "gallery_sources.json").read_text())
     gpath = d / "gallery.json"
     gallery = json.loads(gpath.read_text()) if gpath.exists() else {}
     for key, cats in sources.items():
-        if key in gallery and not refresh:
+        if only is not None and key not in only:
+            continue
+        if key in gallery and not refresh and only is None:
             continue
         cands, seen = [], set()
         for cat in cats:
@@ -102,7 +109,15 @@ def main():
                 if f["title"] not in seen:
                     seen.add(f["title"])
                     cands.append(f)
-        gallery[key] = [{k: v for k, v in p.items() if k != "title"} for p in pick(cands)]
+        picked = pick(cands)
+        if len(picked) < 5:   # small category: allow portrait/smaller files and more per author
+            for cat in cats:
+                for f in category_files(cat, relaxed=True):
+                    if f["title"] not in seen:
+                        seen.add(f["title"])
+                        cands.append(f)
+            picked = pick(cands, cap=N)
+        gallery[key] = [{k: v for k, v in p.items() if k != "title"} for p in picked]
         print(f"{key}: {len(cands)} candidates -> {len(gallery[key])}", flush=True)
         gpath.write_text(json.dumps(gallery, ensure_ascii=False, indent=1))
 

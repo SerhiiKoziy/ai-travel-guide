@@ -249,7 +249,9 @@ def build_page(guide: dict, template: str) -> str:
         routes = json.loads((d / "routes.json").read_text()) if (d / "routes.json").exists() else {}
         content = content.replace("{{PLACES}}", places.render_places(
             json.loads((d / "locations.json").read_text()), gallery,
-            json.loads((d / "plans.json").read_text()), routes))
+            json.loads((d / "plans.json").read_text()), routes,
+            json.loads((d / "hikes.json").read_text()) if (d / "hikes.json").exists() else None,
+            json.loads((d / "trails.json").read_text()) if (d / "trails.json").exists() else None))
     content = content.replace("{{CATS_LEGEND}}", places.cats_legend())
     # number sections in order of appearance, so new sections never need renumbering
     counter = iter(range(1, 100))

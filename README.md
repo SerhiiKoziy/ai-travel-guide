@@ -21,7 +21,8 @@ Add a country: register it in `GUIDES` in `build.py`, create `_src/<slug>/`, run
 New guide locations: write locations.json + gallery_sources.json, then
 `python3 travel-guides/_tools/geocode.py travel-guides/_src/<slug>` and
 `python3 travel-guides/_tools/commons_gallery.py travel-guides/_src/<slug>`; review and reorder in gallery_curation.json.
+Hikes (optional, not in plans): hikes.json (OSM relation ids) -> `python3 travel-guides/_tools/trails.py travel-guides/_src/<slug>` -> trails.json.
 Trip variants: edit plans.json, then `python3 travel-guides/_tools/routes.py travel-guides/_src/<slug>` to recompute road geometry.
-Categories (icons in places.py): history, view, adventure, drone.
+Categories (icons in places.py): history, view, adventure, drone, hike. Hike levels: easy, medium, hard.
 
 Macros in content.html: `{{PLACES}}`, `{{CATS_LEGEND}}`, `[[gm:Label|query]]`, `[[dir:Label|origin|dest|wp1;wp2]]`, `[[photo:key|caption]]`, `{{MAP}}`.

@@ -902,6 +902,37 @@
     .seg-label{display:none;}
   }
 
+  /* ===== Hikes (optional trails) ===== */
+  .hike-toggle{
+    display:inline-flex; align-items:center; gap:7px; cursor:pointer; user-select:none; font-size:14px; font-weight:800;
+    padding:8px 14px; border-radius:999px; background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow);
+  }
+  .hike-toggle b{font-size:11.5px; color:var(--fg-muted); background:var(--bg-soft); border-radius:999px; padding:1px 7px;}
+  .hike-toggle input{width:18px; height:18px; accent-color:#8a5a2b; margin:0;}
+  .hike-toggle:has(input:checked){border-color:#8a5a2b; background:color-mix(in srgb, #8a5a2b 10%, var(--card));}
+  .hikes{margin:8px 0 34px; padding:4px 0 0;}
+  .hikes-intro{color:var(--fg-muted); font-size:14.5px; margin:-4px 0 10px !important;}
+  .lvl-legend{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin:0 0 14px;}
+  .lvl-legend .muted{font-size:12.5px; margin-right:8px;}
+  .lvl-badge{
+    display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:800; padding:3px 10px; border-radius:999px;
+    color:var(--lc); background:color-mix(in srgb, var(--lc) 12%, var(--card)); border:1px solid color-mix(in srgb, var(--lc) 35%, transparent);
+  }
+  .lvl-badge::before{content:""; width:8px; height:8px; border-radius:50%; background:var(--lc);}
+  .hike-ref{
+    position:absolute; top:10px; left:10px; cursor:pointer; color:#fff; font:800 12.5px/1 var(--font-body);
+    padding:7px 10px; border-radius:999px; border:2.5px solid #fff; box-shadow:0 3px 8px rgba(0,0,0,.35);
+  }
+  .hike-stats{list-style:none; padding:0 !important; margin:0 0 10px; display:grid; grid-template-columns:1fr 1fr; gap:4px 14px; font-size:13px; color:var(--fg-muted);}
+  .hike-stats li{margin:0;}
+  @media (max-width:640px){ .hike-stats{grid-template-columns:1fr;} }
+  .near{font-size:12.5px; color:var(--fg-muted);}
+  .pin.hike-pin{transform:none; border-radius:50%; width:28px; height:28px; color:#fff;}
+  .pin.hike-pin svg{color:#fff;}
+  .pin-label.hike-label{top:5px; left:30px; font-size:11px;}
+  .pin-label.hike-label.left{left:auto; right:30px;}
+  .pop-ref{color:#fff; font:800 11.5px/22px var(--font-body); padding:0 8px; border-radius:999px; white-space:nowrap;}
+
   /* --- theme switch --- */
   :root{color-scheme:light;}
   .top-row{display:flex; align-items:center; justify-content:space-between; gap:12px;}
@@ -921,6 +952,7 @@
  <symbol id="ic-history" viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5M4.5 10h15M6 10v8M10 10v8M14 10v8M18 10v8M3.5 20.5h17M4.5 18h15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
  <symbol id="ic-view" viewBox="0 0 24 24"><circle cx="17" cy="6.5" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 19.5 9 9.5l3.6 5.4 2.2-3 6.7 7.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m7.4 12 1.6 1.4 1.5-1.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
  <symbol id="ic-adventure" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m15.8 8.2-2.2 5.4-5.4 2.2 2.2-5.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="1" fill="currentColor"/></symbol>
+ <symbol id="ic-hike" viewBox="0 0 24 24"><path d="M7 3.5h5l.6 6.2 4.9 2.4c1.6.8 2.5 2 2.5 3.6V18H4.5l1-6.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4.5 18v2.5H20V18M12.6 9.7l-2 1.3M14.6 10.7l-1.8 1.4M4.6 14h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
  <symbol id="ic-drone" viewBox="0 0 24 24"><rect x="9" y="9.5" width="6" height="5" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 10 6.2 7.2M15 10l2.8-2.8M9 14l-2.8 2.8M15 14l2.8 2.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><ellipse cx="5.5" cy="6.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="18.5" cy="6.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="5.5" cy="17.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="18.5" cy="17.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="16.6" r=".9" fill="currentColor"/></symbol>
 </svg>
 
@@ -1029,13 +1061,14 @@
 <section id="categories" data-step="Категорії">
   <h2><span class="num">04</span>Категорії локацій</h2>
   <p class="section-desc">Кожна локація на карті гайду має одну або кілька іконок, за якими її можна відфільтрувати.</p>
-  <div class="cat-legend"><span class="cat-chip" style="--cc:#b7791f" title="Історичне місце"><svg class="cat-ic" width="16" height="16" style="color:#b7791f" aria-hidden="true"><use href="#ic-history"/></svg><span>Історичне місце</span></span><span class="cat-chip" style="--cc:#0e7490" title="Красивий вид"><svg class="cat-ic" width="16" height="16" style="color:#0e7490" aria-hidden="true"><use href="#ic-view"/></svg><span>Красивий вид</span></span><span class="cat-chip" style="--cc:#e8590c" title="Цікава пригода"><svg class="cat-ic" width="16" height="16" style="color:#e8590c" aria-hidden="true"><use href="#ic-adventure"/></svg><span>Цікава пригода</span></span><span class="cat-chip" style="--cc:#7048e8" title="Для зйомки дроном"><svg class="cat-ic" width="16" height="16" style="color:#7048e8" aria-hidden="true"><use href="#ic-drone"/></svg><span>Для зйомки дроном</span></span></div>
+  <div class="cat-legend"><span class="cat-chip" style="--cc:#b7791f" title="Історичне місце"><svg class="cat-ic" width="16" height="16" style="color:#b7791f" aria-hidden="true"><use href="#ic-history"/></svg><span>Історичне місце</span></span><span class="cat-chip" style="--cc:#0e7490" title="Красивий вид"><svg class="cat-ic" width="16" height="16" style="color:#0e7490" aria-hidden="true"><use href="#ic-view"/></svg><span>Красивий вид</span></span><span class="cat-chip" style="--cc:#e8590c" title="Цікава пригода"><svg class="cat-ic" width="16" height="16" style="color:#e8590c" aria-hidden="true"><use href="#ic-adventure"/></svg><span>Цікава пригода</span></span><span class="cat-chip" style="--cc:#7048e8" title="Для зйомки дроном"><svg class="cat-ic" width="16" height="16" style="color:#7048e8" aria-hidden="true"><use href="#ic-drone"/></svg><span>Для зйомки дроном</span></span><span class="cat-chip" style="--cc:#8a5a2b" title="Піші маршрути"><svg class="cat-ic" width="16" height="16" style="color:#8a5a2b" aria-hidden="true"><use href="#ic-hike"/></svg><span>Піші маршрути</span></span></div>
   <table>
     <tr><th>Категорія</th><th>Що означає</th></tr>
     <tr><td><b>Історичне місце</b></td><td>Є що розповісти дітям: відкриття острова, старі містечка, фабрики, легенди</td></tr>
     <tr><td><b>Красивий вид</b></td><td>Оглядові, скелі, ліси — місце, заради якого варто зупинитися з камерою</td></tr>
     <tr><td><b>Цікава пригода</b></td><td>Активність: басейни в лаві, левади, канатки, санки, скляний майданчик</td></tr>
     <tr><td><b>Для зйомки дроном</b></td><td>Фотогенічно з повітря й зазвичай поза забороненими зонами (перевіряйте правила перед польотом)</td></tr>
+    <tr><td><b>Піші маршрути</b></td><td>Старт пішої стежки. Окремо біля карти можна увімкнути до 10 найкращих маршрутів країни з рівнями «легкий / середній / складний» — поза планом туру</td></tr>
   </table>
 </section>
 
