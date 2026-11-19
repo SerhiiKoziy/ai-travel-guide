@@ -1,24 +1,102 @@
 {
- "camaradelobos": ["Port of Câmara de Lobos"],
- "cabogirao": ["Cabo Girão", "Miradouro do Cabo Girão", "Views from Miradouro do Cabo Girão"],
- "pontadosol": ["Ponta do Sol", "Praia da Ponta do Sol"],
- "fanal": ["Fog in Fanal", "Fanal"],
- "portomoniz": ["Piscinas naturais do Porto Moniz"],
- "seixal": ["Seixal (Madeira)", "Piscinas Naturais do Seixal", "Praia da Laje"],
- "veudanoiva": ["Cascata do Véu da Noiva (Madeira)"],
- "rabacal": ["PR 6.1 - Levada do Risco", "Risco (Madeira)", "Rabaçal (Madeira)"],
- "paulserra": ["Paul da Serra", "Cattle in Paul da Serra"],
- "pontadopargo": ["Farol da Ponta do Pargo"],
- "calheta": ["Praia da Calheta", "Engenho da Calheta"],
- "mercado": ["Mercado dos Lavradores", "Courtyard of Mercado dos Lavradores", "Fruit in Mercado dos Lavradores"],
- "zonavelha": ["ArT of opEN doors project in Funchal", "Rua de Santa Maria (Funchal)"],
- "arieiro": ["Pico do Areeiro", "Miradouro do Pico do Arieiro", "PR 1 - Vereda do Arieiro (Pico do Arieiro - Pico do Gato)"],
- "balcoes": ["Balcões"],
- "santana": ["Núcleo de Casas Típicas de Santana", "Houses in Santana (Madeira)"],
- "portodacruz": ["Porto da Cruz"],
- "monte": ["Teleférico Funchal-Monte", "Igreja de Nossa Senhora do Monte (Funchal)", "Carros de cesto do Monte with carreiros"],
- "montepalace": ["Monte Palace Tropical Garden"],
- "botanico": ["Jardim Botânico da Madeira", "Views of Funchal from Jardim Botânico da Madeira"],
- "saolourenco": ["Ponta de São Lourenço", "Views of Ponta de São Lourenço (south)"],
- "machico": ["Praia de Machico", "Machico"]
+ "camaradelobos": [
+  "Port of Câmara de Lobos"
+ ],
+ "cabogirao": [
+  "Cabo Girão",
+  "Miradouro do Cabo Girão",
+  "Views from Miradouro do Cabo Girão"
+ ],
+ "pontadosol": [
+  "Ponta do Sol",
+  "Praia da Ponta do Sol"
+ ],
+ "fanal": [
+  "Fog in Fanal",
+  "Fanal"
+ ],
+ "portomoniz": [
+  "Piscinas naturais do Porto Moniz"
+ ],
+ "seixal": [
+  "Seixal (Madeira)",
+  "Piscinas Naturais do Seixal",
+  "Praia da Laje"
+ ],
+ "veudanoiva": [
+  "Cascata do Véu da Noiva (Madeira)"
+ ],
+ "rabacal": [
+  "PR 6.1 - Levada do Risco",
+  "Risco (Madeira)",
+  "Rabaçal (Madeira)"
+ ],
+ "paulserra": [
+  "Paul da Serra",
+  "Cattle in Paul da Serra"
+ ],
+ "pontadopargo": [
+  "Farol da Ponta do Pargo"
+ ],
+ "calheta": [
+  "Praia da Calheta",
+  "Engenho da Calheta"
+ ],
+ "mercado": [
+  "Mercado dos Lavradores",
+  "Courtyard of Mercado dos Lavradores",
+  "Fruit in Mercado dos Lavradores"
+ ],
+ "zonavelha": [
+  "ArT of opEN doors project in Funchal",
+  "Rua de Santa Maria (Funchal)"
+ ],
+ "arieiro": [
+  "Pico do Areeiro",
+  "Miradouro do Pico do Arieiro",
+  "PR 1 - Vereda do Arieiro (Pico do Arieiro - Pico do Gato)"
+ ],
+ "balcoes": [
+  "Balcões"
+ ],
+ "santana": [
+  "Núcleo de Casas Típicas de Santana",
+  "Houses in Santana (Madeira)"
+ ],
+ "portodacruz": [
+  "Porto da Cruz"
+ ],
+ "monte": [
+  "Teleférico Funchal-Monte",
+  "Igreja de Nossa Senhora do Monte (Funchal)",
+  "Carros de cesto do Monte with carreiros"
+ ],
+ "montepalace": [
+  "Monte Palace Tropical Garden"
+ ],
+ "botanico": [
+  "Jardim Botânico da Madeira",
+  "Views of Funchal from Jardim Botânico da Madeira"
+ ],
+ "saolourenco": [
+  "Ponta de São Lourenço",
+  "Views of Ponta de São Lourenço (south)"
+ ],
+ "machico": [
+  "Praia de Machico",
+  "Machico"
+ ],
+ "grutas": [
+  "São Vicente Caves and Volcanism Centre"
+ ],
+ "baleia": [
+  "Museu da Baleia da Madeira",
+  "Caniçal (vila)",
+  "Port of Caniçal"
+ ],
+ "portosanto": [
+  "Praia do Porto Santo",
+  "Lobo Marinho (ship, 2003)",
+  "Casa Colombo"
+ ]
 }

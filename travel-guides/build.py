@@ -246,9 +246,10 @@ def build_page(guide: dict, template: str) -> str:
                 continue
             picked = [gallery[key][i] for i in cur.get("order", range(len(gallery[key])))]
             gallery[key] = [PHOTOS[k] for k in cur.get("prepend", [])] + picked
+        routes = json.loads((d / "routes.json").read_text()) if (d / "routes.json").exists() else {}
         content = content.replace("{{PLACES}}", places.render_places(
             json.loads((d / "locations.json").read_text()), gallery,
-            json.loads((d / "map.json").read_text())))
+            json.loads((d / "plans.json").read_text()), routes))
     content = content.replace("{{CATS_LEGEND}}", places.cats_legend())
     # number sections in order of appearance, so new sections never need renumbering
     counter = iter(range(1, 100))

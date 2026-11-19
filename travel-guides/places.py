@@ -66,21 +66,107 @@ def slider(key: str, photos: list) -> str:
             f'</div>')
 
 
-def render_places(locs: list, gallery: dict, mapspec: dict) -> str:
-    day_color = {d["n"]: d["color"] for d in mapspec["days"]}
-    day_label = {d["n"]: d["label"] for d in mapspec["days"]}
+def short_label(loc: dict) -> str:
+    return loc.get("label") or loc["name"].split(":")[0].split(" — ")[0].split(" і ")[0]
+
+
+def fmt_drive(km: int, mins: int) -> str:
+    h, m = divmod(int(round(mins / 5.0) * 5), 60)
+    t = f"{h} год {m:02d} хв" if h else f"{m} хв"
+    return f"≈ {km} км · ≈ {t} за кермом"
+
+
+def gmaps_dir(stops: list, q_of) -> str:
+    """Google Maps driving link for a day; stops after a ferry leg ('~') are left out."""
+    if "~" in stops:
+        stops = stops[:stops.index("~")]
+    qs = [q_of(s) for s in stops]
+    url = ("https://www.google.com/maps/dir/?api=1&travelmode=driving"
+           f"&origin={quote(qs[0])}&destination={quote(qs[-1])}")
+    if len(qs) > 2:
+        url += "&waypoints=" + quote("|".join(qs[1:-1]))
+    return url
+
+
+def plan_model(plans: dict, routes: dict, locs: dict) -> dict:
+    """Per plan: route order of locations, day of each location, enriched days."""
+    colors = plans["colors"]
+    pts = plans["points"]
+
+    def q_of(s):
+        return pts[s]["q"] if s.startswith("@") else locs[s]["q"]
+
+    model = {}
+    for pid, plan in plans["plans"].items():
+        order, day_of, days = [], {}, []
+        for n, day in enumerate(plan["days"], 1):
+            for s in day["stops"]:
+                if s in locs and s not in day_of:
+                    day_of[s] = n
+                    order.append(s)
+            r = routes.get(pid, [{}] * len(plan["days"]))[n - 1] if routes else {}
+            days.append({
+                "n": n, "title": day["title"], "note": day.get("note", ""), "color": colors[n - 1],
+                "stops": [s for s in day["stops"] if s != "~"],
+                "loc_stops": [s for s in day["stops"] if s in locs],
+                "points": sorted({s for s in day["stops"] if s.startswith("@")}),
+                "km": r.get("km"), "min": r.get("min"),
+                "legs": r.get("legs", []), "ferry": r.get("ferry", []),
+                "gmaps": gmaps_dir(day["stops"], q_of), "anchor": day.get("anchor", ""),
+            })
+        model[pid] = {"label": plan["label"], "nights": plan["nights"], "bases": plan["bases"],
+                      "intro": plan["intro"], "order": order, "dayOf": day_of, "days": days}
+    return model
+
+
+def render_itinerary(pid: str, p: dict, locs: dict, num: dict, active: bool) -> str:
+    rows = []
+    for d in p["days"]:
+        chips = "".join(
+            f'<span class="it-stop"><b style="background:{d["color"]}">{num[s]}</b>{html.escape(short_label(locs[s]))}</span>'
+            for s in d["loc_stops"])
+        drive = fmt_drive(d["km"], d["min"]) if d["km"] is not None else ""
+        if d["anchor"]:
+            more = f'<a class="it-more" href="#{d["anchor"]}">Детально про день ↓</a>'
+        else:
+            more = ""
+        rows.append(f"""
+  <li class="it-day" data-day="{d['n']}" style="--dc:{d['color']}">
+    <button type="button" class="it-head" aria-pressed="false" title="Показати день на карті">
+      <span class="it-n">{d['n']}</span><span class="it-title">День {d['n']} · {html.escape(d['title'])}</span>
+      <span class="it-drive">{drive}{' · ⛴ пором' if d['ferry'] else ''}</span>
+    </button>
+    <div class="it-stops">{chips}</div>
+    {f'<p class="it-note">{d["note"]}</p>' if d['note'] else ''}
+    <div class="it-links"><a class="gm route" href="{html.escape(d['gmaps'])}" target="_blank" rel="noopener">🚗 Маршрут дня в Google Maps</a>{more}</div>
+  </li>""")
+    hidden = "" if active else " hidden"
+    return f'<ol class="itinerary" data-plan="{pid}"{hidden}>{"".join(rows)}\n</ol>'
+
+
+def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict) -> str:
+    locs = {l["key"]: l for l in locs_list}
+    model = plan_model(plans, routes, locs)
+    default = plans["default"]
+    dp = model[default]
+    # numbers follow the route order of the selected plan; server renders the default plan
+    num_default = {k: i for i, k in enumerate(dp["order"], 1)}
     cards = []
-    for n, loc in enumerate(locs, 1):
-        loc["n"] = n
-        photos = gallery.get(loc["key"], [])
+    ordered = dp["order"] + [k for k in locs if k not in dp["dayOf"]]
+    for key in ordered:
+        loc = locs[key]
+        photos = gallery.get(key, [])
         thumb = photos[0]["url"] if photos else ""
         kid_cls, kid_txt = KID[loc["kid"]]
         cats = "".join(cat_chip(c) for c in loc["cats"])
+        day = dp["dayOf"].get(key)
+        color = dp["days"][day - 1]["color"] if day else "#888"
+        hidden = "" if day else " hidden"
         cards.append(f"""
-<article class="place" id="place-{loc['key']}" data-cats="{' '.join(loc['cats'])}" data-n="{n}">
+<article class="place" id="place-{key}" data-key="{key}" data-cats="{' '.join(loc['cats'])}"{hidden}>
   <div class="place-top">
     <div class="place-thumb" style="background-image:url('{html.escape(thumb)}')">
-      <span class="place-n" style="background:{day_color[loc['day']]}">{n}</span>
+      <span class="place-n" style="background:{color}">{num_default.get(key, '')}</span>
     </div>
     <div class="place-body">
       <div class="place-head">
@@ -90,7 +176,7 @@ def render_places(locs: list, gallery: dict, mapspec: dict) -> str:
       <div class="place-cats">{cats}</div>
       <p class="place-short">{loc['short']}</p>
       <div class="place-meta">
-        <a class="day-chip" href="#day{loc['day']}" style="--dc:{day_color[loc['day']]}">{html.escape(day_label[loc['day']])}</a>
+        <span class="day-chip" style="--dc:{color}">{f'День {day}' if day else ''}</span>
         <span class="kid {kid_cls}">{kid_txt}</span>
         <a class="gm" href="{html.escape(gm_link(loc['q']))}" target="_blank" rel="noopener">📍 Google Maps</a>
       </div>
@@ -99,7 +185,7 @@ def render_places(locs: list, gallery: dict, mapspec: dict) -> str:
   <details class="place-more">
     <summary><span>Детальніше: опис, історія{', ' + str(len(photos)) + ' фото' if photos else ''}</span></summary>
     <div class="place-full">
-      {slider(loc['key'], photos)}
+      {slider(key, photos)}
       <div class="place-text">
         <h4>🧭 Що робити</h4>{loc['full']}
         <h4>📜 Історія</h4>{loc['history']}
@@ -108,32 +194,61 @@ def render_places(locs: list, gallery: dict, mapspec: dict) -> str:
   </details>
 </article>""")
 
+    itineraries, summaries = [], []
+    for pid, p in model.items():
+        num = {k: i for i, k in enumerate(p["order"], 1)}
+        itineraries.append(render_itinerary(pid, p, locs, num, pid == default))
+        hidden = "" if pid == default else " hidden"
+        summaries.append(
+            f'<p class="plan-summary" data-plan="{pid}"{hidden}><b>{p["label"]} · {p["nights"]}</b> · '
+            f'{html.escape(p["bases"])} · {len(p["order"])} локацій<br><span>{html.escape(p["intro"])}</span></p>')
+
     data = {
-        "places": [{"n": l["n"], "key": l["key"], "name": l["name"], "label": l.get("label") or l["name"].split(":")[0].split(" — ")[0].split(" і ")[0], "ll": l["ll"], "day": l["day"],
-                    "cats": l["cats"], "short": l["short"],
-                    "thumb": (gallery.get(l["key"]) or [{"url": ""}])[0]["url"]} for l in locs],
-        "bases": [{"ll": [b[1], b[0]], "name": b[2] if len(b) > 2 else "База"} for b in mapspec.get("bases", [])],
-        "airport": [{"ll": [a[1], a[0]]} for a in mapspec.get("airport", [])],
-        "days": {d["n"]: {"color": d["color"], "label": d["label"]} for d in mapspec["days"]},
+        "places": {k: {"name": l["name"], "label": short_label(l), "ll": l["ll"], "cats": l["cats"],
+                       "short": l["short"], "thumb": (gallery.get(k) or [{"url": ""}])[0]["url"]}
+                   for k, l in locs.items()},
+        "points": plans["points"],
+        "plans": {pid: {"order": p["order"], "dayOf": p["dayOf"],
+                        "days": [{k: d[k] for k in ("n", "title", "color", "legs", "ferry", "points")}
+                                 for d in p["days"]]}
+                  for pid, p in model.items()},
+        "default": default,
         "cats": {k: {"label": v[0], "color": v[1]} for k, v in CATS.items()},
     }
-    filters = ['<button type="button" class="cf-btn is-on" data-cat="all">Усі <b>{}</b></button>'.format(len(locs))]
+    plan_btns = "".join(
+        f'<button type="button" class="seg-btn{" is-on" if pid == default else ""}" data-plan="{pid}" '
+        f'aria-pressed="{"true" if pid == default else "false"}">{p["label"]}</button>'
+        for pid, p in model.items())
+    filters = [f'<button type="button" class="cf-btn is-on" data-cat="all">Усі <b class="cf-n"></b></button>']
     for c, (label, color) in CATS.items():
-        cnt = sum(c in l["cats"] for l in locs)
         filters.append(f'<button type="button" class="cf-btn" data-cat="{c}" style="--cc:{color}">'
-                       f'{icon(c, 16)} {label} <b>{cnt}</b></button>')
-    legend = "".join(f'<span><i style="background:{d["color"]}"></i>{html.escape(d["label"])}</span>'
-                     for d in mapspec["days"])
+                       f'{icon(c, 16)} {label} <b class="cf-n"></b></button>')
     return f"""
+<div class="map-controls">
+  <div class="seg" role="group" aria-label="Що показати на карті">
+    <button type="button" class="seg-btn is-on" data-mode="places" aria-pressed="true">📍 Локації</button>
+    <button type="button" class="seg-btn" data-mode="route" aria-pressed="false">🛣 Маршрут по днях</button>
+  </div>
+  <div class="seg seg-plan" role="group" aria-label="Тривалість поїздки">
+    <span class="seg-label">Тривалість:</span>{plan_btns}
+  </div>
+</div>
+{''.join(summaries)}
 <div class="cat-filter" role="group" aria-label="Фільтр за категорією">{''.join(filters)}</div>
 <div class="bigmap-wrap">
-  <div id="bigmap" class="bigmap" role="region" aria-label="Карта локацій"></div>
-  <noscript><p class="muted">Для інтерактивної карти увімкніть JavaScript. Схема маршруту — нижче в розділі «Маршрут на карті».</p></noscript>
+  <div id="bigmap" class="bigmap" role="region" aria-label="Карта локацій і маршрутів"></div>
+  <noscript><p class="muted">Для інтерактивної карти увімкніть JavaScript.</p></noscript>
 </div>
-<div class="day-legend">{legend}<span>🛏 база</span><span>✈️ аеропорт</span></div>
+<div class="day-legend" aria-hidden="true"></div>
+<div class="itineraries" hidden>
+  <h3 class="it-h">🗓 План по днях</h3>
+  {''.join(itineraries)}
+  <p class="muted it-foot">Час за кермом — оцінка роутера OSRM; з малюком додавайте ~30%. Натисніть на день, щоб виділити його на карті.</p>
+</div>
+<h3 class="places-h">📍 Локації маршруту</h3>
 <div class="places">{''.join(cards)}
 </div>
-<script type="application/json" id="places-data">{json.dumps(data, ensure_ascii=False)}</script>
+<script type="application/json" id="places-data">{json.dumps(data, ensure_ascii=False, separators=(',', ':'))}</script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="" defer></script>
 <script src="assets/places.js" defer></script>
