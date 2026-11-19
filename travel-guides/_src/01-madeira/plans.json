@@ -1,63 +1,427 @@
 {
  "_doc": "Trip variants for the duration switcher. stops: location keys from locations.json or @points below. A '~' between two stops marks a ferry leg (straight dashed line, not driven). routes.json is generated from this by _tools/routes.py.",
  "default": "7",
- "colors": ["#e8590c", "#1971c2", "#2b8a3e", "#7048e8", "#c2255c", "#0c8599", "#5c940d", "#c99700", "#6b4f3a"],
+ "colors": [
+  "#e8590c",
+  "#1971c2",
+  "#2b8a3e",
+  "#7048e8",
+  "#c2255c",
+  "#0c8599",
+  "#5c940d",
+  "#c99700",
+  "#6b4f3a"
+ ],
  "points": {
-  "@airport": {"name": "Аеропорт FNC", "ll": [32.6979, -16.7745], "q": "Aeroporto da Madeira Cristiano Ronaldo"},
-  "@baseW":   {"name": "База на південному заході (Понта-ду-Сол / Калета)", "ll": [32.6800, -17.1003], "q": "Ponta do Sol Madeira"},
-  "@baseF":   {"name": "База у Фуншалі (Lido / Praia Formosa)", "ll": [32.6415, -16.9445], "q": "Praia Formosa Funchal"},
-  "@portF":   {"name": "Порт Фуншала (пором на Порту-Санту)", "ll": [32.6437, -16.9135], "q": "Porto do Funchal Porto Santo Line"},
-  "@portPS":  {"name": "Порт Порту-Санту", "ll": [33.0622, -16.3170], "q": "Porto de Abrigo do Porto Santo"}
+  "@airport": {
+   "name": "Аеропорт FNC",
+   "ll": [
+    32.6979,
+    -16.7745
+   ],
+   "q": "Aeroporto da Madeira Cristiano Ronaldo"
+  },
+  "@baseW": {
+   "name": "База на південному заході (Понта-ду-Сол / Калета)",
+   "ll": [
+    32.68,
+    -17.1003
+   ],
+   "q": "Ponta do Sol Madeira"
+  },
+  "@baseF": {
+   "name": "База у Фуншалі (Lido / Praia Formosa)",
+   "ll": [
+    32.6415,
+    -16.9445
+   ],
+   "q": "Praia Formosa Funchal"
+  },
+  "@portF": {
+   "name": "Порт Фуншала (пором на Порту-Санту)",
+   "ll": [
+    32.6437,
+    -16.9135
+   ],
+   "q": "Porto do Funchal Porto Santo Line"
+  },
+  "@portPS": {
+   "name": "Порт Порту-Санту",
+   "ll": [
+    33.0622,
+    -16.317
+   ],
+   "q": "Porto de Abrigo do Porto Santo"
+  }
  },
  "plans": {
   "4": {
-   "label": "4 дні", "nights": "3 ночі", "bases": "1 база: Фуншал (3 ночі)",
+   "label": "4 дні",
+   "nights": "3 ночі",
+   "bases": "1 база: Фуншал (3 ночі)",
    "intro": "Тільки найяскравіше: одна база у Фуншалі, щоб не переїжджати. Пожертвували заходом острова (Рабасал, Калета, маяк) — він найдальший.",
    "days": [
-    {"title": "Приліт і Фуншал", "stops": ["@airport", "mercado", "zonavelha", "camaradelobos", "@baseF"], "note": "Після обіду: ринок і старе місто, захід сонця в Камара-де-Лобуш."},
-    {"title": "Північний захід", "stops": ["@baseF", "cabogirao", "fanal", "portomoniz", "seixal", "veudanoiva", "@baseF"], "note": "Найдовший день за кермом. Виїзд о 7:30, Фанал — до 10:00."},
-    {"title": "Над хмарами й північ", "stops": ["@baseF", "arieiro", "balcoes", "santana", "@baseF"], "note": "Піку-ду-Арієйру лише в ясну погоду — інакше поміняйте з днем 4."},
-    {"title": "Монте і виліт", "stops": ["@baseF", "monte", "montepalace", "saolourenco", "machico", "@airport"], "note": "Зранку канатка й сад, по дорозі в аеропорт — схід і пляж Машіку."}
+    {
+     "title": "Приліт і Фуншал",
+     "stops": [
+      "@airport",
+      "mercado",
+      "zonavelha",
+      "camaradelobos",
+      "@baseF"
+     ],
+     "note": "Після обіду: ринок і старе місто, захід сонця в Камара-де-Лобуш.",
+     "food": "Болу-ду-каку на ринку; увечері — еспада з бананом на набережній Камара-де-Лобуш.",
+     "rainy": "Ринок і старе місто працюють у будь-яку погоду; Madeira Story Centre у Zona Velha."
+    },
+    {
+     "title": "Північний захід",
+     "stops": [
+      "@baseF",
+      "cabogirao",
+      "fanal",
+      "portomoniz",
+      "seixal",
+      "veudanoiva",
+      "@baseF"
+     ],
+     "note": "Найдовший день за кермом. Виїзд о 7:30, Фанал — до 10:00.",
+     "food": "Обід у Порту-Моніш або Avista Navios у Сейшалі (з видом на чорний пляж).",
+     "rainy": "Акваріум у Порту-Моніш і печери Сан-Вісенте — або поміняйте з днем 4."
+    },
+    {
+     "title": "Над хмарами й північ",
+     "stops": [
+      "@baseF",
+      "arieiro",
+      "balcoes",
+      "santana",
+      "@baseF"
+     ],
+     "note": "Піку-ду-Арієйру лише в ясну погоду — інакше поміняйте з днем 4.",
+     "food": "Суп і еспетада біля каміна в Abrigo do Poiso, обід у Сантані.",
+     "rainy": "Madeira Theme Park у Сантані; гори залиште на ясний день."
+    },
+    {
+     "title": "Монте і виліт",
+     "stops": [
+      "@baseF",
+      "monte",
+      "montepalace",
+      "saolourenco",
+      "machico",
+      "@airport"
+     ],
+     "note": "Зранку канатка й сад, по дорозі в аеропорт — схід і пляж Машіку.",
+     "food": "Піца в Pizza Café Machico — і в аеропорт.",
+     "rainy": "Monte Palace гарний і в дощ; Музей китів у Канісалі по дорозі."
+    }
    ]
   },
   "6": {
-   "label": "6 днів", "nights": "5 ночей", "bases": "2 бази: південний захід (2) + Фуншал (3)",
+   "label": "6 днів",
+   "nights": "5 ночей",
+   "bases": "2 бази: південний захід (2) + Фуншал (3)",
    "intro": "Майже повний маршрут, але щільніше: переїзд між базами поєднаний з Рабасалом і пляжем Калети, місто й Монте — в один день.",
    "days": [
-    {"title": "Приліт → захід", "stops": ["@airport", "camaradelobos", "cabogirao", "pontadosol", "@baseW"], "note": "Захід сонця на пірсі Понта-ду-Сол."},
-    {"title": "Північний захід", "stops": ["@baseW", "fanal", "portomoniz", "seixal", "veudanoiva", "@baseW"], "note": "Фанал у тумані зранку, басейни до 11:00."},
-    {"title": "Рабасал і переїзд у Фуншал", "stops": ["@baseW", "rabacal", "paulserra", "calheta", "@baseF"], "note": "Левада ду-Ріску з переноскою, пляж Калети, увечері — у Фуншал."},
-    {"title": "Фуншал і Монте", "stops": ["@baseF", "mercado", "zonavelha", "monte", "montepalace", "@baseF"], "note": "Авто на паркінгу готелю; канатка з Zona Velha."},
-    {"title": "Над хмарами й північ", "stops": ["@baseF", "arieiro", "balcoes", "santana", "portodacruz", "@baseF"], "note": "Порту-да-Круж — якщо малюк ще має сили."},
-    {"title": "Схід і виліт", "stops": ["@baseF", "saolourenco", "machico", "@airport"], "note": "Пляж Машіку за 7 хв від аеропорту."}
+    {
+     "title": "Приліт → захід",
+     "stops": [
+      "@airport",
+      "camaradelobos",
+      "cabogirao",
+      "pontadosol",
+      "@baseW"
+     ],
+     "note": "Захід сонця на пірсі Понта-ду-Сол.",
+     "food": "Еспетада в Restaurante Santo António (бронюйте) або на набережній Камара-де-Лобуш.",
+     "rainy": "Одразу на базу: на південному заході дощить рідше, ніж у Фуншалі."
+    },
+    {
+     "title": "Північний захід",
+     "stops": [
+      "@baseW",
+      "fanal",
+      "portomoniz",
+      "seixal",
+      "veudanoiva",
+      "@baseW"
+     ],
+     "note": "Фанал у тумані зранку, басейни до 11:00.",
+     "food": "Обід у Порту-Моніш, Avista Navios у Сейшалі або Braseiro в Сан-Вісенте.",
+     "rainy": "Акваріум у Порту-Моніш і печери Сан-Вісенте."
+    },
+    {
+     "title": "Рабасал і переїзд у Фуншал",
+     "stops": [
+      "@baseW",
+      "rabacal",
+      "paulserra",
+      "calheta",
+      "@baseF"
+     ],
+     "note": "Левада ду-Ріску з переноскою, пляж Калети, увечері — у Фуншал.",
+     "food": "Пікнік біля будиночка Рабасал, вечеря вже у Фуншалі.",
+     "rainy": "MUDAS і ромова фабрика Engenhos da Calheta, потім у Фуншал."
+    },
+    {
+     "title": "Фуншал і Монте",
+     "stops": [
+      "@baseF",
+      "mercado",
+      "zonavelha",
+      "monte",
+      "montepalace",
+      "@baseF"
+     ],
+     "note": "Авто на паркінгу готелю; канатка з Zona Velha.",
+     "food": "Болу-ду-каку на ринку; Sabores da Nossa Ilha або Terreiro Concept (дитяче меню).",
+     "rainy": "Канатка й Monte Palace працюють і в дощ — беріть дощовики."
+    },
+    {
+     "title": "Над хмарами й північ",
+     "stops": [
+      "@baseF",
+      "arieiro",
+      "balcoes",
+      "santana",
+      "portodacruz",
+      "@baseF"
+     ],
+     "note": "Порту-да-Круж — якщо малюк ще має сили.",
+     "food": "Abrigo do Poiso по дорозі з гір, обід у Сантані.",
+     "rainy": "Поміняйте з днем 4; Madeira Theme Park у Сантані."
+    },
+    {
+     "title": "Схід і виліт",
+     "stops": [
+      "@baseF",
+      "saolourenco",
+      "machico",
+      "@airport"
+     ],
+     "note": "Пляж Машіку за 7 хв від аеропорту.",
+     "food": "Піца в Pizza Café Machico перед вильотом.",
+     "rainy": "Музей китів у Канісалі."
+    }
    ]
   },
   "7": {
-   "label": "7 днів", "nights": "6 ночей", "bases": "2 бази: південний захід (3) + Фуншал (3)",
+   "label": "7 днів",
+   "nights": "6 ночей",
+   "bases": "2 бази: південний захід (3) + Фуншал (3)",
    "intro": "Базовий маршрут цього гайду — кожен день детально розписаний нижче в розділі «Маршрут по днях».",
    "days": [
-    {"title": "Приліт → південне узбережжя", "stops": ["@airport", "camaradelobos", "cabogirao", "pontadosol", "@baseW"], "note": "", "anchor": "day1"},
-    {"title": "Північний захід", "stops": ["@baseW", "fanal", "portomoniz", "seixal", "veudanoiva", "@baseW"], "note": "", "anchor": "day2"},
-    {"title": "Рабасал, захід, Калета", "stops": ["@baseW", "rabacal", "paulserra", "pontadopargo", "calheta", "@baseW"], "note": "", "anchor": "day3"},
-    {"title": "Переїзд у Фуншал", "stops": ["@baseW", "mercado", "zonavelha", "@baseF"], "note": "", "anchor": "day4"},
-    {"title": "Гори й північ", "stops": ["@baseF", "arieiro", "balcoes", "santana", "portodacruz", "@baseF"], "note": "", "anchor": "day5"},
-    {"title": "Монте", "stops": ["@baseF", "monte", "montepalace", "botanico", "@baseF"], "note": "", "anchor": "day6"},
-    {"title": "Схід і виліт", "stops": ["@baseF", "saolourenco", "machico", "@airport"], "note": "", "anchor": "day7"}
+    {
+     "title": "Приліт → південне узбережжя",
+     "stops": [
+      "@airport",
+      "camaradelobos",
+      "cabogirao",
+      "pontadosol",
+      "@baseW"
+     ],
+     "note": "",
+     "anchor": "day1"
+    },
+    {
+     "title": "Північний захід",
+     "stops": [
+      "@baseW",
+      "fanal",
+      "portomoniz",
+      "seixal",
+      "veudanoiva",
+      "@baseW"
+     ],
+     "note": "",
+     "anchor": "day2"
+    },
+    {
+     "title": "Рабасал, захід, Калета",
+     "stops": [
+      "@baseW",
+      "rabacal",
+      "paulserra",
+      "pontadopargo",
+      "calheta",
+      "@baseW"
+     ],
+     "note": "",
+     "anchor": "day3"
+    },
+    {
+     "title": "Переїзд у Фуншал",
+     "stops": [
+      "@baseW",
+      "mercado",
+      "zonavelha",
+      "@baseF"
+     ],
+     "note": "",
+     "anchor": "day4"
+    },
+    {
+     "title": "Гори й північ",
+     "stops": [
+      "@baseF",
+      "arieiro",
+      "balcoes",
+      "santana",
+      "portodacruz",
+      "@baseF"
+     ],
+     "note": "",
+     "anchor": "day5"
+    },
+    {
+     "title": "Монте",
+     "stops": [
+      "@baseF",
+      "monte",
+      "montepalace",
+      "botanico",
+      "@baseF"
+     ],
+     "note": "",
+     "anchor": "day6"
+    },
+    {
+     "title": "Схід і виліт",
+     "stops": [
+      "@baseF",
+      "saolourenco",
+      "machico",
+      "@airport"
+     ],
+     "note": "",
+     "anchor": "day7"
+    }
    ]
   },
   "9": {
-   "label": "9 днів", "nights": "8 ночей", "bases": "2 бази: південний захід (4) + Фуншал (4)",
+   "label": "9 днів",
+   "nights": "8 ночей",
+   "bases": "2 бази: південний захід (4) + Фуншал (4)",
    "intro": "Розслаблений темп: є дні з однією-двома точками й вільним вечором, печери Сан-Вісенте, Музей китів і поромна поїздка на золотий пляж Порту-Санту.",
    "days": [
-    {"title": "Приліт → захід", "stops": ["@airport", "camaradelobos", "cabogirao", "pontadosol", "@baseW"], "note": "Захід сонця на пірсі Понта-ду-Сол."},
-    {"title": "Північний захід і печери", "stops": ["@baseW", "fanal", "portomoniz", "seixal", "veudanoiva", "grutas", "@baseW"], "note": "Печери — ідеальний фінал дня (або план на дощ)."},
-    {"title": "Левада й плато", "stops": ["@baseW", "rabacal", "paulserra", "@baseW"], "note": "Лише одна прогулянка — після обіду басейн у готелі."},
-    {"title": "Маяк і пляж", "stops": ["@baseW", "pontadopargo", "calheta", "@baseW"], "note": "Маяк зранку, решта дня — пісочний пляж Калети."},
-    {"title": "Переїзд у Фуншал", "stops": ["@baseW", "mercado", "zonavelha", "@baseF"], "note": "Ринок, старе місто, басейни Lido."},
-    {"title": "Гори й північ", "stops": ["@baseF", "arieiro", "balcoes", "santana", "portodacruz", "@baseF"], "note": "Тільки в ясний день."},
-    {"title": "Монте й сади", "stops": ["@baseF", "monte", "montepalace", "botanico", "@baseF"], "note": "Авто не потрібне."},
-    {"title": "Пором на Порту-Санту", "stops": ["@baseF", "@portF", "~", "@portPS", "portosanto"], "note": "Пором ≈ 2,5 год в один бік, повернення ввечері. Квитки й розклад — Porto Santo Line."},
-    {"title": "Схід, кити й виліт", "stops": ["@baseF", "saolourenco", "baleia", "machico", "@airport"], "note": "Музей китів у Канісалі — 1–1,5 год, потім пляж Машіку."}
+    {
+     "title": "Приліт → захід",
+     "stops": [
+      "@airport",
+      "camaradelobos",
+      "cabogirao",
+      "pontadosol",
+      "@baseW"
+     ],
+     "note": "Захід сонця на пірсі Понта-ду-Сол.",
+     "food": "Еспетада в Restaurante Santo António (бронюйте) або на набережній Камара-де-Лобуш.",
+     "rainy": "Одразу на базу: на південному заході дощить рідше."
+    },
+    {
+     "title": "Північний захід і печери",
+     "stops": [
+      "@baseW",
+      "fanal",
+      "portomoniz",
+      "seixal",
+      "veudanoiva",
+      "grutas",
+      "@baseW"
+     ],
+     "note": "Печери — ідеальний фінал дня (або план на дощ).",
+     "food": "Avista Navios у Сейшалі або Braseiro в Сан-Вісенте.",
+     "rainy": "Печери Сан-Вісенте й акваріум — це і є дощовий план дня."
+    },
+    {
+     "title": "Левада й плато",
+     "stops": [
+      "@baseW",
+      "rabacal",
+      "paulserra",
+      "@baseW"
+     ],
+     "note": "Лише одна прогулянка — після обіду басейн у готелі.",
+     "food": "Пікнік біля будиночка Рабасал, вечеря в Понта-ду-Сол.",
+     "rainy": "MUDAS і Engenhos da Calheta."
+    },
+    {
+     "title": "Маяк і пляж",
+     "stops": [
+      "@baseW",
+      "pontadopargo",
+      "calheta",
+      "@baseW"
+     ],
+     "note": "Маяк зранку, решта дня — пісочний пляж Калети.",
+     "food": "Кафе на пляжі Калети, захід сонця на пірсі Понта-ду-Сол.",
+     "rainy": "Engenhos da Calheta (ром і мед з тростини) та басейн у готелі."
+    },
+    {
+     "title": "Переїзд у Фуншал",
+     "stops": [
+      "@baseW",
+      "mercado",
+      "zonavelha",
+      "@baseF"
+     ],
+     "note": "Ринок, старе місто, басейни Lido.",
+     "food": "Болу-ду-каку на ринку, вечеря в Zona Velha.",
+     "rainy": "Madeira Story Centre; ринок критий."
+    },
+    {
+     "title": "Гори й північ",
+     "stops": [
+      "@baseF",
+      "arieiro",
+      "balcoes",
+      "santana",
+      "portodacruz",
+      "@baseF"
+     ],
+     "note": "Тільки в ясний день.",
+     "food": "Abrigo do Poiso по дорозі з гір, обід у Сантані.",
+     "rainy": "Поміняйте з днем 7: гори — тільки в ясний день."
+    },
+    {
+     "title": "Монте й сади",
+     "stops": [
+      "@baseF",
+      "monte",
+      "montepalace",
+      "botanico",
+      "@baseF"
+     ],
+     "note": "Авто не потрібне.",
+     "food": "Кафе в Monte Palace, вечеря в Zona Velha.",
+     "rainy": "Monte Palace гарний і в дощ — беріть дощовики."
+    },
+    {
+     "title": "Пором на Порту-Санту",
+     "stops": [
+      "@baseF",
+      "@portF",
+      "~",
+      "@portPS",
+      "portosanto"
+     ],
+     "note": "Пором ≈ 2,5 год в один бік, повернення ввечері. Квитки й розклад — Porto Santo Line.",
+     "food": "Ресторанчики на набережній Віла-Балейри (Порту-Санту).",
+     "rainy": "У шторм пором скасовують — тоді це вільний день на Мадейрі."
+    },
+    {
+     "title": "Схід, кити й виліт",
+     "stops": [
+      "@baseF",
+      "saolourenco",
+      "baleia",
+      "machico",
+      "@airport"
+     ],
+     "note": "Музей китів у Канісалі — 1–1,5 год, потім пляж Машіку.",
+     "food": "Піца в Pizza Café Machico перед вильотом.",
+     "rainy": "Музей китів — уже в плані, він критий."
+    }
    ]
   }
  }

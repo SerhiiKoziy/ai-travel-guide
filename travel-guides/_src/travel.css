@@ -241,7 +241,9 @@
   }
   .place.flash{box-shadow:0 0 0 3px var(--sun), var(--shadow);}
   .place-top{display:grid; grid-template-columns:190px 1fr; min-height:150px;}
-  .place-thumb{position:relative; background:var(--bg-soft) center/cover no-repeat;}
+  .place-thumb{position:relative; background:var(--bg-soft); overflow:hidden;}
+  .place-thumb .thumb-img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block;}
+  .place-thumb .place-n{z-index:1;}
   .place-n{
     position:absolute; top:10px; left:10px; cursor:pointer; min-width:34px; height:34px; border-radius:50%;
     color:#fff; font:800 15px/34px var(--font-body); text-align:center; border:2.5px solid #fff; box-shadow:0 3px 8px rgba(0,0,0,.35);
@@ -471,3 +473,22 @@
   .day-legend .lg-start{display:inline-flex; width:20px; height:20px; border-radius:50% 50% 50% 3px; transform:rotate(-45deg); background:#e67700; color:#fff; font-size:10px; align-items:center; justify-content:center;}
   .day-legend .lg-end{font-size:13px;}
   .day-legend .lg-line{width:22px; height:0; border-top:3px dashed #8a5a2b; display:inline-block;}
+
+  /* ===== Detailed days per plan ===== */
+  .days-switch{margin:0 0 18px; position:sticky; top:122px; z-index:5; display:flex;}
+  .days-switch .seg{background:color-mix(in srgb, var(--card) 92%, transparent); backdrop-filter:blur(6px);}
+  @media (max-width:768px){ .days-switch{top:96px;} }
+  .seg-days .seg-btn.is-on{background:var(--sun); box-shadow:0 4px 12px -6px var(--sun);}
+  .stops .photo.sm{max-width:440px; margin:8px 0 6px;}
+  .photo.sm img{aspect-ratio:16/9;}
+  .photo.sm figcaption{padding:5px 10px; font-size:11.5px;}
+  .stops > li.pt{padding-bottom:10px;}
+  .stops > li.pt::before{border-color:var(--fg-muted); background:var(--bg-soft);}
+  .stops > li.pt .s-title{font-weight:700; color:var(--fg-muted);}
+  .to-card{font-size:13.5px; font-weight:700; color:var(--sun) !important; text-decoration:none;}
+  .day-note{font-size:14.5px; margin:6px 0 !important;}
+  .food{
+    border:1px dashed var(--good-border); background:var(--good-bg); border-radius:10px;
+    padding:10px 14px; margin-top:8px; font-size:14px;
+  }
+  .food b{color:var(--good);}

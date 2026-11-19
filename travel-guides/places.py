@@ -32,6 +32,11 @@ ICON_SPRITE = """<svg width="0" height="0" style="position:absolute" aria-hidden
 KID = {"ok": ("ok", "👶 ок з малюком"), "mid": ("mid", "👶 з переноскою"), "no": ("no", "👶 не з малюком")}
 
 
+def wm_size(url: str, width: int) -> str:
+    """Smaller Wikimedia thumbnail of the same file (standard widths: 330, 500, 960, 1280)."""
+    return url.replace("/1280px-", f"/{width}px-") if url else url
+
+
 def icon(cat: str, size: int = 18) -> str:
     return (f'<svg class="cat-ic" width="{size}" height="{size}" style="color:{CATS[cat][1]}" '
             f'aria-hidden="true"><use href="#ic-{cat}"/></svg>')
@@ -116,11 +121,78 @@ def plan_model(plans: dict, routes: dict, locs: dict) -> dict:
                 "points": sorted({s for s in day["stops"] if s.startswith("@")}),
                 "km": r.get("km"), "min": r.get("min"),
                 "legs": r.get("legs", []), "ferry": r.get("ferry", []),
-                "gmaps": gmaps_dir(day["stops"], q_of), "anchor": day.get("anchor", ""),
+                "gmaps": gmaps_dir(day["stops"], q_of), "anchor": day.get("anchor") or f"p{pid}-day{n}",
+                "raw_stops": day["stops"], "food": day.get("food", ""), "rainy": day.get("rainy", ""),
             })
         model[pid] = {"label": plan["label"], "nights": plan["nights"], "bases": plan["bases"],
                       "intro": plan["intro"], "order": order, "dayOf": day_of, "days": days}
     return model
+
+
+def render_days_switch(model: dict, default: str) -> str:
+    btns = "".join(
+        f'<button type="button" class="seg-btn{" is-on" if pid == default else ""}" data-plan="{pid}" '
+        f'aria-pressed="{"true" if pid == default else "false"}">{p["label"]}</button>'
+        for pid, p in model.items())
+    return (f'<div class="days-switch"><div class="seg seg-days" role="group" aria-label="Тривалість поїздки">'
+            f'<span class="seg-label">Тривалість:</span>{btns}</div></div>')
+
+
+def render_day_plans(model: dict, locs: dict, gallery: dict, points: dict, default: str, skip: str = "7") -> str:
+    """Detailed day cards for every plan except `skip` (that one is hand-written in content.html)."""
+    out = []
+    for pid, p in model.items():
+        if pid == skip:
+            continue
+        num = {k: i for i, k in enumerate(p["order"], 1)}
+        days = []
+        for d in p["days"]:
+            stops = []
+            for s_ in d["raw_stops"]:
+                if s_ == "~":
+                    stops.append('<li class="pt"><span class="s-title">⛴ Пором Porto Santo Line</span>'
+                                 '<p class="drive">≈ 2,5 год морем; авто лишається у Фуншалі.</p></li>')
+                    continue
+                if s_.startswith("@"):
+                    ico = "✈️" if s_ == "@airport" else ("⛴" if s_.startswith("@port") else "🛏")
+                    stops.append(f'<li class="pt"><span class="s-title">{ico} {html.escape(points[s_]["name"])}</span></li>')
+                    continue
+                loc = locs[s_]
+                kid_cls, kid_txt = KID[loc["kid"]]
+                ph = (gallery.get(s_) or [None])[0]
+                fig = ""
+                if ph:
+                    fig = (f'<figure class="photo sm"><img src="{html.escape(wm_size(ph["url"], 960))}" alt="{html.escape(loc["name"])}" '
+                           f'loading="lazy" referrerpolicy="no-referrer"><figcaption><a href="{html.escape(ph["page"])}" '
+                           f'target="_blank" rel="noopener">📷 {html.escape(ph["author"])}, {html.escape(ph["license"])}</a>'
+                           f'</figcaption></figure>')
+                stops.append(f"""
+        <li><span class="t" style="color:{d['color']}">зупинка {num[s_]}</span> · <span class="s-title">{html.escape(loc['name'])}</span>
+          <span class="kid {kid_cls}">{kid_txt}</span>
+          <a class="gm" href="{html.escape(gm_link(loc['q']))}" target="_blank" rel="noopener">📍 Google Maps</a>
+          <p>{loc['short']}</p>{fig}
+          <p><a class="to-card" href="#place-{s_}">Детальніше про локацію, історія й фото ↑</a></p></li>""")
+            drive = fmt_drive(d["km"], d["min"]) if d["km"] is not None else ""
+            extra = ""
+            if d["note"]:
+                extra += f'<p class="day-note">💡 {d["note"]}</p>'
+            if d["food"]:
+                extra += f'<div class="food"><b>🍽 Де поїсти:</b> {d["food"]}</div>'
+            if d["rainy"]:
+                extra += f'<div class="rainy"><b>☔ Якщо дощ:</b> {d["rainy"]}</div>'
+            days.append(f"""
+  <div class="day" id="{d['anchor']}">
+    <div class="day-head"><span class="day-num" style="background:{d['color']}">{d['n']}</span><span class="day-title">{html.escape(d['title'])}</span><span class="day-meta">{drive}</span></div>
+    <p><a class="gm route" href="{html.escape(d['gmaps'])}" target="_blank" rel="noopener">🚗 Маршрут дня {d['n']} у Google Maps</a></p>
+    <ol class="stops">{''.join(stops)}
+    </ol>
+    {extra}
+  </div>""")
+        hidden = "" if pid == default else " hidden"
+        out.append(f'<div class="days-plan" data-plan="{pid}"{hidden}>\n'
+                   f'  <p class="plan-summary"><b>{p["label"]} · {p["nights"]}</b> · {html.escape(p["bases"])}<br>'
+                   f'<span>{html.escape(p["intro"])}</span></p>{"".join(days)}\n</div>')
+    return "\n".join(out)
 
 
 def render_itinerary(pid: str, p: dict, locs: dict, num: dict, active: bool) -> str:
@@ -130,10 +202,7 @@ def render_itinerary(pid: str, p: dict, locs: dict, num: dict, active: bool) -> 
             f'<span class="it-stop"><b style="background:{d["color"]}">{num[s]}</b>{html.escape(short_label(locs[s]))}</span>'
             for s in d["loc_stops"])
         drive = fmt_drive(d["km"], d["min"]) if d["km"] is not None else ""
-        if d["anchor"]:
-            more = f'<a class="it-more" href="#{d["anchor"]}">Детально про день ↓</a>'
-        else:
-            more = ""
+        more = f'<a class="it-more" href="#{d["anchor"]}">Детально про день ↓</a>'
         rows.append(f"""
   <li class="it-day" data-day="{d['n']}" style="--dc:{d['color']}">
     <button type="button" class="it-head" aria-pressed="false" title="Показати день на карті">
@@ -182,7 +251,7 @@ def render_hikes(hikes: list, gallery: dict, locs: dict) -> str:
     cards = []
     for h in hikes:
         photos = gallery.get("hike-" + h["key"], [])
-        thumb = photos[0]["url"] if photos else ""
+        thumb = wm_size(photos[0]["url"], 500) if photos else ""
         color = LEVELS[h["level"]][1]
         kid_cls, kid_txt = KID[h["kid"]]
         near = (f'<span class="near">поруч з локацією туру: <b>{html.escape(short_label(locs[h["tour"]]))}</b></span>'
@@ -190,7 +259,7 @@ def render_hikes(hikes: list, gallery: dict, locs: dict) -> str:
         cards.append(f"""
 <article class="place hike" id="hike-{h['key']}" data-hike="{h['key']}" data-level="{h['level']}">
   <div class="place-top">
-    <div class="place-thumb" style="background-image:url('{html.escape(thumb)}')">
+    <div class="place-thumb">{f'<img class="thumb-img" src="{html.escape(thumb)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">' if thumb else ''}
       <span class="place-n" style="background:{color}">{h['n']}</span>
     </div>
     <div class="place-body">
@@ -249,7 +318,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
     for key in ordered:
         loc = locs[key]
         photos = gallery.get(key, [])
-        thumb = photos[0]["url"] if photos else ""
+        thumb = wm_size(photos[0]["url"], 500) if photos else ""
         kid_cls, kid_txt = KID[loc["kid"]]
         cats = "".join(cat_chip(c) for c in loc["cats"])
         day = dp["dayOf"].get(key)
@@ -258,7 +327,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
         cards.append(f"""
 <article class="place" id="place-{key}" data-key="{key}" data-cats="{' '.join(loc['cats'])}"{hidden}>
   <div class="place-top">
-    <div class="place-thumb" style="background-image:url('{html.escape(thumb)}')">
+    <div class="place-thumb">{f'<img class="thumb-img" src="{html.escape(thumb)}" alt="" loading="lazy" decoding="async" referrerpolicy="no-referrer">' if thumb else ''}
       <span class="place-n" style="background:{color}">{num_default.get(key, '')}</span>
     </div>
     <div class="place-body">
@@ -298,7 +367,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
 
     data = {
         "places": {k: {"name": l["name"], "label": short_label(l), "ll": l["ll"], "cats": l["cats"],
-                       "short": l["short"], "thumb": (gallery.get(k) or [{"url": ""}])[0]["url"]}
+                       "short": l["short"], "thumb": wm_size((gallery.get(k) or [{"url": ""}])[0]["url"], 500)}
                    for k, l in locs.items()},
         "points": plans["points"],
         "plans": {pid: {"order": p["order"], "dayOf": p["dayOf"],
@@ -310,7 +379,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
         "hikes": {h["key"]: {"n": h["n"], "ref": h["ref"], "name": h["ua"], "label": h.get("label", h["ua"]),
                              "level": h["level"], "levelLabel": LEVELS[h["level"]][0], "color": LEVELS[h["level"]][1],
                              "short": h["short"], "dist": h["dist"], "time": h["time"],
-                             "thumb": (gallery.get("hike-" + h["key"]) or [{"url": ""}])[0]["url"],
+                             "thumb": wm_size((gallery.get("hike-" + h["key"]) or [{"url": ""}])[0]["url"], 500),
                              "start": h["start_ll"], "end": h["end_ll"], "lines": h["lines"]}
                   for h in hk},
     }

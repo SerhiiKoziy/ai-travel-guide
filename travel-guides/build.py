@@ -247,6 +247,13 @@ def build_page(guide: dict, template: str) -> str:
             picked = [gallery[key][i] for i in cur.get("order", range(len(gallery[key])))]
             gallery[key] = [PHOTOS[k] for k in cur.get("prepend", [])] + picked
         routes = json.loads((d / "routes.json").read_text()) if (d / "routes.json").exists() else {}
+        if "{{DAYS_PLANS}}" in content:
+            plans = json.loads((d / "plans.json").read_text())
+            lmap = {l["key"]: l for l in json.loads((d / "locations.json").read_text())}
+            model = places.plan_model(plans, routes, lmap)
+            content = content.replace("{{DAYS_SWITCH}}", places.render_days_switch(model, plans["default"]))
+            content = content.replace("{{DAYS_PLANS}}", places.render_day_plans(
+                model, lmap, gallery, plans["points"], plans["default"]))
         content = content.replace("{{PLACES}}", places.render_places(
             json.loads((d / "locations.json").read_text()), gallery,
             json.loads((d / "plans.json").read_text()), routes,

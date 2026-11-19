@@ -283,6 +283,8 @@
     show('.hike-only', hk);
     $$('.plan-summary').forEach(function (el) { el.hidden = hk || el.getAttribute('data-plan') !== state.plan; });
     $$('.itinerary').forEach(function (el) { el.hidden = el.getAttribute('data-plan') !== state.plan; });
+    // section "Маршрут по днях" shows the detailed days of the same plan
+    $$('.days-plan').forEach(function (el) { el.hidden = el.getAttribute('data-plan') !== state.plan; });
     $('.itineraries').hidden = state.mode !== 'route';
     $('.seg-plan').classList.toggle('is-disabled', hk);
     $$('.seg-plan .seg-btn').forEach(function (b) { b.disabled = hk; });
@@ -320,6 +322,15 @@
   });
   $$('.cf-btn').forEach(function (b) {
     b.addEventListener('click', function () { state.cat = b.getAttribute('data-cat'); state.focus = 0; render(true); });
+  });
+  // "Детальніше про локацію" links in the detailed days open the location card
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a.to-card');
+    if (!a) return;
+    e.preventDefault();
+    var id = a.getAttribute('href').slice(1);
+    if (hiking()) { state.mode = 'places'; save(); render(true); }
+    openCard(id);
   });
   $$('.lf-btn').forEach(function (b) {
     b.addEventListener('click', function () { state.level = b.getAttribute('data-level'); render(true); });
