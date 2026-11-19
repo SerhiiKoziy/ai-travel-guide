@@ -3,6 +3,12 @@
   "kicker": "Travel Guides · методологія",
   "h1": "Сімейні подорожі на авто: від аеропорту до аеропорту",
   "lead": "Кожен гайд тут — готовий маршрут на 7 днів / 6 ночей: беремо авто в аеропорту прильоту, проїжджаємо країну найоптимальнішим шляхом і здаємо авто там само перед вильотом. З готелями до $160/ніч, лінками в Google Maps і аналізом того, що пишуть блогери.",
-  "pills": ["🚗 Авто з аеропорту", "📅 7 днів / 6 ночей", "🏨 до $160/ніч", "👨‍👩‍👧‍👦 2 дорослих + 2 дітей"],
-  "footer": "Почніть з <a href=\"01-madeira.html\">Мадейри</a>."
+  "pills": [
+    "🚗 Авто з аеропорту",
+    "📅 7 днів / 6 ночей",
+    "🏨 до $160/ніч",
+    "👨‍👩‍👧‍👦 2 дорослих + 2 дітей"
+  ],
+  "footer": "Почніть з <a href=\"01-madeira.html\">Мадейри</a>.",
+  "hero": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Santa_Maria_Maior_%28Madeira%2C_Portugal%29%2C_Jardim_Bot%C3%A2nico_da_Madeira%2C_Blick_auf_den_Hafen_von_Funchal_--_2025_--_1824.jpg/1280px-Santa_Maria_Maior_%28Madeira%2C_Portugal%29%2C_Jardim_Bot%C3%A2nico_da_Madeira%2C_Blick_auf_den_Hafen_von_Funchal_--_2025_--_1824.jpg"
 }

@@ -10,6 +10,8 @@ Macros available inside content.html:
   [[dir:Label|origin|destination|wp1;wp2;...]]   -> Google Maps driving route chip
   [[photo:key|caption]]                          -> photo figure from photos.json
   {{MAP}}                                        -> inline SVG route map from map.json
+  {{PLACES}}                                     -> big map + place cards (places.py)
+  {{CATS_LEGEND}}                                -> category icons legend
 The TOC ("На цій сторінці") is built from <section id="..."> + its <h2>.
 """
 import html
@@ -17,6 +19,8 @@ import json
 import re
 from pathlib import Path
 from urllib.parse import quote
+
+import places
 
 ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "_src"
@@ -182,6 +186,13 @@ def render_map(spec: dict) -> str:
     return f'<figure class="diagram map">\n{"".join(out)}\n<figcaption>{cap}</figcaption>\n</figure>'
 
 
+def hero_style(meta: dict) -> str:
+    """Background photo for the hero: meta["hero"] is a photos.json key or a full URL."""
+    hero = meta.get("hero", "")
+    url = PHOTOS.get(hero, {}).get("url", hero)
+    return f' style="--hero:url(\'{html.escape(url)}\')"' if url else ""
+
+
 def build_page(guide: dict, template: str) -> str:
     d = SRC / guide["slug"]
     meta = json.loads((d / "meta.json").read_text())
@@ -189,6 +200,21 @@ def build_page(guide: dict, template: str) -> str:
     PHOTOS.clear()
     if (d / "photos.json").exists():
         PHOTOS.update(json.loads((d / "photos.json").read_text()))
+    if "{{PLACES}}" in content:
+        gallery = json.loads((d / "gallery.json").read_text()) if (d / "gallery.json").exists() else {}
+        cur_path = d / "gallery_curation.json"
+        for key, cur in (json.loads(cur_path.read_text()) if cur_path.exists() else {}).items():
+            if key.startswith("_") or key not in gallery:
+                continue
+            picked = [gallery[key][i] for i in cur.get("order", range(len(gallery[key])))]
+            gallery[key] = [PHOTOS[k] for k in cur.get("prepend", [])] + picked
+        content = content.replace("{{PLACES}}", places.render_places(
+            json.loads((d / "locations.json").read_text()), gallery,
+            json.loads((d / "map.json").read_text())))
+    content = content.replace("{{CATS_LEGEND}}", places.cats_legend())
+    # number sections in order of appearance, so new sections never need renumbering
+    counter = iter(range(1, 100))
+    content = re.sub(r'<span class="num">\d+</span>', lambda m: f'<span class="num">{next(counter):02d}</span>', content)
     if "{{MAP}}" in content:
         content = content.replace("{{MAP}}", render_map(json.loads((d / "map.json").read_text())))
     content = expand_macros(content)
@@ -199,6 +225,8 @@ def build_page(guide: dict, template: str) -> str:
         "PILLS": pills, "NAV": render_nav(guide["file"]), "TOC": build_toc(content),
         "CONTENT": content, "FOOTER": meta.get("footer", ""),
         "EXTRA_CSS": (ROOT / "_src" / "travel.css").read_text(),
+        "ICONS": places.ICON_SPRITE,
+        "HERO_STYLE": hero_style(meta),
     }.items():
         page = page.replace("{{" + key + "}}", val)
     left = re.findall(r"\{\{[A-Z_]+\}\}|\[\[(?:gm|dir):", page)
