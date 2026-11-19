@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Мадейра: 7 днів на авто з дітьми — Travel Guides</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🧭%3C/text%3E%3C/svg%3E">
+<script>
+(function(){
+  try{ var t = localStorage.getItem('docs-theme'); if(t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); }catch(e){}
+})();
+</script>
+<style>
+  :root{
+    --bg:#ffffff; --bg-soft:#f6f7f9; --card:#ffffff; --border:#e3e6ea;
+    --fg:#1a1d23; --fg-muted:#5b6270;
+    --accent:#2f6feb; --accent-soft:#eaf1ff;
+    --code-bg:#1e2230; --code-fg:#e7eaf2; --code-muted:#8b93a7;
+    --good:#1a7f4b; --good-bg:#e8f7ee; --good-border:#b6e3c6;
+    --bad:#c0392b; --bad-bg:#fdecea; --bad-border:#f3c2bb;
+    --warn:#9a6700; --warn-bg:#fff6e5; --warn-border:#f0dca3;
+    --info:#2f6feb; --info-bg:#eaf1ff; --info-border:#c6dafc;
+    --fun:#0f8a8a; --fun-bg:#e6f7f7; --fun-border:#bfe8e8;
+    --interview:#7c3aed; --interview-bg:#f5f0ff; --interview-border:#ddd0fa;
+    --notes:#7c3aed; --notes-bg:#f5f0ff; --notes-border:#ddd0fa;
+    --radius:12px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#14161b; --bg-soft:#1b1e25; --card:#1b1e25; --border:#2b2f3a;
+      --fg:#e7eaf2; --fg-muted:#9aa2b4;
+      --accent:#6d9bff; --accent-soft:#1c2740;
+      --code-bg:#0e1016; --code-fg:#e7eaf2; --code-muted:#7c8494;
+      --good:#5fd08d; --good-bg:#12261c; --good-border:#255c3c;
+      --bad:#ff8a7a; --bad-bg:#301716; --bad-border:#6b2a25;
+      --warn:#f0c25a; --warn-bg:#2c2411; --warn-border:#5c4a1c;
+      --info:#7fb0ff; --info-bg:#131f33; --info-border:#28416b;
+      --fun:#5fd6d6; --fun-bg:#0f2626; --fun-border:#1f4d4d;
+      --interview:#c4a6ff; --interview-bg:#241a35; --interview-border:#4b3570;
+      --notes:#c4a6ff; --notes-bg:#241a35; --notes-border:#4b3570;
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#14161b; --bg-soft:#1b1e25; --card:#1b1e25; --border:#2b2f3a;
+    --fg:#e7eaf2; --fg-muted:#9aa2b4;
+    --accent:#6d9bff; --accent-soft:#1c2740;
+    --code-bg:#0e1016; --code-fg:#e7eaf2; --code-muted:#7c8494;
+    --good:#5fd08d; --good-bg:#12261c; --good-border:#255c3c;
+    --bad:#ff8a7a; --bad-bg:#301716; --bad-border:#6b2a25;
+    --warn:#f0c25a; --warn-bg:#2c2411; --warn-border:#5c4a1c;
+    --info:#7fb0ff; --info-bg:#131f33; --info-border:#28416b;
+    --fun:#5fd6d6; --fun-bg:#0f2626; --fun-border:#1f4d4d;
+    --interview:#c4a6ff; --interview-bg:#241a35; --interview-border:#4b3570;
+    --notes:#c4a6ff; --notes-bg:#241a35; --notes-border:#4b3570;
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6; font-size:16px;
+  }
+  code, pre, .mono{font-family:"SF Mono",ui-monospace,"Fira Code",Consolas,"Cascadia Code",monospace;}
+
+  header.top{
+    position:sticky; top:0; z-index:20;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--border);
+  }
+  .top-inner{
+    max-width:1180px; margin:0 auto; padding:14px 24px;
+    display:flex; flex-direction:column; gap:10px;
+  }
+  .brand{font-weight:700; font-size:15px; white-space:nowrap;}
+  .brand span{color:var(--accent);}
+
+  .toptabs{display:flex; flex-direction:column; gap:8px;}
+  .toptabs input.tab-radio{display:none;}
+  .tab-bar{display:flex; gap:8px; flex-wrap:wrap;}
+  .tab-btn{
+    cursor:pointer; user-select:none; padding:6px 14px; border-radius:999px;
+    font-size:12.5px; font-weight:700; letter-spacing:.01em; color:var(--fg-muted);
+    border:1px solid var(--border); background:var(--bg-soft);
+    transition:background .15s, color .15s, border-color .15s;
+  }
+  .tab-btn:hover{background:var(--card);}
+  #tab-project:checked ~ .tab-bar label[for="tab-project"],
+  #tab-interview:checked ~ .tab-bar label[for="tab-interview"]{
+    background:var(--accent); color:#fff; border-color:var(--accent);
+  }
+  .tab-links{display:none; gap:6px; flex-wrap:wrap;}
+  #tab-project:checked ~ .tab-links.proj{display:flex;}
+  #tab-interview:checked ~ .tab-links.interview{display:flex;}
+  .tab-links a{
+    text-decoration:none; color:var(--fg-muted); font-size:13.5px;
+    padding:7px 12px; border-radius:999px; border:1px solid transparent;
+  }
+  .tab-links a:hover{background:var(--bg-soft); color:var(--fg);}
+  .tab-links a.active{background:var(--accent-soft); color:var(--accent); border-color:var(--accent-soft); font-weight:600;}
+
+  .hero{max-width:1180px; margin:0 auto; padding:46px 24px 18px;}
+  .hero .kicker{
+    color:var(--interview); font-weight:700; font-size:13px; letter-spacing:.06em;
+    text-transform:uppercase;
+  }
+  .hero h1{font-size:34px; margin:8px 0 10px; letter-spacing:-.02em;}
+  .hero p.lead{color:var(--fg-muted); font-size:17px; max-width:780px; margin:0;}
+  .hero .pills{display:flex; gap:8px; flex-wrap:wrap; margin-top:16px;}
+  .hero .pill{
+    font-size:12.5px; font-weight:600; padding:5px 12px; border-radius:999px;
+    background:var(--interview-bg); color:var(--interview); border:1px solid var(--interview-border);
+  }
+
+  .layout{
+    max-width:1440px; margin:0 auto; padding:20px 24px 100px;
+    display:flex; align-items:flex-start; gap:24px;
+  }
+  .nav-sidebar, aside.toc{flex-shrink:0;}
+  .nav-sidebar{width:180px;}
+  aside.toc{width:230px;}
+  .content-center{flex:1; min-width:0; display:flex; justify-content:center;}
+  .content-center > article{width:100%; max-width:760px;}
+  @media (max-width:900px){ .layout{flex-direction:column;}
+    .nav-sidebar, aside.toc{width:100%; position:static;}
+    .content-center{display:block;} }
+
+  .nav-sidebar{
+    position:sticky; top:74px; max-height:calc(100vh - 100px); overflow:auto;
+    border:1px solid var(--border); border-radius:var(--radius); background:var(--bg-soft);
+    padding:14px; display:flex; flex-direction:column; gap:4px;
+  }
+  .nav-sidebar input.tab-radio{display:none;}
+  .nav-tabbar{display:flex; flex-direction:column; gap:6px; margin-bottom:6px;}
+  .nav-tabbtn{
+    cursor:pointer; user-select:none; text-align:left; padding:8px 12px; border-radius:9px;
+    font-size:12.5px; font-weight:700; letter-spacing:.01em; color:var(--fg-muted);
+    border:1px solid var(--border); background:var(--card);
+    transition:background .15s, color .15s, border-color .15s;
+  }
+  .nav-tabbtn:hover{background:var(--bg);}
+  #tab-about:checked ~ .nav-tabbar label[for="tab-about"],
+  #tab-europe:checked ~ .nav-tabbar label[for="tab-europe"],
+  #tab-world:checked ~ .nav-tabbar label[for="tab-world"]{
+    background:var(--accent); color:#fff; border-color:var(--accent);
+  }
+  .nav-links{display:none; flex-direction:column; gap:2px;}
+  #tab-about:checked ~ .nav-links.about{display:flex;}
+  #tab-europe:checked ~ .nav-links.europe{display:flex;}
+  #tab-world:checked ~ .nav-links.world{display:flex;}
+  .nav-links a{
+    text-decoration:none; color:var(--fg-muted); font-size:13px;
+    padding:6px 10px; border-radius:7px; line-height:1.3;
+  }
+  .nav-links a:hover{background:var(--card); color:var(--fg);}
+  .nav-links a.active{background:var(--accent-soft); color:var(--accent); font-weight:600;}
+
+  aside.toc{
+    position:sticky; top:74px; max-height:calc(100vh - 100px); overflow:auto;
+    border:1px solid var(--border); border-radius:var(--radius); background:var(--bg-soft);
+    padding:16px;
+  }
+  aside.toc .toc-title{font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--fg-muted); font-weight:700; margin-bottom:10px;}
+  aside.toc ol{list-style:none; margin:0; padding:0;}
+  aside.toc li{margin:0 0 4px;}
+  aside.toc a{
+    display:block; text-decoration:none; color:var(--fg-muted); font-size:13.5px;
+    padding:6px 8px; border-radius:8px; line-height:1.35;
+  }
+  aside.toc a:hover{background:var(--card); color:var(--fg);}
+  aside.toc .toc-group{font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--accent); font-weight:700; margin:14px 0 4px; padding:0 8px;}
+  aside.toc .toc-group:first-child{margin-top:0;}
+  aside.toc .toc-nav{list-style:none; margin:0 0 4px; padding:0;}
+  aside.toc .toc-nav li{margin:0 0 2px;}
+  aside.toc .toc-nav a{display:block; text-decoration:none; color:var(--fg-muted); font-size:13px; padding:5px 8px; border-radius:7px; line-height:1.3;}
+  aside.toc .toc-nav a:hover{background:var(--card); color:var(--fg);}
+  aside.toc .toc-nav a.active{background:var(--accent-soft); color:var(--accent); font-weight:600;}
+  aside.toc .toc-divider{height:1px; background:var(--border); margin:16px 0;}
+
+  article section{margin-bottom:52px; scroll-margin-top:80px;}
+  article h2{
+    font-size:23px; margin:0 0 6px; display:flex; align-items:baseline; gap:10px;
+    letter-spacing:-.01em;
+  }
+  article h2 .num{color:var(--accent); font-variant-numeric:tabular-nums; font-size:16px;}
+  article h3{font-size:17px; margin:26px 0 8px;}
+  article p{color:var(--fg); margin:10px 0;}
+  article p.muted{color:var(--fg-muted);}
+  article ul, article ol{padding-left:22px;}
+  article li{margin:6px 0;}
+  .section-desc{color:var(--fg-muted); margin-top:2px; margin-bottom:18px;}
+
+  .card{
+    border:1px solid var(--border); border-radius:var(--radius); background:var(--card);
+    padding:18px 20px; margin:16px 0;
+  }
+
+  .codecard{
+    border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin:16px 0;
+    background:var(--code-bg);
+  }
+  .codecard .bar{
+    display:flex; align-items:center; justify-content:space-between; gap:10px;
+    padding:8px 14px; background:color-mix(in srgb, var(--code-bg) 80%, black 6%);
+    border-bottom:1px solid color-mix(in srgb, var(--code-fg) 12%, transparent);
+  }
+  .codecard .bar .path{color:var(--code-muted); font-size:12.5px;}
+  .codecard pre{margin:0; padding:16px; overflow:auto;}
+  .codecard code{color:var(--code-fg); font-size:13px; white-space:pre;}
+  .codecard code .tok-kw{color:#cc7832;}
+  .codecard code .tok-str{color:#6a8759;}
+  .codecard code .tok-num{color:#6897bb;}
+  .codecard code .tok-com{color:#7f7f7f; font-style:italic;}
+  .codecard code .tok-deco{color:#bbb529;}
+  .codecard code .tok-def{color:#ffc66d;}
+  .codecard code .tok-self{color:#c792ea;}
+  .cmt{color:#7c8494;}
+  .out{color:#f0c25a;}
+
+  .callout{
+    border-radius:var(--radius); border:1px solid; padding:14px 16px; margin:16px 0;
+    display:flex; gap:12px; align-items:flex-start; font-size:14.5px;
+  }
+  .callout .ic{font-size:17px; line-height:1.4;}
+  .callout.good{background:var(--good-bg); border-color:var(--good-border); color:var(--good);}
+  .callout.bad{background:var(--bad-bg); border-color:var(--bad-border); color:var(--bad);}
+  .callout.warn{background:var(--warn-bg); border-color:var(--warn-border); color:var(--warn);}
+  .callout.info{background:var(--info-bg); border-color:var(--info-border); color:var(--info);}
+  .callout.fun{background:var(--fun-bg); border-color:var(--fun-border); color:var(--fun);}
+  .callout.interview{background:var(--interview-bg); border-color:var(--interview-border); color:var(--interview);}
+  .callout .body{color:var(--fg);}
+  .callout .body b{color:inherit;}
+  .callout .body .tag{
+    display:inline-block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.04em;
+    margin-bottom:4px;
+  }
+
+  table{width:100%; border-collapse:collapse; margin:16px 0; font-size:14px;}
+  th, td{text-align:left; padding:10px 12px; border-bottom:1px solid var(--border); vertical-align:top;}
+  th{color:var(--fg-muted); font-weight:600; font-size:12.5px; text-transform:uppercase; letter-spacing:.03em;}
+  tr:last-child td{border-bottom:none;}
+
+  .badge{
+    display:inline-block; font-size:11.5px; font-weight:700; padding:2px 9px; border-radius:999px;
+    text-transform:uppercase; letter-spacing:.03em;
+  }
+  .badge.good{background:var(--good-bg); color:var(--good); border:1px solid var(--good-border);}
+  .badge.bad{background:var(--bad-bg); color:var(--bad); border:1px solid var(--bad-border);}
+
+  .fe-analogy{
+    border-left:3px solid var(--accent); background:var(--accent-soft); border-radius:0 var(--radius) var(--radius) 0;
+    padding:12px 16px; margin:16px 0; font-size:14.5px;
+  }
+  .fe-analogy .tag{font-weight:700; color:var(--accent); font-size:12px; text-transform:uppercase; letter-spacing:.05em; margin-bottom:4px;}
+
+  /* Q&A accordion */
+  .qa{border:1px solid var(--border); border-radius:12px; margin:10px 0; overflow:hidden; background:var(--card);}
+  .qa summary{
+    cursor:pointer; padding:14px 46px 14px 16px; font-weight:600; list-style:none;
+    position:relative; font-size:14.8px;
+  }
+  .qa summary::-webkit-details-marker{display:none;}
+  .qa summary::after{
+    content:"+"; color:var(--fg-muted); font-size:19px; position:absolute; right:16px; top:50%;
+    transform:translateY(-56%); font-weight:400;
+  }
+  .qa[open] summary::after{content:"–";}
+  .qa summary:hover{background:var(--bg-soft);}
+  .qa .a{padding:0 16px 16px; color:var(--fg-muted); font-size:14.3px; border-top:1px solid var(--border); padding-top:12px;}
+  .qa .a b{color:var(--fg);}
+  .qa .a code{color:var(--fg);}
+  .qa .difficulty{
+    display:inline-block; font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:999px;
+    margin-right:8px; vertical-align:middle;
+  }
+  .qa .difficulty.trick{background:var(--interview-bg); color:var(--interview); border:1px solid var(--interview-border);}
+  .qa .difficulty.core{background:var(--info-bg); color:var(--info); border:1px solid var(--info-border);}
+
+  .cheat{border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; margin:16px 0;}
+  .cheat table{margin:0;}
+  .cheat th{background:var(--bg-soft);}
+
+  /* Nesting (matryoshka) diagram */
+  .nest{border:2px solid var(--border); border-radius:16px; padding:30px 20px 20px; position:relative; margin:0;}
+  .nest .tag{
+    position:absolute; top:-11px; left:16px; background:var(--bg); padding:0 8px;
+    font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:.04em;
+  }
+  .nest p{margin:0; color:var(--fg-muted); font-size:13.8px;}
+  .nest.level1{border-color:var(--accent); margin:20px 0;}
+  .nest.level1 > .tag{color:var(--accent);}
+  .nest.level2{border-color:var(--fun); margin-top:16px;}
+  .nest.level2 > .tag{color:var(--fun);}
+  .nest.level3{border-color:var(--interview); margin-top:16px; background:var(--bg-soft);}
+  .nest.level3 > .tag{color:var(--interview);}
+
+  /* Flashcards for term memorization */
+  .flashgrid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; margin:16px 0;}
+  .flashcard{border:1px solid var(--border); border-radius:12px; padding:16px 18px; background:var(--card);}
+  .flashcard .fc-num{
+    display:inline-block; width:22px; height:22px; border-radius:50%; background:var(--interview-bg);
+    color:var(--interview); font-size:12px; font-weight:700; text-align:center; line-height:22px; margin-bottom:8px;
+  }
+  .flashcard .term{font-weight:700; font-size:15.5px; margin-bottom:6px;}
+  .flashcard .def{font-size:13.6px; color:var(--fg); margin-bottom:10px;}
+  .flashcard .mnemo{font-size:13px; color:var(--fg-muted); font-style:italic; border-top:1px dashed var(--border); padding-top:9px;}
+  .flashcard .mnemo b{color:var(--fun); font-style:normal;}
+
+  .rule-box{
+    border:1px dashed var(--interview-border); background:var(--interview-bg); border-radius:var(--radius);
+    padding:16px 18px; margin:18px 0; font-size:14.8px;
+  }
+  .rule-box b{color:var(--interview);}
+
+  figure.diagram{
+    margin:20px 0; padding:20px 20px 16px; border:1px solid var(--border); border-radius:var(--radius);
+    background:var(--bg-soft);
+  }
+  figure.diagram svg{display:block; width:100%; height:auto; max-width:720px; margin:0 auto; color:var(--fg);}
+  figure.diagram svg text{font-family:inherit;}
+  figure.diagram figcaption{
+    margin-top:12px; font-size:13px; color:var(--fg-muted); text-align:center; line-height:1.5;
+  }
+
+  footer.page{
+    max-width:1180px; margin:0 auto; padding:20px 24px 60px; color:var(--fg-muted); font-size:13.5px;
+    border-top:1px solid var(--border); margin-top:20px; padding-top:24px;
+  }
+  footer.page a{color:var(--accent); text-decoration:none;}
+
+  /* --- node-doc extras --- */
+  .tree{
+    background:var(--code-bg); color:var(--code-fg); border-radius:var(--radius); padding:18px 20px;
+    font-size:13px; overflow:auto; border:1px solid var(--border);
+    white-space:pre; line-height:1.5;
+  }
+  .tree .d{color:#7fb0ff;} .tree .c{color:#7c8494;}
+
+  .grid2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  @media (max-width:700px){.grid2{grid-template-columns:1fr;}}
+
+  .flow{display:flex; align-items:center; flex-wrap:wrap; gap:10px; margin:18px 0;}
+  .flow .step{
+    border:1px solid var(--border); background:var(--bg-soft); border-radius:10px;
+    padding:10px 14px; font-size:13.5px; font-weight:600;
+  }
+  .flow .arrow{color:var(--fg-muted); font-size:16px;}
+  article a{color:var(--accent); text-underline-offset:2px;}
+  article a:hover{text-decoration-thickness:2px;}
+
+  .tag{
+    flex-shrink:0; display:inline-block; font-size:10.5px; font-weight:700; padding:3px 9px;
+    border-radius:999px; white-space:nowrap;
+  }
+  .tag.recurring{background:var(--bad-bg); color:var(--bad); border:1px solid var(--bad-border);}
+  .tag.gap{background:var(--warn-bg); color:var(--warn); border:1px solid var(--warn-border);}
+  .tag.rising{background:var(--fun-bg); color:var(--fun); border:1px solid var(--fun-border);}
+  .tag.strength{background:var(--good-bg); color:var(--good); border:1px solid var(--good-border);}
+  .tag.notes{background:var(--notes-bg); color:var(--notes); border:1px solid var(--notes-border);}
+  .task{margin:22px 0;}
+  .task .task-head{display:flex; align-items:center; gap:8px; margin-bottom:8px;}
+  .task .tasknum{color:var(--accent); font-weight:700; font-size:13px; flex-shrink:0;}
+  .task .taskdiff{
+    display:inline-block; font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:999px;
+    flex-shrink:0;
+  }
+  .task .taskdiff.easy{background:var(--good-bg); color:var(--good); border:1px solid var(--good-border);}
+  .task .taskdiff.mid{background:var(--warn-bg); color:var(--warn); border:1px solid var(--warn-border);}
+  .task .taskdiff.hard{background:var(--bad-bg); color:var(--bad); border:1px solid var(--bad-border);}
+  .task .tasktitle{font-weight:600; font-size:14.5px;}
+  details.answer{
+    border:1px solid var(--border); border-radius:10px; margin-top:2px; background:var(--bg-soft);
+    overflow:hidden;
+  }
+  details.answer summary{
+    cursor:pointer; padding:10px 14px; font-weight:600; font-size:13.5px; color:var(--accent);
+    list-style:none; user-select:none;
+  }
+  details.answer summary::-webkit-details-marker{display:none;}
+  details.answer summary::before{content:"▸ Показати відповідь"; }
+  details.answer[open] summary::before{content:"▾ Відповідь"; }
+  details.answer .a-body{
+    padding:0 14px 14px; border-top:1px solid var(--border); padding-top:12px;
+    font-size:14px; color:var(--fg);
+  }
+  details.answer .a-body p{margin:8px 0;}
+  details.answer .a-body .out{
+    font-family:"SF Mono",ui-monospace,"Fira Code",Consolas,"Cascadia Code",monospace;
+    background:var(--code-bg); color:var(--code-fg); padding:8px 12px; border-radius:8px;
+    display:block; margin:8px 0; white-space:pre; font-size:13px;
+  }
+  .topic-head{display:flex; align-items:center; gap:10px; margin-bottom:6px;}
+  .topic-head h2{font-size:21px; margin:0; letter-spacing:-.01em;}
+  .decision{
+    border:1px solid var(--border); border-left:4px solid var(--accent); border-radius:var(--radius);
+    background:var(--bg-soft); padding:16px 18px; margin:20px 0;
+  }
+  .decision-title{font-weight:700; font-size:15px; margin-bottom:4px;}
+  .decision table{margin:10px 0; background:var(--card); border-radius:8px;}
+  .decision p{margin:10px 0; font-size:15px;}
+  tr.chosen td{background:var(--good-bg);}
+  tr.chosen td:first-child{color:var(--good);}
+  .remember{
+    border:1px dashed var(--warn-border); background:var(--warn-bg); color:var(--fg);
+    border-radius:var(--radius); padding:12px 16px; margin:18px 0 0; font-size:15px;
+  }
+  .remember b{color:var(--warn);}
+  .callout .body a{color:inherit; font-weight:600; text-decoration:underline;}
+  article table{display:block; overflow-x:auto;}
+  @media (min-width:700px){ article table{display:table;} }
+
+  /* --- python-doc extras --- */
+  aside.toc .toc-count{
+    float:right; font-size:11px; color:var(--fg-muted); background:var(--card);
+    border-radius:999px; padding:1px 6px; border:1px solid var(--border);
+  }
+  .stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin:18px 0;}
+  @media (max-width:700px){.stat-row{grid-template-columns:1fr;}}
+  .stat{border:1px solid var(--border); border-radius:var(--radius); padding:14px 16px; background:var(--bg-soft);}
+  .stat .k{font-size:12px; color:var(--fg-muted); text-transform:uppercase; letter-spacing:.04em;}
+  .stat .v{font-size:20px; font-weight:700; margin-top:4px;}
+  .part-divider{display:flex; align-items:center; gap:14px; margin:64px 0 40px;}
+  .part-divider:first-child{margin-top:8px;}
+  .part-divider .line{flex:1; height:1px; background:var(--border);}
+  .part-divider .label{
+    font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.08em;
+    color:var(--accent); white-space:nowrap;
+  }
+  .qa summary .qnum{color:var(--accent); font-variant-numeric:tabular-nums; font-size:13px; font-weight:700; margin-right:8px;}
+  .qa .difficulty.adv{background:var(--fun-bg); color:var(--fun); border:1px solid var(--fun-border);}
+  .legend{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 6px;}
+  .legend span{font-size:12.5px; color:var(--fg-muted); display:flex; align-items:center; gap:6px;}
+  .legend .dot{width:9px; height:9px; border-radius:50%;}
+
+  /* --- quantum-doc extras --- */
+  .res{border:1px solid var(--border); border-radius:var(--radius); background:var(--card); padding:14px 16px; margin:12px 0;}
+  .res .res-head{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:4px;}
+  .res .res-title{font-weight:700; font-size:15px;}
+  .res .res-meta{font-size:12.5px; color:var(--fg-muted);}
+  .res p{margin:6px 0 0; font-size:14.3px;}
+  .lvl{display:inline-block; font-size:10.5px; font-weight:700; padding:2px 8px; border-radius:999px; white-space:nowrap;}
+  .lvl.l1{background:var(--good-bg); color:var(--good); border:1px solid var(--good-border);}
+  .lvl.l2{background:var(--warn-bg); color:var(--warn); border:1px solid var(--warn-border);}
+  .lvl.l3{background:var(--bad-bg); color:var(--bad); border:1px solid var(--bad-border);}
+  .lvl.type{background:var(--interview-bg); color:var(--interview); border:1px solid var(--interview-border);}
+  .timeline{border-left:2px solid var(--accent); margin:20px 0 20px 8px; padding-left:20px;}
+  .timeline .ev{position:relative; margin:0 0 18px;}
+  .timeline .ev::before{content:""; position:absolute; left:-27px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--accent); border:2px solid var(--bg);}
+  .timeline .yr{font-weight:800; color:var(--accent); font-variant-numeric:tabular-nums; font-size:14px;}
+  .timeline .ev-t{font-weight:700;}
+  .timeline .ev p{margin:4px 0 0; font-size:14.3px; color:var(--fg-muted);}
+  .math{font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Georgia,serif; font-size:1.05em; white-space:nowrap;}
+  .math-block{font-family:"Cambria Math","STIX Two Math","Latin Modern Math",Georgia,serif; font-size:18px; text-align:center; padding:14px; margin:14px 0; border:1px dashed var(--border); border-radius:var(--radius); background:var(--bg-soft); overflow-x:auto;}
+
+
+  /* --- system-design extras --- */
+  .say{color:var(--fg-muted); font-size:.9em; font-weight:400; font-style:normal;}
+  .steps{counter-reset:st; list-style:none; padding-left:0;}
+  .steps > li{counter-increment:st; position:relative; padding-left:38px; margin:12px 0;}
+  .steps > li::before{content:counter(st); position:absolute; left:0; top:0; width:26px; height:26px; border-radius:50%;
+    background:var(--accent-soft); color:var(--accent); font-weight:700; font-size:13px; text-align:center; line-height:26px;}
+  .vs{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:16px 0;}
+  @media (max-width:700px){.vs{grid-template-columns:1fr;}}
+  .vs > div{border:1px solid var(--border); border-radius:var(--radius); padding:14px 16px; background:var(--card);}
+  .vs h4{margin:0 0 6px; font-size:15px;}
+  .vs ul{margin:6px 0 0; padding-left:18px; font-size:14.3px;}
+  /* --- ai-doc extras --- */
+  .kbd, kbd{
+    display:inline-block; font-family:"SF Mono",ui-monospace,Consolas,monospace; font-size:12px; line-height:1.2;
+    padding:2px 6px; border-radius:6px; border:1px solid var(--border); border-bottom-width:2px;
+    background:var(--bg-soft); color:var(--fg); white-space:nowrap;
+  }
+  .filetree-note{font-size:13px; color:var(--fg-muted); margin-top:-8px;}
+  .dirgrid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:12px; margin:16px 0;}
+  .dir{border:1px solid var(--border); border-radius:var(--radius); padding:14px 16px; background:var(--card);}
+  .dir .dir-h{display:flex; align-items:center; gap:8px; font-weight:700; font-size:15px; margin-bottom:4px;}
+  .dir p{margin:4px 0 0; font-size:14px; color:var(--fg-muted);}
+  .dir .lvl{margin-left:auto;}
+  .checklist{list-style:none; padding-left:0;}
+  .checklist li{position:relative; padding-left:28px;}
+  .checklist li::before{content:"☐"; position:absolute; left:4px; top:0; color:var(--accent); font-weight:700;}
+  .metric-before-after{display:grid; grid-template-columns:1fr auto 1fr; gap:10px; align-items:center; margin:14px 0;}
+  .metric-before-after .m{border:1px solid var(--border); border-radius:10px; padding:10px 14px; background:var(--bg-soft); text-align:center;}
+  .metric-before-after .m b{display:block; font-size:20px;}
+  .metric-before-after .m.after b{color:var(--good);}
+  .metric-before-after .m.before b{color:var(--bad);}
+  /* --- travel-guide extras --- */
+  .photo{margin:18px 0; border-radius:var(--radius); overflow:hidden; border:1px solid var(--border); background:var(--bg-soft);}
+  .photo img{display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; background:var(--bg-soft);}
+  .photo figcaption{padding:8px 14px; font-size:12.5px; color:var(--fg-muted);}
+  .photo figcaption a{color:var(--fg-muted);}
+  .photo-row{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin:18px 0;}
+  .photo-row .photo{margin:0;}
+  @media (max-width:700px){.photo-row{grid-template-columns:1fr;}}
+
+  a.gm{
+    display:inline-flex; align-items:center; gap:4px; text-decoration:none; font-size:13px; font-weight:600;
+    padding:3px 10px; border-radius:999px; margin:2px 2px; white-space:nowrap;
+    background:var(--good-bg); color:var(--good); border:1px solid var(--good-border);
+  }
+  a.gm:hover{border-color:var(--good);}
+  a.gm.route{background:var(--info-bg); color:var(--info); border-color:var(--info-border);}
+  a.gm.route:hover{border-color:var(--info);}
+
+  .day{border:1px solid var(--border); border-radius:var(--radius); background:var(--card); padding:18px 20px; margin:18px 0;}
+  .day-head{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:6px;}
+  .day-num{
+    width:34px; height:34px; border-radius:50%; color:#fff; font-weight:800; font-size:15px;
+    display:inline-flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .day-title{font-weight:700; font-size:17px;}
+  .day-meta{font-size:12.5px; color:var(--fg-muted); margin-left:auto;}
+  .stops{list-style:none; padding:0; margin:12px 0 0; border-left:2px dashed var(--border); margin-left:16px;}
+  .stops > li{position:relative; padding:0 0 14px 22px; margin:0;}
+  .stops > li::before{
+    content:""; position:absolute; left:-7px; top:7px; width:12px; height:12px; border-radius:50%;
+    background:var(--card); border:2px solid var(--accent);
+  }
+  .stops .t{font-size:12px; font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums;}
+  .stops .s-title{font-weight:700;}
+  .stops p{margin:4px 0; font-size:14.5px;}
+  .kid{display:inline-block; font-size:11px; font-weight:700; padding:1px 8px; border-radius:999px; vertical-align:middle;}
+  .kid.ok{background:var(--good-bg); color:var(--good); border:1px solid var(--good-border);}
+  .kid.mid{background:var(--warn-bg); color:var(--warn); border:1px solid var(--warn-border);}
+  .kid.no{background:var(--bad-bg); color:var(--bad); border:1px solid var(--bad-border);}
+  .drive{font-size:12.5px; color:var(--fg-muted); margin:-6px 0 12px 22px;}
+  .rainy{
+    border:1px dashed var(--info-border); background:var(--info-bg); border-radius:10px;
+    padding:10px 14px; margin-top:6px; font-size:14px;
+  }
+  .rainy b{color:var(--info);}
+
+  .hotels{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:14px; margin:16px 0;}
+  .hotel{border:1px solid var(--border); border-radius:var(--radius); background:var(--card); padding:14px 16px; display:flex; flex-direction:column; gap:6px;}
+  .hotel .h-name{font-weight:700; font-size:15.5px;}
+  .hotel .h-where{font-size:12.5px; color:var(--fg-muted);}
+  .hotel .h-price{font-weight:800; color:var(--good); font-size:15px;}
+  .hotel ul{margin:2px 0 0; padding-left:18px; font-size:13.8px;}
+  .hotel li{margin:2px 0;}
+  .hotel .h-links{margin-top:auto; padding-top:6px;}
+  .hotel.pick{border-color:var(--good-border); box-shadow:0 0 0 1px var(--good-border) inset;}
+  .hotel .h-badge{align-self:flex-start;}
+
+  .season td.c3{background:var(--good-bg); color:var(--good); font-weight:700;}
+  .season td.c2{background:var(--warn-bg); color:var(--warn); font-weight:600;}
+  .season td.c1{background:var(--bad-bg); color:var(--bad);}
+  .season td, .season th{text-align:center; padding:8px 6px; font-size:13px;}
+  .season td:first-child, .season th:first-child{text-align:left;}
+
+  .blogger{border:1px solid var(--border); border-radius:var(--radius); background:var(--card); padding:12px 16px; margin:10px 0;}
+  .blogger .b-head{display:flex; gap:8px; align-items:baseline; flex-wrap:wrap;}
+  .blogger .b-name{font-weight:700;}
+  .blogger .b-name a{color:var(--fg);}
+  .blogger .b-meta{font-size:12.5px; color:var(--fg-muted);}
+  .blogger p{margin:6px 0 0; font-size:14.3px;}
+
+  figure.map svg{max-width:760px;}
+  .map-land{fill:var(--good-bg); stroke:var(--good-border); stroke-width:2;}
+  .map-route{fill:none; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; opacity:.85;}
+  .map-stop{stroke:var(--bg); stroke-width:1.5;}
+  .map-label{font-size:11.5px; fill:var(--fg); paint-order:stroke; stroke:var(--bg-soft); stroke-width:3px;}
+  .map-ridge{font-size:11px; fill:var(--fg-muted); font-style:italic;}
+  .map-base{fill:var(--card); stroke:var(--fg); stroke-width:1.5;}
+  .map-base-t{font-size:10px;}
+  .map-air{font-size:16px;}
+  .map-legend{font-size:11px; fill:var(--fg-muted);}
+
+  .budget td:last-child, .budget th:last-child{text-align:right; white-space:nowrap;}
+  .budget tr.total td{font-weight:800; border-top:2px solid var(--border);}
+
+  /* --- theme switch --- */
+  :root{color-scheme:light;}
+  .top-row{display:flex; align-items:center; justify-content:space-between; gap:12px;}
+  .theme-toggle{
+    cursor:pointer; flex-shrink:0; display:inline-flex; align-items:center; gap:6px;
+    padding:6px 12px; border-radius:999px; border:1px solid var(--border);
+    background:var(--bg-soft); color:var(--fg); font:inherit; font-size:12.5px; font-weight:600;
+    transition:background .15s, border-color .15s;
+  }
+  .theme-toggle:hover{background:var(--card); border-color:var(--accent);}
+  .theme-toggle:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+</style>
+<link rel="stylesheet" href="../assets/mobile-nav.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="top-row">
+      <div class="brand">🧭 Travel Guides <span>· сімейні подорожі на авто</span></div>
+      <button type="button" class="theme-toggle" id="theme-toggle">🌙 Темна тема</button>
+    </div>
+  </div>
+</header>
+
+<div class="hero">
+  <div class="kicker">Гайд #1 · Португалія · Мадейра</div>
+  <h1>🇵🇹 Мадейра за 7 днів: з аеропорту до аеропорту на авто</h1>
+  <p class="lead">Маршрут для 2 дорослих і 2 дітей (одна дитина до 5 років): дві бази — сонячний південний захід і Фуншал, природні басейни, ліс Фанал у тумані, світанок над хмарами на Піку-ду-Арієйру й легкі левади з переноскою. Готелі до $160/ніч, лінки в Google Maps на кожну зупинку.</p>
+  <div class="pills">
+    <span class="pill">✈️ FNC → FNC</span>
+    <span class="pill">🚗 ~550 км за тиждень</span>
+    <span class="pill">🛏 2 бази: 3 + 3 ночі</span>
+    <span class="pill">👶 малюк до 5 років</span>
+    <span class="pill">🌤 найкраще: травень–червень, вересень</span>
+  </div>
+</div>
+
+<div class="layout">
+  <aside class="nav-sidebar">
+    <input type="radio" name="topgroup" id="tab-about" class="tab-radio">
+    <input type="radio" name="topgroup" id="tab-europe" class="tab-radio" checked>
+    <div class="nav-tabbar">
+      <label for="tab-about" class="nav-tabbtn">🧭 Про гайди</label>
+      <label for="tab-europe" class="nav-tabbtn">🇪🇺 Європа</label>
+    </div>
+      <nav class="nav-links about">
+        <a href="index.html">Як влаштовані гайди</a>
+      </nav>
+      <nav class="nav-links europe">
+        <a href="01-madeira.html" class="active">1. 🇵🇹 Мадейра: 7 днів</a>
+      </nav>
+  </aside>
+
+  <aside class="toc">
+    <div class="toc-title">На цій сторінці</div>
+    <ol>
+      <li><a href="#tldr">01 Коротко: план за 30 секунд</a></li>
+      <li><a href="#season">02 Коли їхати: аналіз сезонів</a></li>
+      <li><a href="#bloggers">03 Що кажуть блогери</a></li>
+      <li><a href="#car">04 Авто: оренда, дороги, паркування</a></li>
+      <li><a href="#hotels">05 Бази й готелі до $160/ніч</a></li>
+      <li><a href="#map">06 Маршрут на карті</a></li>
+      <li><a href="#days">07 Маршрут по днях</a></li>
+      <li><a href="#booking">08 Левади: бронювання й правила 2026–2027</a></li>
+      <li><a href="#budget">09 Бюджет на 4 людей (без перельоту)</a></li>
+      <li><a href="#checklist">10 Чек-лист перед поїздкою</a></li>
+    </ol>
+  </aside>
+
+  <div class="content-center">
+    <article>
+
+<section id="tldr">
+  <h2><span class="num">01</span>Коротко: план за 30 секунд</h2>
+  <p class="section-desc">Якщо читати лише один розділ — цей.</p>
+  <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Santa_Maria_Maior_%28Madeira%2C_Portugal%29%2C_Jardim_Bot%C3%A2nico_da_Madeira%2C_Blick_auf_den_Hafen_von_Funchal_--_2025_--_1824.jpg/1280px-Santa_Maria_Maior_%28Madeira%2C_Portugal%29%2C_Jardim_Bot%C3%A2nico_da_Madeira%2C_Blick_auf_den_Hafen_von_Funchal_--_2025_--_1824.jpg" alt="Фуншал — столиця острова й друга база маршруту" loading="lazy" referrerpolicy="no-referrer"><figcaption>Фуншал — столиця острова й друга база маршруту · Фото: <a href="https://commons.wikimedia.org/wiki/File:Santa_Maria_Maior_(Madeira,_Portugal),_Jardim_Bot%C3%A2nico_da_Madeira,_Blick_auf_den_Hafen_von_Funchal_--_2025_--_1824.jpg" target="_blank" rel="noopener">Dietmar Rabich</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure>
+  <div class="stat-row">
+    <div class="stat"><div class="k">Коли їхати</div><div class="v">кін. травня – червень, вересень</div></div>
+    <div class="stat"><div class="k">Бази</div><div class="v">Понта-ду-Сол/Калета → Фуншал</div></div>
+    <div class="stat"><div class="k">Бюджет (без перельоту)</div><div class="v">≈ €1 800–2 600</div></div>
+  </div>
+  <table>
+    <tr><th>День</th><th>Що робимо</th><th>Ніч</th></tr>
+    <tr><td><b>1</b></td><td>Приліт, авто → Камара-де-Лобуш → скляний майданчик Кабу-Жиран → захід сонця на пірсі Понта-ду-Сол</td><td>База 1 (південний захід)</td></tr>
+    <tr><td><b>2</b></td><td>Ліс Фанал у тумані → басейни Порту-Моніш + акваріум → чорний пляж Сейшал → водоспад Véu da Noiva</td><td>База 1</td></tr>
+    <tr><td><b>3</b></td><td>Левада ду-Ріску з переноскою → плато Пол-да-Серра → маяк Понта-ду-Парґу → пісочний пляж Калети</td><td>База 1</td></tr>
+    <tr><td><b>4</b></td><td>Переїзд у Фуншал: ринок, старе місто, набережна, басейни Lido</td><td>База 2 (Фуншал)</td></tr>
+    <tr><td><b>5</b></td><td>Піку-ду-Арієйру над хмарами → левада Балкойнш → будиночки Сантани → Порту-да-Круж</td><td>База 2</td></tr>
+    <tr><td><b>6</b></td><td>Канатка на Монте → сад Monte Palace → «санки» з плетених кошиків → Ботанічний сад</td><td>База 2</td></tr>
+    <tr><td><b>7</b></td><td>Схід: оглядовий Понта-ду-Рошту → пляж Машіку → здаємо авто, виліт</td><td>—</td></tr>
+  </table>
+  <div class="callout info"><div class="ic">💡</div><div class="body"><span class="tag">Головне правило Мадейри</span><br>Погода на півночі й на півдні острова різна в один і той самий момент. Увечері дивіться прогноз і вебкамери й міняйте дні місцями: дні 2, 3 і 5 «гірські» — їх ставимо на ясні дні, дні 4 і 6 «міські» — на хмарні.</div></div>
+</section>
+
+<section id="season">
+  <h2><span class="num">02</span>Коли їхати: аналіз сезонів</h2>
+  <p class="section-desc">Мадейра — «острів вічної весни»: −/+ 5 °C за рік. Різниця між сезонами — у дощах на півночі, температурі моря, натовпах і цінах.</p>
+  <table class="season">
+    <tr><th>Місяць</th><th>Повітря, °C</th><th>Море, °C</th><th>Дні з дощем</th><th>Натовпи / ціни</th><th>Для сім'ї з малюком</th></tr>
+    <tr><td>Січ–Лют</td><td>20 / 14</td><td>18</td><td>6</td><td class="c3">низькі</td><td class="c1">дощі, закриті стежки</td></tr>
+    <tr><td>Березень</td><td>21 / 14</td><td>18</td><td>6</td><td class="c3">низькі</td><td class="c1">вітер, скасування рейсів</td></tr>
+    <tr><td>Квітень</td><td>21 / 15</td><td>18</td><td>5</td><td class="c2">Великдень дорожче</td><td class="c2">непогано, море холодне</td></tr>
+    <tr><td>Травень</td><td>22 / 16</td><td>19</td><td>3</td><td class="c2">Свято квітів</td><td class="c3">добре</td></tr>
+    <tr><td>Червень</td><td>24 / 18</td><td>20–21</td><td>1</td><td class="c2">середні</td><td class="c3">найкраще</td></tr>
+    <tr><td>Лип–Серп</td><td>25–27 / 20–21</td><td>22–24</td><td>0</td><td class="c1">пік цін і людей</td><td class="c2">спека, дорого</td></tr>
+    <tr><td>Вересень</td><td>27 / 20</td><td>24</td><td>3</td><td class="c2">свято вина</td><td class="c3">найкраще</td></tr>
+    <tr><td>Жовтень</td><td>25 / 19</td><td>23</td><td>7</td><td class="c3">нижчі</td><td class="c2">добре в 1-й половині</td></tr>
+    <tr><td>Лист–Груд</td><td>21–23 / 16–17</td><td>20–21</td><td>7–9</td><td class="c3">низькі (крім Нового року)</td><td class="c1">нестабільно</td></tr>
+  </table>
+  <p class="muted" style="font-size:13px">Дані: середні показники Фуншала 1991–2020 (<a href="https://portugalgetaways.com/en-eu/destinations/portugal/madeira/best-time-to-visit-madeira" target="_blank" rel="noopener">Portugal Getaways</a>), море — Weather2Travel. Північ острова на 2–3 °C прохолодніша й помітно дощовіша.</p>
+
+  <div class="decision">
+    <div class="decision-title">✅ Рекомендація: кінець травня – червень або вересень – початок жовтня</div>
+    <p>22–27 °C, на півдні майже немає дощів, море 20–24 °C — малюк може плескатися в природних басейнах. Ціни на готелі нижчі, ніж у липні–серпні, тому вкластися в $160/ніч реально.</p>
+    <table>
+      <tr><th>Варіант</th><th>Плюси</th><th>Мінуси</th></tr>
+      <tr class="chosen"><td>Червень</td><td>Мінімум дощів, Атлантичний фестиваль — феєрверки над Фуншалом щосуботи (4–27.06.2027)</td><td>На півночі часто хмари зранку («червневий сірий»)</td></tr>
+      <tr class="chosen"><td>Вересень</td><td>Найтепліше море, свято вина, ще сухо</td><td>У першій половині ціни ще літні</td></tr>
+      <tr><td>Травень</td><td>Свято квітів (29.04–30.05.2027, парад ~2 травня), все цвіте</td><td>Море 19 °C; у вихідні свята готелі дорожчі</td></tr>
+      <tr><td>Серпень</td><td>Гарантовано сонце, тепле море</td><td>Пік цін — бюджет $160 майже нереальний, спека й натовпи</td></tr>
+    </table>
+  </div>
+  <div class="callout warn"><div class="ic">💨</div><div class="body"><span class="tag">Вітер в аеропорту</span><br>Аеропорт FNC — один із найскладніших у Європі: при сильному боковому вітрі рейси відправляють на Порту-Санту, Лісабон або Канари. Це трапляється в будь-який місяць (у березні 2026 скасували 160+ рейсів, у червні й липні 2026 — по кілька десятків). Беріть страховку, не плануйте впритул пересадок і залиште гнучкий тариф на авто й останню ніч.</div></div>
+  <div class="callout bad"><div class="ic">🎟</div><div class="body"><span class="tag">Зміна цін з 1 квітня 2027</span><br>Плата за піші маршрути зростає: стандартна стежка €4,50 → €7,50, а Балкойнш, Понта-де-Сан-Лоуренсу, Піку-Руйву — €15, усі маршрути Рабасалу (25 Fontes, Risco) — €18 за дорослого. <b>Діти до 12 років — безкоштовно</b>, але їх треба вписати в бронювання. Це ще один аргумент на користь осені 2026 / березня 2027, якщо плануєте багато левад.</div></div>
+</section>
+
+<section id="bloggers">
+  <h2><span class="num">03</span>Що кажуть блогери</h2>
+  <p class="section-desc">Проаналізовано 10 джерел, зокрема 5 сімейних блогів з дітьми 0–6 років. Нижче — де вони згодні, де сперечаються і які помилки повторюють.</p>
+
+  <div class="blogger"><div class="b-head"><span class="b-name"><a href="https://anesthesia4adventure.com/madeira-with-a-toddler/" target="_blank" rel="noopener">Anesthesia4Adventure — «Madeira with a Toddler»</a></span><span class="b-meta">оновлено жовт. 2026 · з малюком</span></div>
+    <p>Жили 3 ночі в Калеті + біля Фуншала. Порту-Моніш вважають переоціненим (черги), Сейшал — кращим. Фанал — рано-вранці заради туману. Паркування у Фуншалі — «абсурд», радять таксі. Не їздити гірськими дорогами в темряві. Шкодували, що не побачили Сантану.</p></div>
+  <div class="blogger"><div class="b-head"><span class="b-name"><a href="https://zetravelfamily.com/2025/11/03/everything-parents-need-to-know-about-visiting-madeira/" target="_blank" rel="noopener">Ze Travel Family</a></span><span class="b-meta">лист. 2025 · поради батькам</span></div>
+    <p>Коляска працює у Фуншалі, Понта-ду-Сол і Сан-Вісенте; на стежках — тільки переноска. Легкі маршрути: Балкойнш і «Caminho para todos». Уникати PR16 (тунель 1 км, де треба пригинатися), PR9 з немовлям, PR8 опівдні.</p></div>
+  <div class="blogger"><div class="b-head"><span class="b-name"><a href="https://snaphappytravel.com/madeira-with-kids/" target="_blank" rel="noopener">Snap Happy Travel</a></span><span class="b-meta">доньки 3 і 4 роки</span></div>
+    <p>Хіти для дітей: фламінго й коропи в Monte Palace, Музей китів у Канісалі, дитячий басейн і майданчик у Порту-Моніш, майданчик у Сантані. На Фаналі холодно — беріть кофти.</p></div>
+  <div class="blogger"><div class="b-head"><span class="b-name"><a href="https://kidsareatrip.com/madeira-family-vacation-guide/" target="_blank" rel="noopener">Kids Are A Trip</a></span><span class="b-meta">дві коляски</span></div>
+    <p>Набережна й канатка — ок з колясками, старе місто бруковане. Лікарні — на півдні, тому з малими дітьми не варто брати базу на півночі.</p></div>
+  <div class="blogger"><div class="b-head"><span class="b-name"><a href="https://www.twowanderingsoles.com/blog/madeira-portugal-itinerary" target="_blank" rel="noopener">Two Wandering Soles</a></span><span class="b-meta">діти 3,5 роки і 6 міс.</span></div>
+    <p>Регіон на завтра обирали ввечері за прогнозом. Корови на Фаналі — головний хіт для малюка. Взуття з протектором для бруківки.</p></div>
+  <div class="blogger"><div class="b-head"><span class="b-name"><a href="https://www.rexby.com/Explore.madeira/i/bPfvMJY7T52dXxD-mw8NAg" target="_blank" rel="noopener">Explore.madeira (місцевий гід)</a></span><span class="b-meta">план на 7 днів з малюком</span></div>
+    <p>Окремий <a href="https://www.rexby.com/Explore.madeira/t/how-to-actually-nail-pico-do-arieiro-without-the-drama" target="_blank" rel="noopener">гайд по Піку-ду-Арієйру</a>. Обід «по дорозі з гір» — Abrigo do Poiso, піца в Машіку, Madeira Theme Park у Сантані.</p></div>
+  <div class="blogger"><div class="b-head"><span class="b-name"><a href="https://beyondmadeira.com/articles/where-to-stay-guide" target="_blank" rel="noopener">Beyond Madeira</a></span><span class="b-meta">локальний оператор (частково комерційне)</span></div>
+    <p>На тиждень: 4 ночі Фуншал/Канісу + 3 ночі Понта-ду-Сол/Калета. Брати компакт з турбомотором, а не «економ»: ухили до 20%. На Пол-да-Серра і Фаналі немає заправок.</p></div>
+  <div class="blogger"><div class="b-head"><span class="b-name"><a href="https://www.saltinourhair.com/madeira/levada-dos-balcoes-pr11" target="_blank" rel="noopener">Salt in our Hair</a></span> · <span class="b-name"><a href="https://themanduls.com/porto-moniz-natural-swimming-pools/" target="_blank" rel="noopener">The Manduls</a></span><span class="b-meta">детальні гайди по точках</span></div>
+    <p>Балкойнш: 3 км туди-назад, +140 м, 1–1,5 год, туалети в кафе Flor da Selva. Детальні розбори 25 Fontes, басейнів Порту-Моніш і канаток.</p></div>
+
+  <div class="vs">
+    <div><h4>👍 Консенсус</h4><ul>
+      <li>Авто обов'язкове, маленький «автомат» з нормальним мотором</li>
+      <li>1 база у Фуншалі або 2 бази: південний захід + Фуншал</li>
+      <li>Не жити на півночі з малюком</li>
+      <li>Переноска важливіша за коляску</li>
+      <li>Один головний «вихід на природу» на день</li>
+    </ul></div>
+    <div><h4>🤔 Суперечки</h4><ul>
+      <li><b>Порту-Моніш чи Сейшал?</b> Одні — «черги, пропустіть», інші — «найкращий дитячий басейн». Наше рішення: обидва, Порту-Моніш до 11:00.</li>
+      <li><b>Кабу-Жиран</b> — «туристичні автобуси», але для малюка це рівний майданчик на 20 хв, тож лишаємо.</li>
+      <li><b>Одна база чи дві</b> — ми обрали дві: менше кілометрів у дні 2–3.</li>
+    </ul></div>
+  </div>
+
+  <h3>Типові помилки (і як їх уникнути в цьому маршруті)</h3>
+  <table>
+    <tr><th>Помилка</th><th>Як розв'язано</th></tr>
+    <tr><td>Схід, захід і північ за один день</td><td>Кожен день — один регіон, база поруч</td></tr>
+    <tr><td>Гірські дороги в темряві</td><td>Усі дні закінчуються на базі до заходу сонця (крім пірса Понта-ду-Сол — він біля готелю)</td></tr>
+    <tr><td>Віра в час Google Maps</td><td>До кожного переїзду +30% з малюком</td></tr>
+    <tr><td>Паркування в центрі Фуншала</td><td>Готель з паркінгом, у місті — пішки/таксі/канатка</td></tr>
+    <tr><td>Піку-ду-Арієйру в хмарі</td><td>День 5 «плаваючий», перевіряємо вебкамеру</td></tr>
+    <tr><td>Не забронювали слот на стежку</td><td>Бронювання — увечері напередодні на SIMplifica</td></tr>
+    <tr><td>Немає готівки</td><td>Готівка на шатл Рабасалу й «санки» Монте</td></tr>
+  </table>
+</section>
+
+<section id="car">
+  <h2><span class="num">04</span>Авто: оренда, дороги, паркування</h2>
+  <p class="section-desc">Беремо й здаємо авто в аеропорту Кріштіану Роналду (FNC). Усі прокатні стійки — у залі прильоту.</p>
+  <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Madeira_Airport_Runway_Crop.jpg/1280px-Madeira_Airport_Runway_Crop.jpg" alt="Аеропорт Мадейри: злітна смуга на палях над океаном" loading="lazy" referrerpolicy="no-referrer"><figcaption>Аеропорт Мадейри: злітна смуга на палях над океаном · Фото: <a href="https://commons.wikimedia.org/wiki/File:Madeira_Airport_Runway_Crop.jpg" target="_blank" rel="noopener">Richard Bartz</a>, CC BY-SA 3.0, Wikimedia Commons</figcaption></figure>
+  <div class="grid2">
+    <div class="card"><b>🚙 Яке авто</b><ul>
+      <li><b>Автомат</b> — обов'язково: старт на підйомі 20% з механікою — стрес.</li>
+      <li>Компакт з турбо або малий кросовер (VW T-Roc, Peugeot 2008, Renault Captur) — 4 людини + 2 валізи + коляска.</li>
+      <li>4×4 не потрібен.</li>
+    </ul></div>
+    <div class="card"><b>🛡 Страховка</b><ul>
+      <li>Беріть <b>нульову франшизу</b> (full / zero excess).</li>
+      <li>Шини, диски, днище, ключі часто не покриті — читайте умови.</li>
+      <li>Сфотографуйте авто з усіх боків при отриманні.</li>
+    </ul></div>
+  </div>
+  <div class="callout warn"><div class="ic">👶</div><div class="body"><span class="tag">Автокрісла — закон</span><br>Діти до 12 років <b>і</b> нижче 135 см — тільки в автокріслі (штраф €120–600). Дитяче крісло проти ходу на передньому сидінні — лише з вимкненою подушкою безпеки. Прокат — близько €5/день за крісло (часто з лімітом за оренду). Багато сімей везуть своє: більшість авіакомпаній перевозять його безкоштовно. Бронюйте крісла заздалегідь, вказавши вік і зріст дітей.</div></div>
+  <h3>Дороги</h3>
+  <ul>
+    <li><b>Платних доріг немає.</b> Швидкісна VR1 уздовж півдня і дороги VE — це десятки освітлених тунелів (вмикайте фари; GPS у тунелях губиться).</li>
+    <li>Ухили до 20%, серпантини, дзеркала на сліпих поворотах. Униз — на зниженій передачі (режим L/B), а не на гальмах.</li>
+    <li>Google Maps іноді веде вузькими «Caminho …» по селах. Якщо є варіант через VR1/VE чи ER — обирайте його.</li>
+    <li>Завантажте офлайн-карту острова: у долинах немає зв'язку.</li>
+    <li>Пальне: регіональна стеля цін, бензин 95 ≈ €1,55–1,70/л. <b>На Пол-да-Серра й Фаналі заправок немає</b> — заправтеся напередодні дня 2.</li>
+  </ul>
+  <h3>Паркування у Фуншалі</h3>
+  <ul>
+    <li>Сині зони ≈ €1,20/год (монети, часті штрафи); гаражі €1,40–2/год, денний ліміт €8–16 (напр. Marina Shopping).</li>
+    <li>Найкраще: готель з паркінгом, а в центр — пішки, таксі або Bolt.</li>
+  </ul>
+</section>
+
+<section id="hotels">
+  <h2><span class="num">05</span>Бази й готелі до $160/ніч</h2>
+  <p class="section-desc">Дві бази по 3 ночі — так ми не повертаємось через увесь острів. $160 ≈ €140–150 за ніч для 4 людей.</p>
+  <div class="callout warn"><div class="ic">🅿️</div><div class="body"><span class="tag">Головний фільтр — паркінг</span><br>Багато готелів у старому місті Фуншала не мають паркінгу взагалі, а на заході місць мало й «хто перший». Пишіть готелю заздалегідь: «we arrive by car, please confirm parking». Ціни нижче — орієнтир з агрегаторів для травня/червня та вересня/жовтня (пік серпня — на 40–60% дорожче); перевіряйте на свої дати.</div></div>
+
+  <h3>🛏 База 1 (ночі 1–3): південний захід — Понта-ду-Сол / Калета</h3>
+  <p>Найсонячніша частина острова, 30–45 хв до Фаналу, Порту-Моніш і Рабасалу. Ресорти Калети (Saccharum, Savoy Calheta Beach) — понад бюджет, але <b>пляж Калети публічний</b> — користуємось безкоштовно.</p>
+  <div class="hotels">
+    <div class="hotel pick">
+      <span class="badge good h-badge">наш вибір</span>
+      <div class="h-name">Hotel Jardim Atlântico</div>
+      <div class="h-where">Празереш (Калета) · студії й апартаменти · ★ ~8,6</div>
+      <div class="h-price">≈ €110–150 / ніч</div>
+      <ul><li>Студії 70+ м² з кухнею — каша для малюка не проблема</li><li>Критий підігрітий + відкритий басейн, великий сад</li><li>Паркінг безкоштовний, але місць обмаль</li><li>Тихо, на скелі; до пляжу Калети 15 хв авто</li></ul>
+      <div class="h-links"><a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel%20Jardim%20Atl%C3%A2ntico%20Prazeres%20Madeira" target="_blank" rel="noopener">📍 На карті</a> <a class="gm route" href="https://www.hoteljardimatlantico.com" target="_blank" rel="noopener">🌐 сайт</a></div>
+    </div>
+    <div class="hotel">
+      <span class="badge good h-badge">в центрі маршруту</span>
+      <div class="h-name">Estalagem da Ponta do Sol</div>
+      <div class="h-where">Понта-ду-Сол · дизайн-готель на скелі · ★ ~8,7</div>
+      <div class="h-price">≈ €130–190 / ніч</div>
+      <ul><li>Інфініті-басейн + критий басейн</li><li>Пішки вниз до містечка й пірса на захід сонця</li><li>Паркінг безкоштовний, але «дуже обмежений»</li><li>У бюджет — лише в міжсезоння</li></ul>
+      <div class="h-links"><a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Estalagem%20da%20Ponta%20do%20Sol" target="_blank" rel="noopener">📍 На карті</a> <a class="gm route" href="https://www.estalagempontadosol.com" target="_blank" rel="noopener">🌐 сайт</a></div>
+    </div>
+    <div class="hotel">
+      <span class="badge good h-badge">бюджет</span>
+      <div class="h-name">Апартаменти в Arco da Calheta</div>
+      <div class="h-where">Арку-да-Калета · Seasky Arco, Intelsol Calheta та ін.</div>
+      <div class="h-price">≈ €80–130 / ніч</div>
+      <ul><li>Повна кухня, окрема спальня — малюк спить, батьки на балконі</li><li>Безкоштовний паркінг біля будинку</li><li>5 хв до пляжу Калети</li></ul>
+      <div class="h-links"><a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Arco%20da%20Calheta%20Madeira" target="_blank" rel="noopener">📍 Arco da Calheta</a></div>
+    </div>
+    <div class="hotel">
+      <div class="h-name">Hotel do Campo</div>
+      <div class="h-where">Кампанаріу (Рібейра-Брава) · сільський готель · ★ ~8,8</div>
+      <div class="h-price">≈ €90–130 / ніч</div>
+      <ul><li>Безкоштовний паркінг, критий і відкритий басейни</li><li>Між Кабу-Жиран і Рібейра-Брава — компроміс, якщо хочеться ближче до Фуншала</li></ul>
+      <div class="h-links"><a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Hotel%20do%20Campo%20Campan%C3%A1rio%20Madeira" target="_blank" rel="noopener">📍 На карті</a></div>
+    </div>
+  </div>
+
+  <h3>🛏 База 2 (ночі 4–6): Фуншал (Lido / Praia Formosa) або Канісу</h3>
+  <p>Район Lido / Praia Formosa — на заході міста: виїзд на VR1 за 3 хв, рівна набережна для коляски, пляжі й басейни. Канісу — тихіше й за 12 хв від аеропорту (зручно в день 7), але до Монте й старого міста — таксі.</p>
+  <div class="hotels">
+    <div class="hotel pick">
+      <span class="badge good h-badge">наш вибір</span>
+      <div class="h-name">Pestana Bay Ocean Aparthotel</div>
+      <div class="h-where">Фуншал, Praia Formosa · апартготель · ★ ~8,5</div>
+      <div class="h-price">≈ €130–180 / ніч</div>
+      <ul><li>Кухня й балкон у кожному номері</li><li><b>Безкоштовний паркінг</b></li><li>Басейн; виходиш — і ти на набережній Praia Formosa з майданчиками</li></ul>
+      <div class="h-links"><a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Pestana%20Bay%20Ocean%20Aparthotel%20Funchal" target="_blank" rel="noopener">📍 На карті</a> <a class="gm route" href="https://www.pestana.com" target="_blank" rel="noopener">🌐 сайт</a></div>
+    </div>
+    <div class="hotel">
+      <span class="badge good h-badge">безкоштовний паркінг</span>
+      <div class="h-name">The Views Monumental</div>
+      <div class="h-where">Фуншал, Lido · готель · ★ ~8,3</div>
+      <div class="h-price">≈ €120–160 / ніч</div>
+      <ul><li>Сімейні номери</li><li>Паркінг безкоштовний (збігається в Booking, Expedia, Hotels.com)</li><li>Басейн; поруч басейни Lido</li></ul>
+      <div class="h-links"><a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=The%20Views%20Monumental%20Funchal" target="_blank" rel="noopener">📍 На карті</a> <a class="gm route" href="https://www.theviewshotels.com" target="_blank" rel="noopener">🌐 сайт</a></div>
+    </div>
+    <div class="hotel">
+      <span class="badge good h-badge">для малюка</span>
+      <div class="h-name">Sentido Galosol (Galo Resort)</div>
+      <div class="h-where">Канісу-де-Байшу · готель · ★ ~8,8</div>
+      <div class="h-price">≈ €120–170 / ніч</div>
+      <ul><li>Дитячий басейн, вихід до моря</li><li>Тихо; 12 хв до аеропорту</li><li>Паркінг є, але ≈ 10 місць — бронюйте</li><li>⚠️ Сусідній Galomar — тільки для дорослих</li></ul>
+      <div class="h-links"><a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Galosol%20Galo%20Resort%20Cani%C3%A7o" target="_blank" rel="noopener">📍 На карті</a> <a class="gm route" href="https://www.galoresort.com" target="_blank" rel="noopener">🌐 сайт</a></div>
+    </div>
+    <div class="hotel">
+      <div class="h-name">Royal Orchid</div>
+      <div class="h-where">Канісу · апартготель · ★ ~8,5</div>
+      <div class="h-price">≈ €110–150 / ніч</div>
+      <ul><li>Апартаменти з кухнею, вид на море</li><li>Паркінг ≈ €5/день, місць мало</li></ul>
+      <div class="h-links"><a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Royal%20Orchid%20Hotel%20Cani%C3%A7o%20Madeira" target="_blank" rel="noopener">📍 На карті</a></div>
+    </div>
+    <div class="hotel">
+      <span class="badge good h-badge">економ</span>
+      <div class="h-name">Dorisol Estrelícia</div>
+      <div class="h-where">Фуншал, Сан-Мартінью · 3★ · ★ ~7,1–7,5</div>
+      <div class="h-price">≈ €80–110 / ніч</div>
+      <ul><li>Вкладається навіть у серпні</li><li>Дитяча ігрова кімната, басейн</li><li>Паркінг ≈ €7/день, бронювати заздалегідь</li><li>Номери застарілі</li></ul>
+      <div class="h-links"><a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Dorisol%20Estrel%C3%ADcia%20Funchal" target="_blank" rel="noopener">📍 На карті</a> <a class="gm route" href="https://www.dorisol.com" target="_blank" rel="noopener">🌐 сайт</a></div>
+    </div>
+  </div>
+  <table>
+    <tr><th>Варто знати</th><th></th></tr>
+    <tr><td>Понад бюджет</td><td>Enotel Lido (€230+, але безкоштовний дитячий клуб), Royal Savoy, Saccharum, Savoy Calheta Beach</td></tr>
+    <tr><td>Не для сімей</td><td>Orca Praia і Galomar — тепер «adults only»</td></tr>
+    <tr><td>Без паркінгу</td><td>Dom Pedro Garajau (хоча сімейний номер 48 м² за €90–130), більшість готелів Zona Velha</td></tr>
+    <tr><td>Якщо хочеться ночі на півночі</td><td>Estalagem do Vale або Solar da Bica (Сан-Вісенте, €80–130, паркінг безкоштовний), Aqua Natura Bay (Порту-Моніш, поруч басейни). Але північ дощовіша, а лікарні — на півдні</td></tr>
+  </table>
+</section>
+
+<section id="map">
+  <h2><span class="num">06</span>Маршрут на карті</h2>
+  <p class="section-desc">Кольори — дні. Логіка: ✈️ на сході → одразу на захід (база 1) → дні 2–3 північний захід і захід → переїзд у Фуншал (база 2) → гори й північний схід → схід і назад в аеропорт.</p>
+  <figure class="diagram map">
+<svg viewBox="0 0 720 403" role="img" aria-label="Схема острова Мадейра з маршрутом по днях"><polygon points="58.6,113.8 88.2,84.2 117.9,67.8 152.5,51.4 187.1,75.5 216.7,99.5 246.4,108.3 280.9,121.4 320.5,97.4 345.2,95.2 379.8,97.4 414.4,93.0 444.0,108.3 468.7,133.5 490.4,156.5 518.1,169.6 547.8,180.6 577.4,189.3 616.9,185.0 656.5,188.2 626.8,199.2 597.2,202.5 562.6,217.8 552.7,237.5 537.9,259.4 508.2,275.8 468.7,299.9 429.2,303.2 399.5,299.9 369.9,305.4 342.2,297.7 315.5,287.9 280.9,279.1 253.3,268.2 221.6,261.6 187.1,239.7 152.5,224.4 122.8,204.7 98.1,180.6 73.4,147.7" class="map-land"/><text x="374.8" y="177.3" class="map-ridge" text-anchor="middle">центральні гори</text><text x="241.4" y="188.2" class="map-ridge" text-anchor="middle">Пол-да-Серра</text><polyline points="543.3,239.8 343.2,294.4 315.8,286.2 221.4,259.4" class="map-route" style="stroke:#e8590c"/><polyline points="221.4,259.4 176.9,116.4 152.1,54.0 211.0,102.3 242.9,108.9 279.0,135.1 256.2,261.6 221.4,259.4" class="map-route" style="stroke:#1971c2"/><polyline points="221.4,259.4 191.4,172.3 60.9,112.6 145.6,217.8" class="map-route" style="stroke:#2b8a3e"/><polyline points="221.4,259.4 414.4,293.5" class="map-route" style="stroke:#7048e8"/><polyline points="414.4,293.5 391.0,198.5 432.9,198.9 437.3,123.1 491.4,158.7 414.4,293.5" class="map-route" style="stroke:#c2255c"/><polyline points="414.4,293.5 417.8,264.3" class="map-route" style="stroke:#0c8599"/><polyline points="414.4,293.5 605.1,187.7 553.7,218.9 543.3,239.8" class="map-route" style="stroke:#5c940d"/><circle cx="543.3" cy="239.8" r="4.5" class="map-stop" style="fill:#e8590c"/><text x="551.3" y="253.8" class="map-label" text-anchor="start">Аеропорт</text><circle cx="343.2" cy="294.4" r="4.5" class="map-stop" style="fill:#e8590c"/><text x="337.2" y="310.4" class="map-label" text-anchor="end">Камара-де-Лобуш</text><circle cx="315.8" cy="286.2" r="4.5" class="map-stop" style="fill:#e8590c"/><text x="311.8" y="277.2" class="map-label" text-anchor="end">Кабу-Жиран</text><circle cx="221.4" cy="259.4" r="4.5" class="map-stop" style="fill:#e8590c"/><text x="227.4" y="275.4" class="map-label" text-anchor="start">Понта-ду-Сол</text><circle cx="221.4" cy="259.4" r="4.5" class="map-stop" style="fill:#1971c2"/><circle cx="176.9" cy="116.4" r="4.5" class="map-stop" style="fill:#1971c2"/><text x="168.9" y="120.4" class="map-label" text-anchor="end">Фанал</text><circle cx="152.1" cy="54.0" r="4.5" class="map-stop" style="fill:#1971c2"/><text x="158.1" y="46.0" class="map-label" text-anchor="start">Порту-Моніш</text><circle cx="211.0" cy="102.3" r="4.5" class="map-stop" style="fill:#1971c2"/><text x="215.0" y="93.3" class="map-label" text-anchor="start">Сейшал</text><circle cx="242.9" cy="108.9" r="4.5" class="map-stop" style="fill:#1971c2"/><circle cx="279.0" cy="135.1" r="4.5" class="map-stop" style="fill:#1971c2"/><text x="283.0" y="127.1" class="map-label" text-anchor="start">Сан-Вісенте</text><circle cx="256.2" cy="261.6" r="4.5" class="map-stop" style="fill:#1971c2"/><circle cx="221.4" cy="259.4" r="4.5" class="map-stop" style="fill:#1971c2"/><circle cx="221.4" cy="259.4" r="4.5" class="map-stop" style="fill:#2b8a3e"/><circle cx="191.4" cy="172.3" r="4.5" class="map-stop" style="fill:#2b8a3e"/><text x="199.4" y="178.3" class="map-label" text-anchor="start">Рабасал</text><circle cx="60.9" cy="112.6" r="4.5" class="map-stop" style="fill:#2b8a3e"/><text x="66.9" y="102.6" class="map-label" text-anchor="start">Понта-ду-Парґу</text><circle cx="145.6" cy="217.8" r="4.5" class="map-stop" style="fill:#2b8a3e"/><text x="137.6" y="231.8" class="map-label" text-anchor="end">Калета</text><circle cx="221.4" cy="259.4" r="4.5" class="map-stop" style="fill:#7048e8"/><circle cx="414.4" cy="293.5" r="4.5" class="map-stop" style="fill:#7048e8"/><text x="412.4" y="311.5" class="map-label" text-anchor="end">Фуншал</text><circle cx="414.4" cy="293.5" r="4.5" class="map-stop" style="fill:#c2255c"/><circle cx="391.0" cy="198.5" r="4.5" class="map-stop" style="fill:#c2255c"/><text x="381.0" y="190.5" class="map-label" text-anchor="end">Піку-ду-Арієйру</text><circle cx="432.9" cy="198.9" r="4.5" class="map-stop" style="fill:#c2255c"/><text x="440.9" y="202.9" class="map-label" text-anchor="start">Балкойнш</text><circle cx="437.3" cy="123.1" r="4.5" class="map-stop" style="fill:#c2255c"/><text x="429.3" y="115.1" class="map-label" text-anchor="end">Сантана</text><circle cx="491.4" cy="158.7" r="4.5" class="map-stop" style="fill:#c2255c"/><text x="499.4" y="158.7" class="map-label" text-anchor="start">Порту-да-Круж</text><circle cx="414.4" cy="293.5" r="4.5" class="map-stop" style="fill:#c2255c"/><circle cx="414.4" cy="293.5" r="4.5" class="map-stop" style="fill:#0c8599"/><circle cx="417.8" cy="264.3" r="4.5" class="map-stop" style="fill:#0c8599"/><text x="425.8" y="262.3" class="map-label" text-anchor="start">Монте</text><circle cx="414.4" cy="293.5" r="4.5" class="map-stop" style="fill:#5c940d"/><circle cx="605.1" cy="187.7" r="4.5" class="map-stop" style="fill:#5c940d"/><text x="601.1" y="177.7" class="map-label" text-anchor="end">Понта-ду-Рошту</text><circle cx="553.7" cy="218.9" r="4.5" class="map-stop" style="fill:#5c940d"/><text x="543.7" y="214.9" class="map-label" text-anchor="end">Машіку</text><circle cx="543.3" cy="239.8" r="4.5" class="map-stop" style="fill:#5c940d"/><rect x="213.4" y="251.39999999999998" width="16" height="16" rx="4" class="map-base"/><text x="221.4" y="263.9" class="map-base-t" text-anchor="middle">🛏</text><rect x="406.4" y="285.5" width="16" height="16" rx="4" class="map-base"/><text x="414.4" y="298.0" class="map-base-t" text-anchor="middle">🛏</text><text x="543.3" y="246.8" text-anchor="middle" class="map-air">✈️</text><rect x="24" y="368" width="14" height="4" rx="2" style="fill:#e8590c"/><text x="42" y="374" class="map-legend">Д1 приліт</text><rect x="117.4" y="368" width="14" height="4" rx="2" style="fill:#1971c2"/><text x="135.4" y="374" class="map-legend">Д2 північний захід</text><rect x="270.20000000000005" y="368" width="14" height="4" rx="2" style="fill:#2b8a3e"/><text x="288.20000000000005" y="374" class="map-legend">Д3 Рабасал і захід</text><rect x="423.00000000000006" y="368" width="14" height="4" rx="2" style="fill:#7048e8"/><text x="441.00000000000006" y="374" class="map-legend">Д4 переїзд у Фуншал</text><rect x="24" y="386" width="14" height="4" rx="2" style="fill:#c2255c"/><text x="42" y="392" class="map-legend">Д5 гори й північ</text><rect x="163.6" y="386" width="14" height="4" rx="2" style="fill:#0c8599"/><text x="181.6" y="392" class="map-legend">Д6 Монте</text><rect x="250.39999999999998" y="386" width="14" height="4" rx="2" style="fill:#5c940d"/><text x="268.4" y="392" class="map-legend">Д7 схід і виліт</text></svg>
+<figcaption>Схема маршруту (обрис острова спрощений). 🛏 — бази: Понта-ду-Сол/Калета (ночі 1–3) і Фуншал (ночі 4–6). Острів ~57 км зі сходу на захід; дорога VR1 уздовж півдня + тунелі VE роблять будь-яку точку досяжною за ≤ 1 год 15 хв.</figcaption>
+</figure>
+  <p><a class="gm route" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Aeroporto%20da%20Madeira%20Cristiano%20Ronaldo&amp;destination=Aeroporto%20da%20Madeira%20Cristiano%20Ronaldo&amp;waypoints=Miradouro%20do%20Cabo%20Gir%C3%A3o%7CPonta%20do%20Sol%20Madeira%7CFanal%20Madeira%7CPiscinas%20Naturais%20do%20Porto%20Moniz%7CRaba%C3%A7al%20Madeira%7CFarol%20da%20Ponta%20do%20Pargo%7CFunchal%7CPico%20do%20Areeiro%7CSantana%20Madeira%7CPraia%20de%20Machico" target="_blank" rel="noopener">🚗 Увесь маршрут у Google Maps (огляд)</a></p>
+</section>
+
+<section id="days">
+  <h2><span class="num">07</span>Маршрут по днях</h2>
+  <p class="section-desc">Час — орієнтир для сім'ї з малюком (сон у машині після обіду — наш союзник). Кожна точка — клікабельна в Google Maps.</p>
+
+  <!-- DAY 1 -->
+  <div class="day" id="day1">
+    <div class="day-head"><span class="day-num" style="background:#e8590c">1</span><span class="day-title">Приліт → південне узбережжя на захід</span><span class="day-meta">≈ 60 км · 1 год за кермом</span></div>
+    <p><a class="gm route" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Aeroporto%20da%20Madeira%20Cristiano%20Ronaldo&amp;destination=Ponta%20do%20Sol%20Madeira&amp;waypoints=C%C3%A2mara%20de%20Lobos%7CMiradouro%20do%20Cabo%20Gir%C3%A3o" target="_blank" rel="noopener">🚗 Маршрут дня 1</a></p>
+    <ol class="stops">
+      <li><span class="t">прибуття</span> · <span class="s-title">Аеропорт → авто</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Aeroporto%20da%20Madeira%20Cristiano%20Ronaldo" target="_blank" rel="noopener">📍 Аеропорт FNC</a>
+        <p>Встановіть автокрісла, перевірте авто. Перший перекус — у місті, не в аеропорту.</p></li>
+      <li><span class="t">+30 хв</span> · <span class="s-title">Камара-де-Лобуш</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=C%C3%A2mara%20de%20Lobos%20Madeira" target="_blank" rel="noopener">📍 Câmara de Lobos</a>
+        <p>Рибальське містечко з кольоровими човнами, яке малював Черчилль. Рівна набережна — для коляски. Тут вигадали <b>пончу</b> (ром + мед + лимон) — для дорослих.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/C%C3%A2mara_de_Lobos_%28Madeira%2C_Portugal%29%2C_Porto_de_C%C3%A2mara_de_Lobos_--_2025_--_1901.jpg/1280px-C%C3%A2mara_de_Lobos_%28Madeira%2C_Portugal%29%2C_Porto_de_C%C3%A2mara_de_Lobos_--_2025_--_1901.jpg" alt="Гавань Камара-де-Лобуш" loading="lazy" referrerpolicy="no-referrer"><figcaption>Гавань Камара-де-Лобуш · Фото: <a href="https://commons.wikimedia.org/wiki/File:C%C3%A2mara_de_Lobos_(Madeira,_Portugal),_Porto_de_C%C3%A2mara_de_Lobos_--_2025_--_1901.jpg" target="_blank" rel="noopener">Dietmar Rabich</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure>
+        <p>🍽 Обід: <b>еспетада</b> (яловичина на лавровому шампурі) — легендарний <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Restaurante%20Santo%20Ant%C3%B3nio%20Estreito%20de%20C%C3%A2mara%20de%20Lobos" target="_blank" rel="noopener">📍 Restaurante Santo António</a> (8 хв вгору, бронюйте) або на набережній.</p></li>
+      <li><span class="t">+10 хв</span> · <span class="s-title">Кабу-Жиран — скляний skywalk</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Miradouro%20do%20Cabo%20Gir%C3%A3o" target="_blank" rel="noopener">📍 Miradouro do Cabo Girão</a>
+        <p>Скляна підлога над скелею 580 м — одна з найвищих у Європі. Рівний майданчик, 20–30 хв. <b>€5 дорослий, діти до 12 — безкоштовно</b> (з 2026).</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Cabo_Gir%C3%A3o_-_Skywalk.JPG/1280px-Cabo_Gir%C3%A3o_-_Skywalk.JPG" alt="Кабу-Жиран: скляний майданчик над океаном" loading="lazy" referrerpolicy="no-referrer"><figcaption>Кабу-Жиран: скляний майданчик над океаном · Фото: <a href="https://commons.wikimedia.org/wiki/File:Cabo_Gir%C3%A3o_-_Skywalk.JPG" target="_blank" rel="noopener">Dirk Klaassen</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure></li>
+      <li><span class="t">+25 хв</span> · <span class="s-title">Понта-ду-Сол — заселення, захід сонця</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Cais%20da%20Ponta%20do%20Sol" target="_blank" rel="noopener">📍 Cais da Ponta do Sol</a>
+        <p>Найсонячніше місце острова. Захід сонця з пірса — ритуал усіх трьох вечорів.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Ponta_do_Sol%2C_Madeira%2C_Portugal_07.jpg/1280px-Ponta_do_Sol%2C_Madeira%2C_Portugal_07.jpg" alt="Понта-ду-Сол" loading="lazy" referrerpolicy="no-referrer"><figcaption>Понта-ду-Сол · Фото: <a href="https://commons.wikimedia.org/wiki/File:Ponta_do_Sol,_Madeira,_Portugal_07.jpg" target="_blank" rel="noopener">Celsoazevedo</a>, CC BY 4.0, Wikimedia Commons</figcaption></figure></li>
+    </ol>
+    <div class="rainy"><b>☔ Якщо дощ:</b> одразу на базу; у Понта-ду-Сол і Калеті дощить рідше, ніж у Фуншалі.</div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day" id="day2">
+    <div class="day-head"><span class="day-num" style="background:#1971c2">2</span><span class="day-title">Північний захід: Фанал, Порту-Моніш, Сейшал</span><span class="day-meta">≈ 120 км · 2,5–3 год за кермом</span></div>
+    <p><a class="gm route" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Ponta%20do%20Sol%20Madeira&amp;destination=Ponta%20do%20Sol%20Madeira&amp;waypoints=Fanal%20Madeira%7CPiscinas%20Naturais%20do%20Porto%20Moniz%7CPraia%20do%20Seixal%7CMiradouro%20do%20V%C3%A9u%20da%20Noiva%7CS%C3%A3o%20Vicente%20Madeira" target="_blank" rel="noopener">🚗 Маршрут дня 2</a></p>
+    <ol class="stops">
+      <li><span class="t">7:30 виїзд</span> · <span class="s-title">Ліс Фанал</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Fanal%20Madeira" target="_blank" rel="noopener">📍 Fanal</a>
+        <p>Луг із 500-річними лавровими деревами, корови пасуться між ними. Найкраще — туман 8–10 ранку (атмосфера «казкового лісу»). Рівна трава, можна бігати. <b>Холодно (10–14 °C)</b> — кофти й шапки.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Foggy_Fanal_forest_in_Seixal%2C_Porto_Moniz%2C_Madeira%2C_2023_May.jpg/1280px-Foggy_Fanal_forest_in_Seixal%2C_Porto_Moniz%2C_Madeira%2C_2023_May.jpg" alt="Ліс Фанал у тумані" loading="lazy" referrerpolicy="no-referrer"><figcaption>Ліс Фанал у тумані · Фото: <a href="https://commons.wikimedia.org/wiki/File:Foggy_Fanal_forest_in_Seixal,_Porto_Moniz,_Madeira,_2023_May.jpg" target="_blank" rel="noopener">Ximonic (Simo Räsänen)</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure>
+        <p class="drive">⛽ Заправтеся напередодні — на плато заправок немає.</p></li>
+      <li><span class="t">~10:30</span> · <span class="s-title">Природні басейни Порту-Моніш</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Piscinas%20Naturais%20do%20Porto%20Moniz" target="_blank" rel="noopener">📍 Piscinas Naturais do Porto Moniz</a>
+        <p>Вулканічні басейни, океан перехлюпує через край. Є <b>окремий дитячий басейн</b>, роздягальні, рятувальники. ≈ €3, до 3 років безкоштовно. До 11:00 черги невеликі.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/16/Porto_Moniz_%28Madeira%2C_Portugal%29%2C_Piscinas_Naturais_do_Porto_Moniz_--_2025_--_1779.jpg/1280px-Porto_Moniz_%28Madeira%2C_Portugal%29%2C_Piscinas_Naturais_do_Porto_Moniz_--_2025_--_1779.jpg" alt="Природні басейни Порту-Моніш" loading="lazy" referrerpolicy="no-referrer"><figcaption>Природні басейни Порту-Моніш · Фото: <a href="https://commons.wikimedia.org/wiki/File:Porto_Moniz_(Madeira,_Portugal),_Piscinas_Naturais_do_Porto_Moniz_--_2025_--_1779.jpg" target="_blank" rel="noopener">Dietmar Rabich</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure>
+        <p>Поруч <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Aqu%C3%A1rio%20da%20Madeira%20Porto%20Moniz" target="_blank" rel="noopener">📍 Aquário da Madeira</a> (≈ €8 / дит. €4, сімейний €20) — 40 хв, ідеально, якщо вітер чи хмари.</p></li>
+      <li><span class="t">~13:00</span> · <span class="s-title">Сейшал — чорний пісок</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Praia%20do%20Seixal" target="_blank" rel="noopener">📍 Praia do Seixal</a>
+        <p>Чорний вулканічний пляж під зеленими скелями — найфотогенічніший на острові. Поруч басейни <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Po%C3%A7as%20das%20Lesmas%20Seixal" target="_blank" rel="noopener">📍 Poças das Lesmas</a> (€2,50). Вода холодна (≈ 19–22 °C).</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Praia_da_Laje_-_Ilha_da_Madeira_-_Portugal_%286836899475%29.jpg/1280px-Praia_da_Laje_-_Ilha_da_Madeira_-_Portugal_%286836899475%29.jpg" alt="Чорний пляж Сейшалу" loading="lazy" referrerpolicy="no-referrer"><figcaption>Чорний пляж Сейшалу · Фото: <a href="https://commons.wikimedia.org/wiki/File:Praia_da_Laje_-_Ilha_da_Madeira_-_Portugal_(6836899475).jpg" target="_blank" rel="noopener">Vitor Oliveira</a>, CC BY-SA 2.0, Wikimedia Commons</figcaption></figure>
+        <p>🍽 Обід: <b>Avista Navios</b> у Сейшалі (з видом) або <b>Braseiro</b> у Сан-Вісенте.</p></li>
+      <li><span class="t">+5 хв</span> · <span class="s-title">Оглядовий Véu da Noiva («Фата нареченої»)</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Miradouro%20do%20V%C3%A9u%20da%20Noiva" target="_blank" rel="noopener">📍 Miradouro do Véu da Noiva</a>
+        <p>Водоспад, що падає зі скелі просто в океан. Зупинка на 10 хв біля дороги.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Mirador_del_Velo_de_Novia%2C_Seixal%2C_Madeira%2C_Portugal%2C_2019-05-30%2C_DD_68.jpg/1280px-Mirador_del_Velo_de_Novia%2C_Seixal%2C_Madeira%2C_Portugal%2C_2019-05-30%2C_DD_68.jpg" alt="Водоспад Véu da Noiva" loading="lazy" referrerpolicy="no-referrer"><figcaption>Водоспад Véu da Noiva · Фото: <a href="https://commons.wikimedia.org/wiki/File:Mirador_del_Velo_de_Novia,_Seixal,_Madeira,_Portugal,_2019-05-30,_DD_68.jpg" target="_blank" rel="noopener">Diego Delso</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure></li>
+      <li><span class="t">~15:00</span> · <span class="s-title">Назад через тунель Сан-Вісенте → Рібейра-Брава</span>
+        <p class="drive">≈ 40 хв до бази — малюк спить у машині.</p></li>
+    </ol>
+    <div class="rainy"><b>☔ Якщо дощ на півночі:</b> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Grutas%20de%20S%C3%A3o%20Vicente" target="_blank" rel="noopener">📍 Grutas de São Vicente</a> (вулканічні печери, екскурсія 30 хв) + акваріум у Порту-Моніш. Або поміняйте день 2 і день 3.</div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day" id="day3">
+    <div class="day-head"><span class="day-num" style="background:#2b8a3e">3</span><span class="day-title">Левада ду-Ріску, захід острова, пляж Калети</span><span class="day-meta">≈ 90 км · 2 год за кермом</span></div>
+    <p><a class="gm route" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Ponta%20do%20Sol%20Madeira&amp;destination=Praia%20da%20Calheta&amp;waypoints=Raba%C3%A7al%20Madeira%7CPaul%20da%20Serra%7CFarol%20da%20Ponta%20do%20Pargo" target="_blank" rel="noopener">🚗 Маршрут дня 3</a></p>
+    <ol class="stops">
+      <li><span class="t">8:30 виїзд</span> · <span class="s-title">Рабасал → Levada do Risco (PR6.1)</span> <span class="kid mid">👶 з переноскою</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Raba%C3%A7al%20Madeira" target="_blank" rel="noopener">📍 Рабасал (паркінг на ER110)</a>
+        <p>Паркінг на трасі ER110 — будьте там до 9:30, далі машини стоять кілометрами вздовж дороги. Вниз до будиночка Рабасал — пішки 2 км асфальтом або мікроавтобус (≈ €5/€8 туди-назад, <b>готівка</b>; актуальність 2026 перевірте на місці).</p>
+        <p>Від будиночка — <b>Levada do Risco</b>: ≈ 3 км туди-назад майже рівною стежкою до 100-метрового водоспаду. Слот — на SIMplifica (діти безкоштовно, але вписати).</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Madeira-Rabacal-Levada_das_25_Fontes_%28PR6%29-bridge-02ASD.jpg/1280px-Madeira-Rabacal-Levada_das_25_Fontes_%28PR6%29-bridge-02ASD.jpg" alt="Левада в долині Рабасал" loading="lazy" referrerpolicy="no-referrer"><figcaption>Левада в долині Рабасал · Фото: <a href="https://commons.wikimedia.org/wiki/File:Madeira-Rabacal-Levada_das_25_Fontes_(PR6)-bridge-02ASD.jpg" target="_blank" rel="noopener">Asurnipal</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure>
+        <div class="callout warn"><div class="ic">⚠️</div><div class="body"><b>25 Fontes</b> (≈ 4,5 км від Рабасалу) — вузькі ділянки з урвищем. Не з малюком; опція для одного дорослого, поки інший гуляє з дітьми до Risco.</div></div></li>
+      <li><span class="t">~12:00</span> · <span class="s-title">Плато Пол-да-Серра</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Paul%20da%20Serra" target="_blank" rel="noopener">📍 Paul da Serra</a>
+        <p>«Шотландія» посеред субтропіків: рівне плато на 1 400 м, вітряки, вид понад хмарами. Фото-стоп 10 хв.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Paul_da_Serra-003.JPG/1280px-Paul_da_Serra-003.JPG" alt="Пол-да-Серра" loading="lazy" referrerpolicy="no-referrer"><figcaption>Пол-да-Серра · Фото: <a href="https://commons.wikimedia.org/wiki/File:Paul_da_Serra-003.JPG" target="_blank" rel="noopener">Harald Lordick</a>, CC BY-SA 3.0, Wikimedia Commons</figcaption></figure></li>
+      <li><span class="t">~13:00</span> · <span class="s-title">Маяк Понта-ду-Парґу</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Farol%20da%20Ponta%20do%20Pargo" target="_blank" rel="noopener">📍 Farol da Ponta do Pargo</a>
+        <p>Найзахідніша точка острова, червоний маяк на скелі 300 м. Пікнік / кафе поруч.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/Ponta_do_Pargo_%28Madeira%2C_Portugal%29%2C_Farol_da_Ponta_do_Pargo_--_2025_--_1809.jpg/1280px-Ponta_do_Pargo_%28Madeira%2C_Portugal%29%2C_Farol_da_Ponta_do_Pargo_--_2025_--_1809.jpg" alt="Маяк Понта-ду-Парґу" loading="lazy" referrerpolicy="no-referrer"><figcaption>Маяк Понта-ду-Парґу · Фото: <a href="https://commons.wikimedia.org/wiki/File:Ponta_do_Pargo_(Madeira,_Portugal),_Farol_da_Ponta_do_Pargo_--_2025_--_1809.jpg" target="_blank" rel="noopener">Dietmar Rabich</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure>
+        <p>Опція: канатка <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Telef%C3%A9rico%20das%20Achadas%20da%20Cruz" target="_blank" rel="noopener">📍 Achadas da Cruz</a> — одна з найкрутіших у Європі, вниз до прибережних полів. Відкрита кабінка, лише для впевнених.</p></li>
+      <li><span class="t">~15:00</span> · <span class="s-title">Пляж Калети</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Praia%20da%20Calheta" target="_blank" rel="noopener">📍 Praia da Calheta</a>
+        <p>Захищений хвилерізами пляж із завезеним золотим піском — <b>найкращий пляж для малюка на острові</b>: тиха вода, мілко, кафе, туалети.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Praia_da_Calheta%2C_Calheta%2C_Madeira_03.jpg/1280px-Praia_da_Calheta%2C_Calheta%2C_Madeira_03.jpg" alt="Пляж Калети" loading="lazy" referrerpolicy="no-referrer"><figcaption>Пляж Калети · Фото: <a href="https://commons.wikimedia.org/wiki/File:Praia_da_Calheta,_Calheta,_Madeira_03.jpg" target="_blank" rel="noopener">GualdimG</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure></li>
+    </ol>
+    <div class="rainy"><b>☔ Якщо дощ:</b> музей сучасного мистецтва <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=MUDAS%20Museu%20de%20Arte%20Contempor%C3%A2nea%20da%20Madeira" target="_blank" rel="noopener">📍 MUDAS</a> і ромова фабрика <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Engenhos%20da%20Calheta" target="_blank" rel="noopener">📍 Engenho da Calheta</a> (дегустація для дорослих, цукрова тростина — для дітей).</div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day" id="day4">
+    <div class="day-head"><span class="day-num" style="background:#7048e8">4</span><span class="day-title">Переїзд у Фуншал: ринок, старе місто, набережна</span><span class="day-meta">≈ 35 км · 40 хв за кермом</span></div>
+    <p><a class="gm route" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Ponta%20do%20Sol%20Madeira&amp;destination=Mercado%20dos%20Lavradores" target="_blank" rel="noopener">🚗 Маршрут дня 4</a></p>
+    <ol class="stops">
+      <li><span class="t">10:00</span> · <span class="s-title">Виселення → Фуншал, авто — на паркінг готелю</span></li>
+      <li><span class="t">11:00</span> · <span class="s-title">Ринок Mercado dos Lavradores</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Mercado%20dos%20Lavradores" target="_blank" rel="noopener">📍 Mercado dos Lavradores</a>
+        <p>Квіти, екзотичні фрукти (маракуя-банан, анона), риба еспада (чорна шабля). Ціни для туристів завищені — питайте ціну за кг до дегустації.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Funchal_%28Madeira%2C_Portugal%29%2C_Mercado_dos_Lavradores_--_2025_--_0964.jpg/1280px-Funchal_%28Madeira%2C_Portugal%29%2C_Mercado_dos_Lavradores_--_2025_--_0964.jpg" alt="Mercado dos Lavradores" loading="lazy" referrerpolicy="no-referrer"><figcaption>Mercado dos Lavradores · Фото: <a href="https://commons.wikimedia.org/wiki/File:Funchal_(Madeira,_Portugal),_Mercado_dos_Lavradores_--_2025_--_0964.jpg" target="_blank" rel="noopener">Dietmar Rabich</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure></li>
+      <li><span class="t">12:00</span> · <span class="s-title">Zona Velha — розписані двері</span> <span class="kid mid">👶 бруківка</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20de%20Santa%20Maria%20Funchal" target="_blank" rel="noopener">📍 Rua de Santa Maria</a>
+        <p>Вулиця, де кожні двері — картина. З коляскою трясе, але пройти можна.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/ArT_of_opEN_doors_project_-_Rua_de_Santa_Maria_-_Funchal_10.jpg/1280px-ArT_of_opEN_doors_project_-_Rua_de_Santa_Maria_-_Funchal_10.jpg" alt="Розписані двері на Rua de Santa Maria" loading="lazy" referrerpolicy="no-referrer"><figcaption>Розписані двері на Rua de Santa Maria · Фото: <a href="https://commons.wikimedia.org/wiki/File:ArT_of_opEN_doors_project_-_Rua_de_Santa_Maria_-_Funchal_10.jpg" target="_blank" rel="noopener">H. Zell</a>, CC BY-SA 3.0, Wikimedia Commons</figcaption></figure>
+        <p>🍽 <b>Болу-ду-каку</b> (коржик з часниковим маслом) — найкращий перекус для дітей. Обід: <b>Sabores da Nossa Ilha</b> або <b>Terreiro Concept</b> (є дитяче меню).</p></li>
+      <li><span class="t">15:30</span> · <span class="s-title">Набережна → басейни Lido / Praia Formosa</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Complexo%20Balnear%20do%20Lido" target="_blank" rel="noopener">📍 Complexo Balnear do Lido</a>
+        <p>Басейни з морською водою, дитячий басейн. Або <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Praia%20Formosa%20Funchal" target="_blank" rel="noopener">📍 Praia Formosa</a> — довгий пляж з дитячими майданчиками й рівною набережною для коляски. Альтернатива — парк <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Parque%20de%20Santa%20Catarina%20Funchal" target="_blank" rel="noopener">📍 Parque de Santa Catarina</a> з майданчиком і видом на порт.</p></li>
+    </ol>
+    <div class="rainy"><b>☔ Якщо дощ:</b> Madeira Story Centre або CR7 Museum (для фанатів), критий ринок, кафе.</div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day" id="day5">
+    <div class="day-head"><span class="day-num" style="background:#c2255c">5</span><span class="day-title">Над хмарами: Піку-ду-Арієйру, Балкойнш, Сантана</span><span class="day-meta">≈ 110 км · 2,5 год за кермом</span></div>
+    <p><a class="gm route" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Funchal&amp;destination=Funchal&amp;waypoints=Pico%20do%20Areeiro%7CRibeiro%20Frio%7CCasas%20T%C3%ADpicas%20de%20Santana%7CPorto%20da%20Cruz" target="_blank" rel="noopener">🚗 Маршрут дня 5</a></p>
+    <ol class="stops">
+      <li><span class="t">світанок або 9:00</span> · <span class="s-title">Піку-ду-Арієйру, 1 818 м</span> <span class="kid ok">👶 оглядовий</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Pico%20do%20Areeiro" target="_blank" rel="noopener">📍 Pico do Areeiro</a>
+        <p>Третя вершина острова, до оглядового — асфальт до самого верху. Якщо ввечері вебкамера показує «море хмар» нижче вершини — їдьте на світанок (виїзд за 1 год до сходу сонця). З малюком реалістичніше — 9–10 ранку. Паркінг ≈ €4/год. <b>Там 5–10 °C навіть улітку</b>.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/View_from_Miradouro_do_Pico_do_Arieiro_-_Madeira_03.jpg/1280px-View_from_Miradouro_do_Pico_do_Arieiro_-_Madeira_03.jpg" alt="Піку-ду-Арієйру над хмарами" loading="lazy" referrerpolicy="no-referrer"><figcaption>Піку-ду-Арієйру над хмарами · Фото: <a href="https://commons.wikimedia.org/wiki/File:View_from_Miradouro_do_Pico_do_Arieiro_-_Madeira_03.jpg" target="_blank" rel="noopener">H. Zell</a>, CC BY-SA 3.0, Wikimedia Commons</figcaption></figure>
+        <p>PR1 до Піку-Руйву (€10,50, урвища, сходи) — не з малюком. Опція для дорослого: перші 15–20 хв до оглядового Ninho da Manta.</p>
+        <p>☕ Гарячий суп і еспетада біля каміна — <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Abrigo%20do%20Poiso" target="_blank" rel="noopener">📍 Abrigo do Poiso</a> (по дорозі вниз).</p></li>
+      <li><span class="t">~11:00</span> · <span class="s-title">Левада Балкойнш (PR11)</span> <span class="kid mid">👶 з переноскою</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Ribeiro%20Frio" target="_blank" rel="noopener">📍 Ribeiro Frio</a>
+        <p>Найлегша «справжня» левада: 3 км туди-назад, широка стежка, 1–1,5 год до балкона з видом на центральні гори. Біля старту — форелеве господарство (діти дивляться на рибу) і кафе Flor da Selva з туалетом. Бронювання слоту на SIMplifica (до квітня 2027 — €4,50 або безкоштовно, джерела розходяться; з квітня 2027 — €15).</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/View_from_Balcoes_%28Ribeiro_Frio%29_2_%2838065958912%29.jpg/1280px-View_from_Balcoes_%28Ribeiro_Frio%29_2_%2838065958912%29.jpg" alt="Левада Балкойнш" loading="lazy" referrerpolicy="no-referrer"><figcaption>Левада Балкойнш · Фото: <a href="https://commons.wikimedia.org/wiki/File:View_from_Balcoes_(Ribeiro_Frio)_2_(38065958912).jpg" target="_blank" rel="noopener">VillageHero</a>, CC BY-SA 2.0, Wikimedia Commons</figcaption></figure></li>
+      <li><span class="t">~14:00</span> · <span class="s-title">Сантана — трикутні будиночки</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Casas%20T%C3%ADpicas%20de%20Santana" target="_blank" rel="noopener">📍 Casas Típicas de Santana</a>
+        <p>Традиційні солом'яні будиночки-трикутники, рівна територія, поруч дитячий майданчик. Обід у Сантані.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/Santana_%28Madeira%2C_Portugal%29%2C_Casas_T%C3%ADpicas_de_Santana_--_2025_--_1381.jpg/1280px-Santana_%28Madeira%2C_Portugal%29%2C_Casas_T%C3%ADpicas_de_Santana_--_2025_--_1381.jpg" alt="Будиночки Сантани" loading="lazy" referrerpolicy="no-referrer"><figcaption>Будиночки Сантани · Фото: <a href="https://commons.wikimedia.org/wiki/File:Santana_(Madeira,_Portugal),_Casas_T%C3%ADpicas_de_Santana_--_2025_--_1381.jpg" target="_blank" rel="noopener">Dietmar Rabich</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure>
+        <p>Для дітей: <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Madeira%20Theme%20Park" target="_blank" rel="noopener">📍 Madeira Theme Park</a> — парк-музей з майданчиками, лабіринтом і озером (добре і в хмарну погоду).</p></li>
+      <li><span class="t">~16:00</span> · <span class="s-title">Порту-да-Круж (опційно)</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Porto%20da%20Cruz%20Madeira" target="_blank" rel="noopener">📍 Porto da Cruz</a>
+        <p>Набережна під скелею Penha d'Águia і остання парова ромова фабрика Engenhos do Norte. Якщо малюк втомився — пропускаємо, назад по VR1 ≈ 40 хв.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/View_of_the_eastern_part_of_Porto_da_Cruz._Madeira%2C_Portugal.jpg/1280px-View_of_the_eastern_part_of_Porto_da_Cruz._Madeira%2C_Portugal.jpg" alt="Порту-да-Круж" loading="lazy" referrerpolicy="no-referrer"><figcaption>Порту-да-Круж · Фото: <a href="https://commons.wikimedia.org/wiki/File:View_of_the_eastern_part_of_Porto_da_Cruz._Madeira,_Portugal.jpg" target="_blank" rel="noopener">Vvlasenko</a>, CC BY-SA 3.0, Wikimedia Commons</figcaption></figure></li>
+    </ol>
+    <div class="rainy"><b>☔ Якщо в горах хмари:</b> міняємо з днем 6 (Монте працює за будь-якої погоди, а гори завтра можуть бути ясні).</div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day" id="day6">
+    <div class="day-head"><span class="day-num" style="background:#0c8599">6</span><span class="day-title">Монте: канатка, тропічний сад, «санки»</span><span class="day-meta">авто не потрібне</span></div>
+    <p><a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Telef%C3%A9rico%20do%20Funchal" target="_blank" rel="noopener">📍 Нижня станція канатки</a> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Monte%20Palace%20Madeira" target="_blank" rel="noopener">📍 Monte Palace</a> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Carreiros%20do%20Monte" target="_blank" rel="noopener">📍 Carreiros do Monte</a> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Jardim%20Bot%C3%A2nico%20da%20Madeira" target="_blank" rel="noopener">📍 Ботанічний сад</a></p>
+    <ol class="stops">
+      <li><span class="t">9:00</span> · <span class="s-title">Канатка Фуншал → Монте</span> <span class="kid ok">👶 ок</span>
+        <p>15 хв над дахами міста. <b>€22 туди-назад / €16 в один бік; діти 0–6 — безкоштовно, 7–14 — половина</b>. Беремо в один бік — униз поїдемо на санках. З квітня 2026 — кабінки зі скляною підлогою.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/af/Cable_car_to_Monte%2C_Madeira_-_Jan_2012_-_01.jpg/1280px-Cable_car_to_Monte%2C_Madeira_-_Jan_2012_-_01.jpg" alt="Канатка Монте над Фуншалом" loading="lazy" referrerpolicy="no-referrer"><figcaption>Канатка Монте над Фуншалом · Фото: <a href="https://commons.wikimedia.org/wiki/File:Cable_car_to_Monte,_Madeira_-_Jan_2012_-_01.jpg" target="_blank" rel="noopener">Stephen Colebourne</a>, CC BY 2.0, Wikimedia Commons</figcaption></figure></li>
+      <li><span class="t">9:30</span> · <span class="s-title">Тропічний сад Monte Palace</span> <span class="kid mid">👶 переноска краще</span>
+        <p>Японські сади, водоспади, коропи кої, лебеді й фламінго — головний дитячий хіт дня. <b>€18 дорослий, діти до 14 — безкоштовно</b>. Доріжки круті — коляска важко.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Monte_Palace_Tropical_Garden_-_Oriental_Gardens_10.jpg/1280px-Monte_Palace_Tropical_Garden_-_Oriental_Gardens_10.jpg" alt="Monte Palace Tropical Garden" loading="lazy" referrerpolicy="no-referrer"><figcaption>Monte Palace Tropical Garden · Фото: <a href="https://commons.wikimedia.org/wiki/File:Monte_Palace_Tropical_Garden_-_Oriental_Gardens_10.jpg" target="_blank" rel="noopener">H. Zell</a>, CC BY-SA 3.0, Wikimedia Commons</figcaption></figure></li>
+      <li><span class="t">12:00</span> · <span class="s-title">«Санки» Carreiros do Monte</span> <span class="kid mid">👶 на руках у батьків</span>
+        <p>Плетені кошики на дерев'яних полозах, двоє «керманичів» у солом'яних капелюхах штовхають їх вулицями вниз 2 км. <b>€40 за санки на двох / €60 на трьох</b>, тільки на місці, Пн–Сб. Малюк — на колінах у дорослого.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/2016._Carros_de_cesto_do_Monte._Monte._Funchal._Madeira._Portugal.jpg/1280px-2016._Carros_de_cesto_do_Monte._Monte._Funchal._Madeira._Portugal.jpg" alt="Санки з Монте" loading="lazy" referrerpolicy="no-referrer"><figcaption>Санки з Монте · Фото: <a href="https://commons.wikimedia.org/wiki/File:2016._Carros_de_cesto_do_Monte._Monte._Funchal._Madeira._Portugal.jpg" target="_blank" rel="noopener">Lmbuga</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure></li>
+      <li><span class="t">13:00</span> · <span class="s-title">Ботанічний сад</span> <span class="kid ok">👶 ок</span>
+        <p>Від фінішу санок (Livramento) — таксі 10 хв. Геометричні клумби-«килими», кактуси, вид на бухту. Альтернатива для втомлених — назад у готель і басейн.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Santa_Maria_Maior_%28Madeira%2C_Portugal%29%2C_Jardim_Bot%C3%A2nico_da_Madeira%2C_Choreographierter_Garten_--_2025_--_1870.jpg/1280px-Santa_Maria_Maior_%28Madeira%2C_Portugal%29%2C_Jardim_Bot%C3%A2nico_da_Madeira%2C_Choreographierter_Garten_--_2025_--_1870.jpg" alt="Ботанічний сад Мадейри" loading="lazy" referrerpolicy="no-referrer"><figcaption>Ботанічний сад Мадейри · Фото: <a href="https://commons.wikimedia.org/wiki/File:Santa_Maria_Maior_(Madeira,_Portugal),_Jardim_Bot%C3%A2nico_da_Madeira,_Choreographierter_Garten_--_2025_--_1870.jpg" target="_blank" rel="noopener">Dietmar Rabich</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure></li>
+      <li><span class="t">вечір</span> · <span class="s-title">Прощальна вечеря в Zona Velha</span></li>
+    </ol>
+    <div class="rainy"><b>☔ Якщо дощ:</b> Monte Palace гарний і в дощ (одягніть дощовики); санки при сильному дощі не їздять на трьох.</div>
+  </div>
+
+  <!-- DAY 7 -->
+  <div class="day" id="day7">
+    <div class="day-head"><span class="day-num" style="background:#5c940d">7</span><span class="day-title">Схід острова → виліт</span><span class="day-meta">≈ 50 км · 1 год за кермом</span></div>
+    <p><a class="gm route" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Funchal&amp;destination=Aeroporto%20da%20Madeira%20Cristiano%20Ronaldo&amp;waypoints=Miradouro%20da%20Ponta%20do%20Rosto%7CPraia%20de%20Machico" target="_blank" rel="noopener">🚗 Маршрут дня 7</a></p>
+    <p class="muted">Залежить від часу вильоту. Виліт до 13:00 — тільки Машіку. Пізніше — повний варіант.</p>
+    <ol class="stops">
+      <li><span class="t">9:30</span> · <span class="s-title">Оглядовий Понта-ду-Рошту</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Miradouro%20da%20Ponta%20do%20Rosto" target="_blank" rel="noopener">📍 Miradouro da Ponta do Rosto</a>
+        <p>Безкоштовний оглядовий біля дороги з видом на півострів Сан-Лоуренсу: червоні й чорні скелі, океан з обох боків. Без бронювання.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Ponta_de_S%C3%A3o_Louren%C3%A7o%2C_Madeira%2C_Portugal%2C_2019-05-28%2C_DD_31.jpg/1280px-Ponta_de_S%C3%A3o_Louren%C3%A7o%2C_Madeira%2C_Portugal%2C_2019-05-28%2C_DD_31.jpg" alt="Півострів Понта-де-Сан-Лоуренсу" loading="lazy" referrerpolicy="no-referrer"><figcaption>Півострів Понта-де-Сан-Лоуренсу · Фото: <a href="https://commons.wikimedia.org/wiki/File:Ponta_de_S%C3%A3o_Louren%C3%A7o,_Madeira,_Portugal,_2019-05-28,_DD_31.jpg" target="_blank" rel="noopener">Diego Delso</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure>
+        <p>Сам маршрут PR8 (≈ 7 км, без тіні) — не з малюком; можна пройти перші 10–15 хв до першого оглядового (потрібен слот).</p></li>
+      <li><span class="t">11:00</span> · <span class="s-title">Пляж Машіку</span> <span class="kid ok">👶 ок</span> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Praia%20de%20Machico" target="_blank" rel="noopener">📍 Praia de Machico</a>
+        <p>Захищений золотий пляж за 7 хв від аеропорту — ідеальне місце дочекатися рейсу. Піца в Pizza Café Machico.</p>
+        <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/25/Machico_%28Madeira%2C_Portugal%29%2C_Ortsansicht_--_2025_--_1369.jpg/1280px-Machico_%28Madeira%2C_Portugal%29%2C_Ortsansicht_--_2025_--_1369.jpg" alt="Машіку" loading="lazy" referrerpolicy="no-referrer"><figcaption>Машіку · Фото: <a href="https://commons.wikimedia.org/wiki/File:Machico_(Madeira,_Portugal),_Ortsansicht_--_2025_--_1369.jpg" target="_blank" rel="noopener">Dietmar Rabich</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure></li>
+      <li><span class="t">за 2 год до вильоту</span> · <span class="s-title">Заправити повний бак → здати авто в FNC</span>
+        <p>Заправки є біля аеропорту в Санта-Круж. Перевірте дитячі речі під сидіннями.</p></li>
+    </ol>
+    <div class="rainy"><b>☔ Якщо дощ:</b> <a class="gm" href="https://www.google.com/maps/search/?api=1&amp;query=Museu%20da%20Baleia%20da%20Madeira" target="_blank" rel="noopener">📍 Музей китів</a> у Канісалі — інтерактивний, з моделями китів у натуральну величину.</div>
+  </div>
+</section>
+
+<section id="booking">
+  <h2><span class="num">08</span>Левади: бронювання й правила 2026–2027</h2>
+  <p class="section-desc">З 2025 року всі офіційні маршрути PR платні й з онлайн-бронюванням.</p>
+  <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ribeiro_Frio_%28Madeira%2C_Portugal%29%2C_Levada_zur_Forellenzucht_--_2025_--_1510.jpg/1280px-Ribeiro_Frio_%28Madeira%2C_Portugal%29%2C_Levada_zur_Forellenzucht_--_2025_--_1510.jpg" alt="Типова левада — зрошувальний канал зі стежкою вздовж" loading="lazy" referrerpolicy="no-referrer"><figcaption>Типова левада — зрошувальний канал зі стежкою вздовж · Фото: <a href="https://commons.wikimedia.org/wiki/File:Ribeiro_Frio_(Madeira,_Portugal),_Levada_zur_Forellenzucht_--_2025_--_1510.jpg" target="_blank" rel="noopener">Dietmar Rabich</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure>
+  <ol class="steps">
+    <li>Заходите на <a href="https://simplifica.madeira.gov.pt" target="_blank" rel="noopener">simplifica.madeira.gov.pt</a> — бронювання на сьогодні або завтра, слоти по 30 хв (запас ≈ 15 хв).</li>
+    <li>Вписуєте всіх, <b>включно з дітьми до 12</b> — для них €0, але слот потрібен.</li>
+    <li>Оплата карткою, QR-код показуєте на старті. Готівкою на стежках не платять.</li>
+  </ol>
+  <table>
+    <tr><th>Маршрут у гайді</th><th>Зараз (2026)</th><th>З 1.04.2027</th><th>З малюком</th></tr>
+    <tr><td>PR11 Балкойнш (день 5)</td><td>€4,50 / безкошт.*</td><td>€15</td><td><span class="kid mid">переноска</span></td></tr>
+    <tr><td>PR6.1 Levada do Risco (день 3)</td><td>€4,50</td><td>€18 (вся мережа Рабасалу)</td><td><span class="kid mid">переноска</span></td></tr>
+    <tr><td>PR6 25 Fontes (опція)</td><td>€4,50</td><td>входить у €18</td><td><span class="kid no">ні</span></td></tr>
+    <tr><td>PR1 Арієйру → Руйву (опція)</td><td>€10,50</td><td>€15</td><td><span class="kid no">ні</span></td></tr>
+    <tr><td>PR8 Сан-Лоуренсу (опція)</td><td>€4,50</td><td>€15</td><td><span class="kid no">ні (спека, без тіні)</span></td></tr>
+  </table>
+  <p class="muted" style="font-size:13px">* Джерела розходяться щодо Балкойнш. Офіційні правила: <a href="https://ifcn.madeira.gov.pt/pt/atividades-de-natureza/percursos-pedestres-recomendados/faq-s-taxas-percursos-pedestres-classificados.html" target="_blank" rel="noopener">IFCN FAQ</a>; ціни з 2027 — за <a href="https://www.dnoticias.pt/2026/11/10/512321-preco-de-acesso-aos-percursos-pedestres-sofre-aumento-a-partir-de-1-de-abril/" target="_blank" rel="noopener">DNoticias, 10.11.2026</a> (текст постанови ще не опублікований). Оглядові майданчики (Арієйру, Ponta do Rosto, Véu da Noiva) — безкоштовні й без бронювання.</p>
+</section>
+
+<section id="budget">
+  <h2><span class="num">09</span>Бюджет на 4 людей (без перельоту)</h2>
+  <p class="section-desc">Орієнтир для червня / вересня. Курс приблизний: $160 ≈ €145.</p>
+  <table class="budget">
+    <tr><th>Стаття</th><th>Розрахунок</th><th>€</th></tr>
+    <tr><td>Готелі</td><td>6 ночей × €110–145</td><td>660–870</td></tr>
+    <tr><td>Авто</td><td>7 днів, автомат, нульова франшиза</td><td>300–600</td></tr>
+    <tr><td>Автокрісла</td><td>2 × €5 × 7 (або везете свої — €0)</td><td>0–70</td></tr>
+    <tr><td>Пальне</td><td>≈ 550 км</td><td>50–70</td></tr>
+    <tr><td>Паркінги</td><td>Арієйру, Рабасал, Фуншал</td><td>20–40</td></tr>
+    <tr><td>Канатка Монте</td><td>2 дорослих в один бік (діти 0–6 безкошт.)</td><td>32–48</td></tr>
+    <tr><td>Monte Palace + санки</td><td>2 × €18 + санки на двох €40</td><td>76</td></tr>
+    <tr><td>Кабу-Жиран, басейни, акваріум, Ботанічний сад</td><td>дорослі платять, діти здебільшого ні</td><td>60–80</td></tr>
+    <tr><td>Левади</td><td>2 дорослих × 2–3 маршрути (до квітня 2027)</td><td>18–27</td></tr>
+    <tr><td>Шатл Рабасал</td><td>готівка</td><td>16–30</td></tr>
+    <tr><td>Їжа</td><td>7 днів × (сніданок у готелі/супермаркет + обід + вечеря ≈ €80–110)</td><td>560–770</td></tr>
+    <tr class="total"><td>Разом</td><td></td><td>≈ 1 800–2 600</td></tr>
+  </table>
+</section>
+
+<section id="checklist">
+  <h2><span class="num">10</span>Чек-лист перед поїздкою</h2>
+  <div class="grid2">
+    <div class="card"><b>📋 Бронювання</b><ul class="checklist">
+      <li>Авто-автомат з нульовою франшизою + 2 крісла (вік/зріст дітей)</li>
+      <li>Готель 1 і 2 — з паркінгом (вказати в запиті дитяче ліжечко)</li>
+      <li>Страховка з покриттям скасування рейсу</li>
+      <li>SIMplifica — акаунт заздалегідь, слоти — напередодні</li>
+      <li>Ресторан Santo António — бронь на день 1</li>
+    </ul></div>
+    <div class="card"><b>🎒 З собою</b><ul class="checklist">
+      <li>Ергономічна переноска (важливіша за коляску)</li>
+      <li>Легка коляска — для Фуншала й набережних</li>
+      <li>Кофти, шапки, вітровки — для Фаналу й Арієйру</li>
+      <li>Аквавзуття для басейнів (вулканічне каміння)</li>
+      <li>Готівка €100 дрібними (шатл, санки, кафе)</li>
+      <li>Офлайн-карта Мадейри в Google Maps</li>
+      <li>Таблетки від заколисування (серпантини)</li>
+    </ul></div>
+  </div>
+  <div class="remember"><b>Запам'ятайте:</b> на Мадейрі планують не по днях тижня, а по погоді. Дні 2, 3, 5 — гори й північ, тільки в ясний день; дні 4, 6 — місто, підходять для хмар. Ввечері — прогноз (Windy) і вебкамери (<a href="https://www.netmadeira.com/webcams-madeira" target="_blank" rel="noopener">netmadeira.com/webcams</a>), і міняйте дні місцями.</div>
+</section>
+
+
+    </article>
+  </div>
+</div>
+
+<footer class="page">
+  Travel Guides · гайди для подорожей на авто від аеропорту до аеропорту. Ціни та правила станом на листопад 2026 — перевіряйте перед поїздкою.
+</footer>
+
+<script>
+(function(){
+  var root = document.documentElement, btn = document.getElementById('theme-toggle');
+  if(!btn) return;
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function current(){
+    var t = root.getAttribute('data-theme');
+    return t === 'light' || t === 'dark' ? t : (mq && mq.matches ? 'dark' : 'light');
+  }
+  function render(){
+    var dark = current() === 'dark';
+    btn.textContent = dark ? '☀️ Світла тема' : '🌙 Темна тема';
+    btn.setAttribute('aria-label', dark ? 'Увімкнути світлу тему' : 'Увімкнути темну тему');
+  }
+  btn.addEventListener('click', function(){
+    var next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try{ localStorage.setItem('docs-theme', next); }catch(e){}
+    render();
+  });
+  if(mq && mq.addEventListener) mq.addEventListener('change', render);
+  render();
+})();
+</script>
+<script src="../assets/mobile-nav.js"></script>
+</body>
+</html>
