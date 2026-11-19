@@ -62,6 +62,44 @@ def render_nav(active_file: str) -> str:
     return "\n".join(out)
 
 
+def render_header_nav(active_file: str) -> str:
+    """Desktop header menu: the about page as a plain link, every other group as a dropdown."""
+    out = ['      <nav class="hnav" aria-label="Гайди">']
+    for rid, cls, label in GROUPS:
+        pages = [p for p in GUIDES if p["group"] == cls]
+        if not pages:
+            continue
+        current = any(p["file"] == active_file for p in pages)
+        cur = " is-current" if current else ""
+        if cls == "about":
+            p = pages[0]
+            out.append(f'        <a class="hn-link{cur}" href="{p["file"]}">{label}</a>')
+            continue
+        links = "".join(
+            f'<a href="{p["file"]}"{" class=\"active\" aria-current=\"page\"" if p["file"] == active_file else ""}>'
+            f'{html.escape(p["nav"])}</a>' for p in pages)
+        out.append(f'        <div class="hn-group{cur}"><button type="button" class="hn-btn" aria-expanded="false">'
+                   f'{label} <span class="hn-chev" aria-hidden="true">▾</span></button>'
+                   f'<div class="hn-menu">{links}</div></div>')
+    out.append("      </nav>")
+    return "\n".join(out)
+
+
+def render_steps(content: str) -> str:
+    """Sticky step bar under the header: one chip per <section>, label from data-step."""
+    chips = []
+    for m in re.finditer(r'<section id="([^"]+)"([^>]*)>\s*<h2>(.*?)</h2>', content, re.S):
+        sid, attrs, h2 = m.groups()
+        num = re.search(r'<span class="num">(.*?)</span>', h2)
+        step = re.search(r'data-step="([^"]+)"', attrs)
+        title = re.sub(r"<[^>]+>", "", re.sub(r'<span class="num">.*?</span>', "", h2)).strip()
+        label = step.group(1) if step else title.split(":")[0]
+        chips.append(f'<a class="step" href="#{sid}" title="{html.escape(title)}">'
+                     f'<b>{num.group(1) if num else ""}</b>{html.escape(label)}</a>')
+    return ('  <nav class="steps-bar" aria-label="Розділи сторінки"><div class="steps-inner">'
+            + "".join(chips) + "</div></nav>")
+
+
 def gm_url(query: str) -> str:
     return "https://www.google.com/maps/search/?api=1&query=" + quote(query)
 
@@ -223,6 +261,7 @@ def build_page(guide: dict, template: str) -> str:
     for key, val in {
         "TITLE": meta["title"], "KICKER": meta["kicker"], "H1": meta["h1"], "LEAD": meta["lead"],
         "PILLS": pills, "NAV": render_nav(guide["file"]), "TOC": build_toc(content),
+        "HNAV": render_header_nav(guide["file"]), "STEPS": render_steps(content),
         "CONTENT": content, "FOOTER": meta.get("footer", ""),
         "EXTRA_CSS": (ROOT / "_src" / "travel.css").read_text(),
         "ICONS": places.ICON_SPRITE,

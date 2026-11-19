@@ -788,6 +788,67 @@
     background:rgba(0,0,0,.5); padding:3px 9px; border-radius:999px;
   }
 
+  /* ===== Desktop: menu in the header, steps bar under it, no sidebars ===== */
+  a.brand{text-decoration:none; color:var(--fg); flex-shrink:0;}
+  .top-row{gap:18px;}
+  .hnav{display:flex; align-items:center; gap:4px; margin-right:auto; margin-left:8px;}
+  .hn-link, .hn-btn{
+    font:inherit; font-size:14px; font-weight:700; color:var(--fg-muted); text-decoration:none; cursor:pointer;
+    background:none; border:1px solid transparent; padding:7px 13px; border-radius:999px; display:inline-flex; align-items:center; gap:6px;
+  }
+  .hn-link:hover, .hn-btn:hover, .hn-group.is-open .hn-btn{background:var(--bg-soft); color:var(--fg);}
+  .hn-link.is-current, .hn-group.is-current > .hn-btn{color:var(--accent); background:var(--accent-soft);}
+  .hn-chev{font-size:11px; transition:transform .15s;}
+  .hn-group{position:relative;}
+  .hn-group.is-open .hn-chev{transform:rotate(180deg);}
+  .hn-menu{
+    display:none; position:absolute; top:calc(100% + 6px); left:0; min-width:240px; z-index:40;
+    flex-direction:column; gap:2px; padding:8px; border-radius:16px;
+    background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow), 0 18px 40px -18px rgba(0,0,0,.35);
+  }
+  .hn-group:hover .hn-menu, .hn-group.is-open .hn-menu{display:flex;}
+  .hn-group:hover::after{content:""; position:absolute; left:0; right:0; top:100%; height:8px;} /* hover bridge */
+  .hn-menu a{text-decoration:none; color:var(--fg); font-size:14px; font-weight:600; padding:9px 12px; border-radius:10px;}
+  .hn-menu a:hover{background:var(--bg-soft);}
+  .hn-menu a.active{background:var(--accent-soft); color:var(--accent);}
+
+  .steps-bar{border-top:1px solid var(--border);}
+  .steps-inner{
+    max-width:1180px; margin:0 auto; padding:8px 24px; display:flex; gap:2px; overflow-x:auto;
+    scrollbar-width:none; scroll-behavior:smooth;
+    -webkit-mask-image:linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+            mask-image:linear-gradient(90deg, transparent 0, #000 24px, #000 calc(100% - 24px), transparent 100%);
+  }
+  .steps-inner::-webkit-scrollbar{display:none;}
+  a.step{
+    flex-shrink:0; display:inline-flex; align-items:center; gap:7px; text-decoration:none; white-space:nowrap;
+    font-size:12.5px; font-weight:700; color:var(--fg-muted); padding:4px 10px 4px 4px; border-radius:999px;
+    border:1px solid transparent; transition:background .15s, color .15s;
+  }
+  a.step b{
+    min-width:24px; height:24px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center;
+    font-size:11px; background:var(--bg-soft); color:var(--fg-muted); border:1px solid var(--border);
+  }
+  a.step:hover{background:var(--bg-soft); color:var(--fg);}
+  a.step.is-done{color:var(--fg);}
+  a.step.is-done b{background:var(--accent-soft); color:var(--accent); border-color:transparent;}
+  a.step.is-active{background:var(--sun); color:#fff; box-shadow:0 4px 12px -6px var(--sun);}
+  a.step.is-active b{background:#fff; color:var(--sun); border-color:#fff;}
+
+  @media (min-width:769px){
+    .nav-sidebar, aside.toc{display:none !important;}
+    .layout{max-width:1180px; display:block; padding-top:28px;}
+    .content-center > article{max-width:920px;}
+    article section{scroll-margin-top:130px;}
+    .place{scroll-margin-top:130px;}
+  }
+  @media (max-width:768px){
+    .hnav, .steps-bar{display:none !important;}
+  }
+  @media (min-width:769px) and (max-width:980px){
+    .brand span{display:none;}
+  }
+
   /* --- theme switch --- */
   :root{color-scheme:light;}
   .top-row{display:flex; align-items:center; justify-content:space-between; gap:12px;}
@@ -813,10 +874,15 @@
 <header class="top">
   <div class="top-inner">
     <div class="top-row">
-      <div class="brand">🧭 Travel Guides <span>· сімейні подорожі на авто</span></div>
+      <a class="brand" href="index.html">🧭 Travel Guides <span>· сімейні подорожі на авто</span></a>
+      <nav class="hnav" aria-label="Гайди">
+        <a class="hn-link" href="index.html">🧭 Про гайди</a>
+        <div class="hn-group is-current"><button type="button" class="hn-btn" aria-expanded="false">🇪🇺 Європа <span class="hn-chev" aria-hidden="true">▾</span></button><div class="hn-menu"><a href="01-madeira.html" class="active" aria-current="page">1. 🇵🇹 Мадейра: 7 днів</a></div></div>
+      </nav>
       <button type="button" class="theme-toggle" id="theme-toggle">🌙 Темна тема</button>
     </div>
   </div>
+  <nav class="steps-bar" aria-label="Розділи сторінки"><div class="steps-inner"><a class="step" href="#places" title="Карта поїздки: 22 локації"><b>01</b>Карта локацій</a><a class="step" href="#tldr" title="Коротко: план за 30 секунд"><b>02</b>Коротко</a><a class="step" href="#season" title="Коли їхати: аналіз сезонів"><b>03</b>Сезон</a><a class="step" href="#bloggers" title="Що кажуть блогери"><b>04</b>Блогери</a><a class="step" href="#car" title="Авто: оренда, дороги, паркування"><b>05</b>Авто</a><a class="step" href="#hotels" title="Бази й готелі до $160/ніч"><b>06</b>Готелі</a><a class="step" href="#map" title="Маршрут на карті"><b>07</b>Схема маршруту</a><a class="step" href="#days" title="Маршрут по днях"><b>08</b>По днях</a><a class="step" href="#booking" title="Левади: бронювання й правила 2026–2027"><b>09</b>Левади</a><a class="step" href="#budget" title="Бюджет на 4 людей (без перельоту)"><b>10</b>Бюджет</a><a class="step" href="#checklist" title="Чек-лист перед поїздкою"><b>11</b>Чек-лист</a></div></nav>
 </header>
 
 <div class="hero-wrap" style="--hero:url('https://thumb.wikimedia.org/wikipedia/commons/thumb/0/02/Porto_Moniz_-_Piscinas.jpg/1280px-Porto_Moniz_-_Piscinas.jpg?utm_source=commons.wikimedia.org&amp;utm_campaign=imageinfo&amp;utm_content=thumbnail')">
@@ -870,7 +936,7 @@
   <div class="content-center">
     <article>
 
-<section id="places">
+<section id="places" data-step="Карта локацій">
   <h2><span class="num">01</span>Карта поїздки: 22 локації</h2>
   <p class="section-desc">Усі місця маршруту на одній карті. Тисніть на пін або номер на картці, фільтруйте за категорією.</p>
   
@@ -1550,7 +1616,7 @@
   <div class="callout info"><div class="ic">🚁</div><div class="body"><span class="tag">Дрон на Мадейрі</span><br>Діють правила ЄС: реєстрація оператора в <a href="https://www.anac.pt" target="_blank" rel="noopener">ANAC</a>, категорія «Open», не вище 120 м, не над людьми. Біля аеропорту FNC (Машіку, Санта-Круж, Понта-ду-Рошту) польоти заборонені, а в природних парках (Лаурисільва, Арієйру, Сан-Лоуренсу) потрібен дозвіл IFCN. Іконка «дрон» означає, що місце фотогенічне з повітря й зазвичай поза забороненими зонами. Перед кожним польотом перевіряйте актуальну мапу зон.</div></div>
 </section>
 
-<section id="tldr">
+<section id="tldr" data-step="Коротко">
   <h2><span class="num">02</span>Коротко: план за 30 секунд</h2>
   <p class="section-desc">Якщо читати лише один розділ — цей.</p>
   <div class="stat-row">
@@ -1571,7 +1637,7 @@
   <div class="callout info"><div class="ic">💡</div><div class="body"><span class="tag">Головне правило Мадейри</span><br>Погода на півночі й на півдні острова різна в один і той самий момент. Увечері дивіться прогноз і вебкамери й міняйте дні місцями: дні 2, 3 і 5 «гірські» — їх ставимо на ясні дні, дні 4 і 6 «міські» — на хмарні.</div></div>
 </section>
 
-<section id="season">
+<section id="season" data-step="Сезон">
   <h2><span class="num">03</span>Коли їхати: аналіз сезонів</h2>
   <p class="section-desc">Мадейра — «острів вічної весни»: −/+ 5 °C за рік. Різниця між сезонами — у дощах на півночі, температурі моря, натовпах і цінах.</p>
   <table class="season">
@@ -1603,7 +1669,7 @@
   <div class="callout bad"><div class="ic">🎟</div><div class="body"><span class="tag">Зміна цін з 1 квітня 2027</span><br>Плата за піші маршрути зростає: стандартна стежка €4,50 → €7,50, а Балкойнш, Понта-де-Сан-Лоуренсу, Піку-Руйву — €15, усі маршрути Рабасалу (25 Fontes, Risco) — €18 за дорослого. <b>Діти до 12 років — безкоштовно</b>, але їх треба вписати в бронювання. Це ще один аргумент на користь осені 2026 / березня 2027, якщо плануєте багато левад.</div></div>
 </section>
 
-<section id="bloggers">
+<section id="bloggers" data-step="Блогери">
   <h2><span class="num">04</span>Що кажуть блогери</h2>
   <p class="section-desc">Проаналізовано 10 джерел, зокрема 5 сімейних блогів з дітьми 0–6 років. Нижче — де вони згодні, де сперечаються і які помилки повторюють.</p>
 
@@ -1652,7 +1718,7 @@
   </table>
 </section>
 
-<section id="car">
+<section id="car" data-step="Авто">
   <h2><span class="num">05</span>Авто: оренда, дороги, паркування</h2>
   <p class="section-desc">Беремо й здаємо авто в аеропорту Кріштіану Роналду (FNC). Усі прокатні стійки — у залі прильоту.</p>
   <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Madeira_Airport_Runway_Crop.jpg/1280px-Madeira_Airport_Runway_Crop.jpg" alt="Аеропорт Мадейри: злітна смуга на палях над океаном" loading="lazy" referrerpolicy="no-referrer"><figcaption>Аеропорт Мадейри: злітна смуга на палях над океаном · Фото: <a href="https://commons.wikimedia.org/wiki/File:Madeira_Airport_Runway_Crop.jpg" target="_blank" rel="noopener">Richard Bartz</a>, CC BY-SA 3.0, Wikimedia Commons</figcaption></figure>
@@ -1684,7 +1750,7 @@
   </ul>
 </section>
 
-<section id="hotels">
+<section id="hotels" data-step="Готелі">
   <h2><span class="num">06</span>Бази й готелі до $160/ніч</h2>
   <p class="section-desc">Дві бази по 3 ночі — так ми не повертаємось через увесь острів. $160 ≈ €140–150 за ніч для 4 людей.</p>
   <div class="callout warn"><div class="ic">🅿️</div><div class="body"><span class="tag">Головний фільтр — паркінг</span><br>Багато готелів у старому місті Фуншала не мають паркінгу взагалі, а на заході місць мало й «хто перший». Пишіть готелю заздалегідь: «we arrive by car, please confirm parking». Ціни нижче — орієнтир з агрегаторів для травня/червня та вересня/жовтня (пік серпня — на 40–60% дорожче); перевіряйте на свої дати.</div></div>
@@ -1777,7 +1843,7 @@
   </table>
 </section>
 
-<section id="map">
+<section id="map" data-step="Схема маршруту">
   <h2><span class="num">07</span>Маршрут на карті</h2>
   <p class="section-desc">Кольори — дні. Логіка: ✈️ на сході → одразу на захід (база 1) → дні 2–3 північний захід і захід → переїзд у Фуншал (база 2) → гори й північний схід → схід і назад в аеропорт.</p>
   <figure class="diagram map">
@@ -1787,7 +1853,7 @@
   <p><a class="gm route" href="https://www.google.com/maps/dir/?api=1&amp;travelmode=driving&amp;origin=Aeroporto%20da%20Madeira%20Cristiano%20Ronaldo&amp;destination=Aeroporto%20da%20Madeira%20Cristiano%20Ronaldo&amp;waypoints=Miradouro%20do%20Cabo%20Gir%C3%A3o%7CPonta%20do%20Sol%20Madeira%7CFanal%20Madeira%7CPiscinas%20Naturais%20do%20Porto%20Moniz%7CRaba%C3%A7al%20Madeira%7CFarol%20da%20Ponta%20do%20Pargo%7CFunchal%7CPico%20do%20Areeiro%7CSantana%20Madeira%7CPraia%20de%20Machico" target="_blank" rel="noopener">🚗 Увесь маршрут у Google Maps (огляд)</a></p>
 </section>
 
-<section id="days">
+<section id="days" data-step="По днях">
   <h2><span class="num">08</span>Маршрут по днях</h2>
   <p class="section-desc">Час — орієнтир для сім'ї з малюком (сон у машині після обіду — наш союзник). Кожна точка — клікабельна в Google Maps.</p>
 
@@ -1947,7 +2013,7 @@
   </div>
 </section>
 
-<section id="booking">
+<section id="booking" data-step="Левади">
   <h2><span class="num">09</span>Левади: бронювання й правила 2026–2027</h2>
   <p class="section-desc">З 2025 року всі офіційні маршрути PR платні й з онлайн-бронюванням.</p>
   <figure class="photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Ribeiro_Frio_%28Madeira%2C_Portugal%29%2C_Levada_zur_Forellenzucht_--_2025_--_1510.jpg/1280px-Ribeiro_Frio_%28Madeira%2C_Portugal%29%2C_Levada_zur_Forellenzucht_--_2025_--_1510.jpg" alt="Типова левада — зрошувальний канал зі стежкою вздовж" loading="lazy" referrerpolicy="no-referrer"><figcaption>Типова левада — зрошувальний канал зі стежкою вздовж · Фото: <a href="https://commons.wikimedia.org/wiki/File:Ribeiro_Frio_(Madeira,_Portugal),_Levada_zur_Forellenzucht_--_2025_--_1510.jpg" target="_blank" rel="noopener">Dietmar Rabich</a>, CC BY-SA 4.0, Wikimedia Commons</figcaption></figure>
@@ -1967,7 +2033,7 @@
   <p class="muted" style="font-size:13px">* Джерела розходяться щодо Балкойнш. Офіційні правила: <a href="https://ifcn.madeira.gov.pt/pt/atividades-de-natureza/percursos-pedestres-recomendados/faq-s-taxas-percursos-pedestres-classificados.html" target="_blank" rel="noopener">IFCN FAQ</a>; ціни з 2027 — за <a href="https://www.dnoticias.pt/2026/11/10/512321-preco-de-acesso-aos-percursos-pedestres-sofre-aumento-a-partir-de-1-de-abril/" target="_blank" rel="noopener">DNoticias, 10.11.2026</a> (текст постанови ще не опублікований). Оглядові майданчики (Арієйру, Ponta do Rosto, Véu da Noiva) — безкоштовні й без бронювання.</p>
 </section>
 
-<section id="budget">
+<section id="budget" data-step="Бюджет">
   <h2><span class="num">10</span>Бюджет на 4 людей (без перельоту)</h2>
   <p class="section-desc">Орієнтир для червня / вересня. Курс приблизний: $160 ≈ €145.</p>
   <table class="budget">
@@ -1987,7 +2053,7 @@
   </table>
 </section>
 
-<section id="checklist">
+<section id="checklist" data-step="Чек-лист">
   <h2><span class="num">11</span>Чек-лист перед поїздкою</h2>
   <div class="grid2">
     <div class="card"><b>📋 Бронювання</b><ul class="checklist">
@@ -2044,5 +2110,6 @@
 })();
 </script>
 <script src="assets/mobile-nav.js"></script>
+<script src="assets/header-nav.js"></script>
 </body>
 </html>
