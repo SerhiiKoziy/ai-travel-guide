@@ -198,7 +198,7 @@
   .cf-btn.is-on b{background:rgba(255,255,255,.25); color:#fff;}
 
   .bigmap-wrap{border-radius:22px; overflow:hidden; border:4px solid var(--card); box-shadow:var(--shadow), 0 0 0 1px var(--border);}
-  .bigmap{height:min(72vh,600px); min-height:380px; background:var(--bg-soft); z-index:0;}
+  .bigmap{height:min(72vh,var(--map-h,600px)); min-height:min(380px,var(--map-h,380px)); background:var(--bg-soft); z-index:0;}
   :root[data-theme="dark"] .bigmap .leaflet-tile-pane{filter:brightness(.72) contrast(1.05) saturate(.85);}
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .bigmap .leaflet-tile-pane{filter:brightness(.72) contrast(1.05) saturate(.85);} }
   @media (max-width:640px){ .bigmap{height:440px; min-height:0;} }

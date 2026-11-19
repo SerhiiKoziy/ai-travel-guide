@@ -16,12 +16,13 @@
 
   var MODES = ['places', 'route', 'hike'];
   var state = { mode: 'places', plan: DATA.default, cat: 'all', level: 'all', focus: 0 };
+  var VIEW_KEY = 'tg-view-' + (location.pathname.split('/').pop() || 'index');   // one memory per guide page
   try {   // remember the viewer's last choice (per-browser convenience only)
-    var saved = JSON.parse(localStorage.getItem('tg-madeira-view') || '{}');
+    var saved = JSON.parse(localStorage.getItem(VIEW_KEY) || '{}');
     if (saved.plan && DATA.plans[saved.plan]) state.plan = saved.plan;
     if (MODES.indexOf(saved.mode) >= 0 && (saved.mode !== 'hike' || HIKE_KEYS.length)) state.mode = saved.mode;
   } catch (e) {}
-  function save() { try { localStorage.setItem('tg-madeira-view', JSON.stringify({ plan: state.plan, mode: state.mode })); } catch (e) {} }
+  function save() { try { localStorage.setItem(VIEW_KEY, JSON.stringify({ plan: state.plan, mode: state.mode })); } catch (e) {} }
 
   function hiking() { return state.mode === 'hike'; }
   function plan() { return DATA.plans[state.plan]; }
@@ -88,7 +89,7 @@
       '<p>' + p.short + '</p>' + moreBtn('place-' + key) + '</div></div>';
   }
   function pointIcon(id) {
-    var ico = id === '@airport' ? '✈️' : (id.indexOf('@port') === 0 ? '⛴' : '🛏');
+    var ico = id.indexOf('@airport') === 0 ? '✈️' : (id.indexOf('@port') === 0 ? '⛴' : '🛏');
     return L.divIcon({ className: 'pin-wrap', html: '<span class="pin base">' + ico + '</span>', iconSize: [30, 30], iconAnchor: [15, 15] });
   }
   function hikeStartIcon(k) {
@@ -189,7 +190,7 @@
       });
       d.ferry.forEach(function (seg) {
         L.polyline(seg, { color: d.color, weight: 3, opacity: dim ? 0.2 : 0.9, dashArray: '2 9', lineCap: 'round' })
-          .bindTooltip('⛴ Пором Фуншал — Порту-Санту', { sticky: true }).addTo(routeLayer);
+          .bindTooltip(DATA.ferryLabel || '⛴ Пором', { sticky: true }).addTo(routeLayer);
       });
     });
   }
@@ -241,7 +242,7 @@
       else if (map.hasLayer(markers[k])) map.removeLayer(markers[k]);
     });
     Object.keys(pointMarkers).forEach(function (id) {
-      var on = !!used[id] && (state.mode === 'route' || id === '@airport' || id.indexOf('@base') === 0);
+      var on = !!used[id] && (state.mode === 'route' || id.indexOf('@airport') === 0 || id.indexOf('@base') === 0);
       if (on && !map.hasLayer(pointMarkers[id])) pointMarkers[id].addTo(map);
       if (!on && map.hasLayer(pointMarkers[id])) map.removeLayer(pointMarkers[id]);
     });

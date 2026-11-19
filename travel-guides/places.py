@@ -138,11 +138,11 @@ def render_days_switch(model: dict, default: str) -> str:
             f'<span class="seg-label">Тривалість:</span>{btns}</div></div>')
 
 
-def render_day_plans(model: dict, locs: dict, gallery: dict, points: dict, default: str, skip: str = "7") -> str:
+def render_day_plans(model: dict, locs: dict, gallery: dict, points: dict, default: str, skip=()) -> str:
     """Detailed day cards for every plan except `skip` (that one is hand-written in content.html)."""
     out = []
     for pid, p in model.items():
-        if pid == skip:
+        if pid in skip:
             continue
         num = {k: i for i, k in enumerate(p["order"], 1)}
         days = []
@@ -154,7 +154,7 @@ def render_day_plans(model: dict, locs: dict, gallery: dict, points: dict, defau
                                  '<p class="drive">≈ 2,5 год морем; авто лишається у Фуншалі.</p></li>')
                     continue
                 if s_.startswith("@"):
-                    ico = "✈️" if s_ == "@airport" else ("⛴" if s_.startswith("@port") else "🛏")
+                    ico = "✈️" if s_.startswith("@airport") else ("⛴" if s_.startswith("@port") else "🛏")
                     stops.append(f'<li class="pt"><span class="s-title">{ico} {html.escape(points[s_]["name"])}</span></li>')
                     continue
                 loc = locs[s_]
@@ -375,6 +375,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
                                  for d in p["days"]]}
                   for pid, p in model.items()},
         "default": default,
+        "ferryLabel": plans.get("ferry_label", "⛴ Пором"),
         "cats": {k: {"label": v[0], "color": v[1]} for k, v in CATS.items()},
         "hikes": {h["key"]: {"n": h["n"], "ref": h["ref"], "name": h["ua"], "label": h.get("label", h["ua"]),
                              "level": h["level"], "levelLabel": LEVELS[h["level"]][0], "color": LEVELS[h["level"]][1],
@@ -396,6 +397,8 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
             continue
         filters.append(f'<button type="button" class="cf-btn" data-cat="{c}" style="--cc:{color}">'
                        f'{icon(c, 16)} {label} <b class="cf-n"></b></button>')
+    # a long, thin route (a coastline) wastes space in a tall map: plans.json can set "map_height"
+    map_style = f' style="--map-h:{int(plans["map_height"])}px"' if plans.get("map_height") else ""
     return f"""
 <div class="map-controls">
   <div class="seg" role="group" aria-label="Що показати на карті">
@@ -411,7 +414,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
 <div class="cat-filter tour-only" role="group" aria-label="Фільтр за категорією">{''.join(filters)}</div>
 <div class="lvl-filter hike-only" role="group" aria-label="Фільтр за складністю" hidden>{lvl_btns}</div>
 <div class="bigmap-wrap">
-  <div id="bigmap" class="bigmap" role="region" aria-label="Карта локацій і маршрутів"></div>
+  <div id="bigmap" class="bigmap" role="region" aria-label="Карта локацій і маршрутів"{map_style}></div>
   <noscript><p class="muted">Для інтерактивної карти увімкніть JavaScript.</p></noscript>
 </div>
 <div class="day-legend" aria-hidden="true"></div>

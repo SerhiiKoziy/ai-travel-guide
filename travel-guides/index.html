@@ -688,7 +688,7 @@
   .cf-btn.is-on b{background:rgba(255,255,255,.25); color:#fff;}
 
   .bigmap-wrap{border-radius:22px; overflow:hidden; border:4px solid var(--card); box-shadow:var(--shadow), 0 0 0 1px var(--border);}
-  .bigmap{height:min(72vh,600px); min-height:380px; background:var(--bg-soft); z-index:0;}
+  .bigmap{height:min(72vh,var(--map-h,600px)); min-height:min(380px,var(--map-h,380px)); background:var(--bg-soft); z-index:0;}
   :root[data-theme="dark"] .bigmap .leaflet-tile-pane{filter:brightness(.72) contrast(1.05) saturate(.85);}
   @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .bigmap .leaflet-tile-pane{filter:brightness(.72) contrast(1.05) saturate(.85);} }
   @media (max-width:640px){ .bigmap{height:440px; min-height:0;} }
@@ -1012,7 +1012,7 @@
       <a class="brand" href="index.html">🧭 Travel Guides <span>· сімейні подорожі на авто</span></a>
       <nav class="hnav" aria-label="Гайди">
         <a class="hn-link is-current" href="index.html">🧭 Про гайди</a>
-        <div class="hn-group"><button type="button" class="hn-btn" aria-expanded="false">🇪🇺 Європа <span class="hn-chev" aria-hidden="true">▾</span></button><div class="hn-menu"><a href="01-madeira.html">1. 🇵🇹 Мадейра: 7 днів</a></div></div>
+        <div class="hn-group"><button type="button" class="hn-btn" aria-expanded="false">🇪🇺 Європа <span class="hn-chev" aria-hidden="true">▾</span></button><div class="hn-menu"><a href="01-madeira.html">1. 🇵🇹 Мадейра: 7 днів</a><a href="02-north-spain.html">2. 🇪🇸 Північ Іспанії: 7 днів</a></div></div>
       </nav>
       <button type="button" class="theme-toggle" id="theme-toggle">🌙 Темна тема</button>
     </div>
@@ -1047,6 +1047,7 @@
       </nav>
       <nav class="nav-links europe">
         <a href="01-madeira.html">1. 🇵🇹 Мадейра: 7 днів</a>
+        <a href="02-north-spain.html">2. 🇪🇸 Північ Іспанії: 7 днів</a>
       </nav>
   </aside>
 
@@ -1128,6 +1129,10 @@
     <a class="dir" href="01-madeira.html" style="text-decoration:none;color:inherit">
       <div class="dir-h">🇵🇹 Мадейра <span class="lvl l1">готово</span></div>
       <p>Атлантичний острів вічної весни: левади, природні басейни, Фуншал. Два готелі, 7 днів на авто.</p>
+    </a>
+    <a class="dir" href="02-north-spain.html" style="text-decoration:none;color:inherit">
+      <div class="dir-h">🇪🇸 Північ Іспанії <span class="lvl l1">готово</span></div>
+      <p>Країна Басків → Кантабрія → Астурія: Сан-Себастьян, Гуггенгайм, Кабарсено, Пікос-де-Європа, Хіхон. Більбао → аеропорт Астурії.</p>
     </a>
   </div>
 </section>

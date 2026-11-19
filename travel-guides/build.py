@@ -36,6 +36,7 @@ GROUPS = [
 GUIDES = [
     {"slug": "index", "file": "index.html", "group": "about", "nav": "Як влаштовані гайди"},
     {"slug": "01-madeira", "file": "01-madeira.html", "group": "europe", "nav": "1. 🇵🇹 Мадейра: 7 днів"},
+    {"slug": "02-north-spain", "file": "02-north-spain.html", "group": "europe", "nav": "2. 🇪🇸 Північ Іспанії: 7 днів"},
 ]
 
 
@@ -252,8 +253,10 @@ def build_page(guide: dict, template: str) -> str:
             lmap = {l["key"]: l for l in json.loads((d / "locations.json").read_text())}
             model = places.plan_model(plans, routes, lmap)
             content = content.replace("{{DAYS_SWITCH}}", places.render_days_switch(model, plans["default"]))
+            # a plan written by hand in content.html (<div class="days-plan" data-plan="7">) is not generated
+            manual = re.findall(r'<div class="days-plan" data-plan="([^"]+)"', content)
             content = content.replace("{{DAYS_PLANS}}", places.render_day_plans(
-                model, lmap, gallery, plans["points"], plans["default"]))
+                model, lmap, gallery, plans["points"], plans["default"], skip=set(manual)))
         content = content.replace("{{PLACES}}", places.render_places(
             json.loads((d / "locations.json").read_text()), gallery,
             json.loads((d / "plans.json").read_text()), routes,
