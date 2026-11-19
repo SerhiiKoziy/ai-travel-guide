@@ -15,7 +15,7 @@ CATS = {
     "view":      ("Красивий вид", "#0e7490"),
     "adventure": ("Цікава пригода", "#e8590c"),
     "drone":     ("Для зйомки дроном", "#7048e8"),
-    "hike":      ("Піші маршрути", "#8a5a2b"),
+    "hike":      ("Hiking", "#8a5a2b"),
 }
 
 LEVELS = {"easy": ("Легкий", "#2f9e44"), "medium": ("Середній", "#e67700"), "hard": ("Складний", "#e03131")}
@@ -153,7 +153,32 @@ def level_badge(level: str) -> str:
     return f'<span class="lvl-badge" style="--lc:{color}">{label}</span>'
 
 
-def render_hikes(hikes: list, trails: dict, gallery: dict, locs: dict) -> str:
+def _dist(a, b):
+    import math
+    dy = (a[0] - b[0]) * 111_000
+    dx = (a[1] - b[1]) * 111_000 * math.cos(math.radians(a[0]))
+    return math.hypot(dx, dy)
+
+
+def hike_model(hikes: list, trails: dict) -> list:
+    """Number hikes 1..N in file order; start = trail end nearest the trailhead hint,
+    end (finish) = the trail end farthest from the start."""
+    out = []
+    for n, h in enumerate(hikes, 1):
+        t = trails.get(h["key"], {})
+        lines = t.get("lines", [])
+        start = t.get("head", h["start"])
+        ends = [l[0] for l in lines] + [l[-1] for l in lines]
+        end = max(ends, key=lambda p: _dist(p, start)) if ends else start
+        out.append(dict(h, n=n, start_ll=start, end_ll=end, lines=lines))
+    return out
+
+
+def ll_link(ll) -> str:
+    return f"https://www.google.com/maps/search/?api=1&query={ll[0]:.5f},{ll[1]:.5f}"
+
+
+def render_hikes(hikes: list, gallery: dict, locs: dict) -> str:
     cards = []
     for h in hikes:
         photos = gallery.get("hike-" + h["key"], [])
@@ -166,7 +191,7 @@ def render_hikes(hikes: list, trails: dict, gallery: dict, locs: dict) -> str:
 <article class="place hike" id="hike-{h['key']}" data-hike="{h['key']}" data-level="{h['level']}">
   <div class="place-top">
     <div class="place-thumb" style="background-image:url('{html.escape(thumb)}')">
-      <span class="hike-ref" style="background:{color}" role="button" title="Показати на карті">{html.escape(h['ref'])}</span>
+      <span class="place-n" style="background:{color}">{h['n']}</span>
     </div>
     <div class="place-body">
       <div class="place-head">
@@ -183,7 +208,8 @@ def render_hikes(hikes: list, trails: dict, gallery: dict, locs: dict) -> str:
       </ul>
       <div class="place-meta">
         <span class="kid {kid_cls}">{kid_txt}</span>
-        <a class="gm" href="{html.escape(gm_link(h['q']))}" target="_blank" rel="noopener">📍 Старт у Google Maps</a>
+        <a class="gm" href="{html.escape(ll_link(h['start_ll']))}" target="_blank" rel="noopener">▶ Старт</a>
+        <a class="gm" href="{html.escape(ll_link(h['end_ll']))}" target="_blank" rel="noopener">🏁 Фініш</a>
         {near}
       </div>
     </div>
@@ -199,13 +225,10 @@ def render_hikes(hikes: list, trails: dict, gallery: dict, locs: dict) -> str:
     </div>
   </details>
 </article>""")
-    counts = {lv: sum(h["level"] == lv for h in hikes) for lv in LEVELS}
-    legend = " ".join(f'{level_badge(lv)} <span class="muted">×{counts[lv]}</span>' for lv in LEVELS)
     return f"""
-<div class="hikes" hidden>
-  <h3 class="it-h">🥾 {len(hikes)} найкращих піших маршрутів</h3>
-  <p class="hikes-intro">Опціонально, поза планом туру: для дня, коли малюк з бабусею, для одного з дорослих або для наступної поїздки. Рівень — наша оцінка для сім'ї. Лінії на карті — траси з OpenStreetMap.</p>
-  <div class="lvl-legend">{legend}</div>
+<div class="hikes hike-only" hidden>
+  <h3 class="it-h">🥾 Hiking: {len(hikes)} найкращих стежок</h3>
+  <p class="hikes-intro">Окремо від плану туру: для дня, коли малюк з бабусею, для одного з дорослих або для наступної поїздки. Номер на карті — старт стежки, 🏁 — фініш. Рівень — наша оцінка для сім'ї, траси — з OpenStreetMap.</p>
   <div class="places hikes-list">{''.join(cards)}
   </div>
   <div class="callout warn"><div class="ic">🎟</div><div class="body"><span class="tag">Бронювання</span><br>Усі маршрути PR — тільки зі слотом на <a href="https://simplifica.madeira.gov.pt" target="_blank" rel="noopener">simplifica.madeira.gov.pt</a> (на сьогодні/завтра), діти до 12 — безкоштовно, але вписати. Після пожеж і зливи маршрути тимчасово закривають — статус там же.</div></div>
@@ -216,6 +239,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
                   hikes: list = None, trails: dict = None) -> str:
     locs = {l["key"]: l for l in locs_list}
     model = plan_model(plans, routes, locs)
+    hk = hike_model(hikes or [], trails or {})
     default = plans["default"]
     dp = model[default]
     # numbers follow the route order of the selected plan; server renders the default plan
@@ -283,20 +307,24 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
                   for pid, p in model.items()},
         "default": default,
         "cats": {k: {"label": v[0], "color": v[1]} for k, v in CATS.items()},
-        "hikes": {h["key"]: {"ref": h["ref"], "name": h["ua"], "level": h["level"],
-                             "levelLabel": LEVELS[h["level"]][0], "color": LEVELS[h["level"]][1],
+        "hikes": {h["key"]: {"n": h["n"], "ref": h["ref"], "name": h["ua"], "label": h.get("label", h["ua"]),
+                             "level": h["level"], "levelLabel": LEVELS[h["level"]][0], "color": LEVELS[h["level"]][1],
                              "short": h["short"], "dist": h["dist"], "time": h["time"],
                              "thumb": (gallery.get("hike-" + h["key"]) or [{"url": ""}])[0]["url"],
-                             "head": (trails or {}).get(h["key"], {}).get("head", h["start"]),
-                             "lines": (trails or {}).get(h["key"], {}).get("lines", [])}
-                  for h in (hikes or [])},
+                             "start": h["start_ll"], "end": h["end_ll"], "lines": h["lines"]}
+                  for h in hk},
     }
     plan_btns = "".join(
         f'<button type="button" class="seg-btn{" is-on" if pid == default else ""}" data-plan="{pid}" '
         f'aria-pressed="{"true" if pid == default else "false"}">{p["label"]}</button>'
         for pid, p in model.items())
+    lvl_btns = (f'<button type="button" class="lf-btn is-on" data-level="all">Усі <b>{len(hk)}</b></button>' + "".join(
+        f'<button type="button" class="lf-btn" data-level="{lv}" style="--lc:{col}"><i></i>{lab} '
+        f'<b>{sum(h["level"] == lv for h in hk)}</b></button>' for lv, (lab, col) in LEVELS.items()))
     filters = [f'<button type="button" class="cf-btn is-on" data-cat="all">Усі <b class="cf-n"></b></button>']
     for c, (label, color) in CATS.items():
+        if c == "hike":
+            continue
         filters.append(f'<button type="button" class="cf-btn" data-cat="{c}" style="--cc:{color}">'
                        f'{icon(c, 16)} {label} <b class="cf-n"></b></button>')
     return f"""
@@ -304,14 +332,15 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
   <div class="seg" role="group" aria-label="Що показати на карті">
     <button type="button" class="seg-btn is-on" data-mode="places" aria-pressed="true">📍 Локації</button>
     <button type="button" class="seg-btn" data-mode="route" aria-pressed="false">🛣 Маршрут по днях</button>
+    {f'<button type="button" class="seg-btn seg-hike" data-mode="hike" aria-pressed="false"><svg class="cat-ic" width="17" height="17" aria-hidden="true"><use href="#ic-hike"/></svg> Hiking</button>' if hk else ''}
   </div>
   <div class="seg seg-plan" role="group" aria-label="Тривалість поїздки">
     <span class="seg-label">Тривалість:</span>{plan_btns}
   </div>
-  {f'<label class="hike-toggle"><input type="checkbox" id="show-hikes"> <svg class="cat-ic" width="18" height="18" style="color:{CATS["hike"][1]}" aria-hidden="true"><use href="#ic-hike"/></svg> Показати піші маршрути <b>{len(hikes)}</b></label>' if hikes else ''}
 </div>
 {''.join(summaries)}
-<div class="cat-filter" role="group" aria-label="Фільтр за категорією">{''.join(filters)}</div>
+<div class="cat-filter tour-only" role="group" aria-label="Фільтр за категорією">{''.join(filters)}</div>
+<div class="lvl-filter hike-only" role="group" aria-label="Фільтр за складністю" hidden>{lvl_btns}</div>
 <div class="bigmap-wrap">
   <div id="bigmap" class="bigmap" role="region" aria-label="Карта локацій і маршрутів"></div>
   <noscript><p class="muted">Для інтерактивної карти увімкніть JavaScript.</p></noscript>
@@ -322,9 +351,9 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
   {''.join(itineraries)}
   <p class="muted it-foot">Час за кермом — оцінка роутера OSRM; з малюком додавайте ~30%. Натисніть на день, щоб виділити його на карті.</p>
 </div>
-{render_hikes(hikes, trails or {}, gallery, locs) if hikes else ''}
-<h3 class="places-h">📍 Локації маршруту</h3>
-<div class="places">{''.join(cards)}
+{render_hikes(hk, gallery, locs) if hk else ''}
+<h3 class="places-h tour-only">📍 Локації маршруту</h3>
+<div class="places tour-list tour-only">{''.join(cards)}
 </div>
 <script type="application/json" id="places-data">{json.dumps(data, ensure_ascii=False, separators=(',', ':'))}</script>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">

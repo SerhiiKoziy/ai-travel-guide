@@ -276,10 +276,20 @@ def build_page(guide: dict, template: str) -> str:
     return page
 
 
+def bust_assets(page: str) -> str:
+    """Append ?v=<content hash> to local assets so browsers never pair a new page with a cached old script."""
+    import hashlib
+
+    def ver(m):
+        f = ROOT / m.group(1)
+        return f'{m.group(1)}?v={hashlib.sha1(f.read_bytes()).hexdigest()[:8]}"' if f.exists() else m.group(0)
+    return re.sub(r'(assets/[\w.-]+\.(?:js|css))"', ver, page)
+
+
 def main():
     template = (ROOT / "_template.html").read_text()
     for g in GUIDES:
-        (ROOT / g["file"]).write_text(build_page(g, template))
+        (ROOT / g["file"]).write_text(bust_assets(build_page(g, template)))
         print("built", g["file"])
 
 

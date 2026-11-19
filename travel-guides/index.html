@@ -933,6 +933,35 @@
   .pin-label.hike-label.left{left:auto; right:30px;}
   .pop-ref{color:#fff; font:800 11.5px/22px var(--font-body); padding:0 8px; border-radius:999px; white-space:nowrap;}
 
+  /* ===== Hiking mode ===== */
+  .seg-btn.seg-hike{display:inline-flex; align-items:center; gap:6px;}
+  .seg-btn.seg-hike .cat-ic{color:#8a5a2b;}
+  .seg-btn.seg-hike.is-on{background:#8a5a2b; box-shadow:0 4px 12px -6px #8a5a2b;}
+  .seg-btn.seg-hike.is-on .cat-ic{color:#fff;}
+  .seg-plan.is-disabled{opacity:.45;}
+  .seg-plan .seg-btn:disabled{cursor:not-allowed; background:none; color:var(--fg-muted); box-shadow:none;}
+  .lvl-filter{display:flex; flex-wrap:wrap; gap:8px; margin:6px 0 14px;}
+  .lf-btn{
+    cursor:pointer; font:inherit; font-size:13.5px; font-weight:700; color:var(--fg);
+    display:inline-flex; align-items:center; gap:7px; padding:7px 14px; border-radius:999px;
+    background:var(--card); border:1px solid var(--border); box-shadow:var(--shadow);
+  }
+  .lf-btn i{width:10px; height:10px; border-radius:50%; background:var(--lc);}
+  .lf-btn b{font-size:11.5px; color:var(--fg-muted); background:var(--bg-soft); border-radius:999px; padding:1px 7px;}
+  .lf-btn.is-on{background:var(--lc, #8a5a2b); border-color:var(--lc, #8a5a2b); color:#fff;}
+  .lf-btn.is-on i{background:#fff;}
+  .lf-btn.is-on b{background:rgba(255,255,255,.25); color:#fff;}
+  .hike-end{
+    display:inline-flex; align-items:center; gap:1px; font-size:14px; line-height:1;
+    background:#fff; border:2px solid var(--pc); border-radius:999px; padding:2px 6px 2px 3px; box-shadow:0 2px 6px rgba(0,0,0,.3);
+  }
+  .hike-end b{font:800 11px/1 var(--font-body); color:var(--pc);}
+  .pop-lvl{font-weight:800; margin:0 !important;}
+  .pop-b p.pop-stats{font-size:12px; color:var(--fg-muted);}
+  .day-legend .lg-start{display:inline-flex; width:20px; height:20px; border-radius:50% 50% 50% 3px; transform:rotate(-45deg); background:#e67700; color:#fff; font-size:10px; align-items:center; justify-content:center;}
+  .day-legend .lg-end{font-size:13px;}
+  .day-legend .lg-line{width:22px; height:0; border-top:3px dashed #8a5a2b; display:inline-block;}
+
   /* --- theme switch --- */
   :root{color-scheme:light;}
   .top-row{display:flex; align-items:center; justify-content:space-between; gap:12px;}
@@ -945,7 +974,7 @@
   .theme-toggle:hover{background:var(--card); border-color:var(--accent);}
   .theme-toggle:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
 </style>
-<link rel="stylesheet" href="assets/mobile-nav.css">
+<link rel="stylesheet" href="assets/mobile-nav.css?v=d9e3f6b0">
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -1061,14 +1090,14 @@
 <section id="categories" data-step="Категорії">
   <h2><span class="num">04</span>Категорії локацій</h2>
   <p class="section-desc">Кожна локація на карті гайду має одну або кілька іконок, за якими її можна відфільтрувати.</p>
-  <div class="cat-legend"><span class="cat-chip" style="--cc:#b7791f" title="Історичне місце"><svg class="cat-ic" width="16" height="16" style="color:#b7791f" aria-hidden="true"><use href="#ic-history"/></svg><span>Історичне місце</span></span><span class="cat-chip" style="--cc:#0e7490" title="Красивий вид"><svg class="cat-ic" width="16" height="16" style="color:#0e7490" aria-hidden="true"><use href="#ic-view"/></svg><span>Красивий вид</span></span><span class="cat-chip" style="--cc:#e8590c" title="Цікава пригода"><svg class="cat-ic" width="16" height="16" style="color:#e8590c" aria-hidden="true"><use href="#ic-adventure"/></svg><span>Цікава пригода</span></span><span class="cat-chip" style="--cc:#7048e8" title="Для зйомки дроном"><svg class="cat-ic" width="16" height="16" style="color:#7048e8" aria-hidden="true"><use href="#ic-drone"/></svg><span>Для зйомки дроном</span></span><span class="cat-chip" style="--cc:#8a5a2b" title="Піші маршрути"><svg class="cat-ic" width="16" height="16" style="color:#8a5a2b" aria-hidden="true"><use href="#ic-hike"/></svg><span>Піші маршрути</span></span></div>
+  <div class="cat-legend"><span class="cat-chip" style="--cc:#b7791f" title="Історичне місце"><svg class="cat-ic" width="16" height="16" style="color:#b7791f" aria-hidden="true"><use href="#ic-history"/></svg><span>Історичне місце</span></span><span class="cat-chip" style="--cc:#0e7490" title="Красивий вид"><svg class="cat-ic" width="16" height="16" style="color:#0e7490" aria-hidden="true"><use href="#ic-view"/></svg><span>Красивий вид</span></span><span class="cat-chip" style="--cc:#e8590c" title="Цікава пригода"><svg class="cat-ic" width="16" height="16" style="color:#e8590c" aria-hidden="true"><use href="#ic-adventure"/></svg><span>Цікава пригода</span></span><span class="cat-chip" style="--cc:#7048e8" title="Для зйомки дроном"><svg class="cat-ic" width="16" height="16" style="color:#7048e8" aria-hidden="true"><use href="#ic-drone"/></svg><span>Для зйомки дроном</span></span><span class="cat-chip" style="--cc:#8a5a2b" title="Hiking"><svg class="cat-ic" width="16" height="16" style="color:#8a5a2b" aria-hidden="true"><use href="#ic-hike"/></svg><span>Hiking</span></span></div>
   <table>
     <tr><th>Категорія</th><th>Що означає</th></tr>
     <tr><td><b>Історичне місце</b></td><td>Є що розповісти дітям: відкриття острова, старі містечка, фабрики, легенди</td></tr>
     <tr><td><b>Красивий вид</b></td><td>Оглядові, скелі, ліси — місце, заради якого варто зупинитися з камерою</td></tr>
     <tr><td><b>Цікава пригода</b></td><td>Активність: басейни в лаві, левади, канатки, санки, скляний майданчик</td></tr>
     <tr><td><b>Для зйомки дроном</b></td><td>Фотогенічно з повітря й зазвичай поза забороненими зонами (перевіряйте правила перед польотом)</td></tr>
-    <tr><td><b>Піші маршрути</b></td><td>Старт пішої стежки. Окремо біля карти можна увімкнути до 10 найкращих маршрутів країни з рівнями «легкий / середній / складний» — поза планом туру</td></tr>
+    <tr><td><b>Hiking</b></td><td>Окремий режим карти: до 10 найкращих піших стежок країни зі своєю нумерацією, стартом і фінішем, рівнями «легкий / середній / складний». Поза планом туру</td></tr>
   </table>
 </section>
 
@@ -1115,7 +1144,7 @@
   render();
 })();
 </script>
-<script src="assets/mobile-nav.js"></script>
-<script src="assets/header-nav.js"></script>
+<script src="assets/mobile-nav.js?v=f2b2c205"></script>
+<script src="assets/header-nav.js?v=77572946"></script>
 </body>
 </html>
