@@ -39,8 +39,9 @@ def main():
     ids = ",".join(str(h["osm"]) for h in hikes)
     q = f"[out:json][timeout:120];relation(id:{ids});out geom;"
     body = urllib.parse.urlencode({"data": q}).encode()
-    servers = ["https://overpass-api.de/api/interpreter", "https://overpass.kumi.systems/api/interpreter",
-               "https://overpass-api.de/api/interpreter"]
+    servers = ["https://overpass-api.de/api/interpreter", "https://overpass.private.coffee/api/interpreter",
+               "https://maps.mail.ru/osm/tools/overpass/api/interpreter", "https://overpass.kumi.systems/api/interpreter",
+               "https://overpass-api.de/api/interpreter", "https://overpass.private.coffee/api/interpreter"]
     for i, url in enumerate(servers):
         try:
             res = json.load(urllib.request.urlopen(urllib.request.Request(url, data=body, headers=UA), timeout=180))
@@ -49,7 +50,7 @@ def main():
             print(f"  {url}: {e}", flush=True)
             if i == len(servers) - 1:
                 raise
-            time.sleep(10)
+            time.sleep(20)
     rels = {e["id"]: e for e in res["elements"]}
     out = {}
     for h in hikes:

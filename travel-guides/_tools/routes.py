@@ -50,7 +50,8 @@ def main():
     locs = {l["key"]: l for l in json.loads((d / "locations.json").read_text())}
 
     def ll(stop):
-        return plans["points"][stop]["ll"] if stop.startswith("@") else locs[stop]["ll"]
+        # a location reached on foot (a lake, a viewpoint) can give "route_ll": where the car stops
+        return plans["points"][stop]["ll"] if stop.startswith("@") else locs[stop].get("route_ll", locs[stop]["ll"])
 
     out, cache = {}, {}
     for pid, plan in plans["plans"].items():

@@ -123,6 +123,7 @@ def plan_model(plans: dict, routes: dict, locs: dict) -> dict:
                 "legs": r.get("legs", []), "ferry": r.get("ferry", []),
                 "gmaps": gmaps_dir(day["stops"], q_of), "anchor": day.get("anchor") or f"p{pid}-day{n}",
                 "raw_stops": day["stops"], "food": day.get("food", ""), "rainy": day.get("rainy", ""),
+                "summer": day.get("summer", ""),
             })
         model[pid] = {"label": plan["label"], "nights": plan["nights"], "bases": plan["bases"],
                       "intro": plan["intro"], "order": order, "dayOf": day_of, "days": days}
@@ -138,7 +139,9 @@ def render_days_switch(model: dict, default: str) -> str:
             f'<span class="seg-label">Тривалість:</span>{btns}</div></div>')
 
 
-def render_day_plans(model: dict, locs: dict, gallery: dict, points: dict, default: str, skip=()) -> str:
+def render_day_plans(model: dict, locs: dict, gallery: dict, points: dict, default: str, skip=(),
+                     labels: dict = None) -> str:
+    labels = {"food": "🍽 Де поїсти:", "rainy": "☔ Якщо дощ:", "summer": "🌞 Влітку замість цього:", **(labels or {})}
     """Detailed day cards for every plan except `skip` (that one is hand-written in content.html)."""
     out = []
     for pid, p in model.items():
@@ -177,9 +180,12 @@ def render_day_plans(model: dict, locs: dict, gallery: dict, points: dict, defau
             if d["note"]:
                 extra += f'<p class="day-note">💡 {d["note"]}</p>'
             if d["food"]:
-                extra += f'<div class="food"><b>🍽 Де поїсти:</b> {d["food"]}</div>'
+                extra += f'<div class="food"><b>{labels["food"]}</b> {d["food"]}</div>'
             if d["rainy"]:
-                extra += f'<div class="rainy"><b>☔ Якщо дощ:</b> {d["rainy"]}</div>'
+                extra += f'<div class="rainy"><b>{labels["rainy"]}</b> {d["rainy"]}</div>'
+            if d["summer"]:
+                extra += f'<div class="summer"><b>{labels["summer"]}</b> {d["summer"]}</div>'
+
             days.append(f"""
   <div class="day" id="{d['anchor']}">
     <div class="day-head"><span class="day-num" style="background:{d['color']}">{d['n']}</span><span class="day-title">{html.escape(d['title'])}</span><span class="day-meta">{drive}</span></div>
