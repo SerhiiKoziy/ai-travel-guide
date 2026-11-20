@@ -36,6 +36,7 @@
 
   /* ---------- open a card (from a map popup or a #hash) ---------- */
   function openCard(id) {
+    setFull(false);
     var card = document.getElementById(id);
     if (!card) return;
     var det = card.querySelector('details');
@@ -152,6 +153,25 @@
     });
     map.on('zoomend moveend', labels);
     render(true);
+    var fullBtn = $('.map-full');
+    if (fullBtn) fullBtn.addEventListener('click', function () { setFull(!isFull()); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isFull()) setFull(false); });
+  }
+
+  /* ---------- fullscreen map (fills the browser window) ---------- */
+  function isFull() { var w = $('.bigmap-wrap'); return !!(w && w.classList.contains('is-full')); }
+  function setFull(on) {
+    var wrap = $('.bigmap-wrap'), btn = $('.map-full');
+    if (!wrap || !map || isFull() === on) return;
+    var center = map.getCenter(), zoom = map.getZoom();
+    wrap.classList.toggle('is-full', on);
+    document.documentElement.classList.toggle('map-is-full', on);
+    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+    map.scrollWheelZoom[on ? 'enable' : 'disable']();
+    map.invalidateSize();
+    map.setView(center, zoom, { animate: false });
+    labels();
+    if (!on) wrap.scrollIntoView({ block: 'center' });
   }
 
   // Show a pin's name only where it fits (right, else left of the pin); list order wins.

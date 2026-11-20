@@ -421,6 +421,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
 <div class="lvl-filter hike-only" role="group" aria-label="Фільтр за складністю" hidden>{lvl_btns}</div>
 <div class="bigmap-wrap">
   <div id="bigmap" class="bigmap" role="region" aria-label="Карта локацій і маршрутів"{map_style}></div>
+  <button type="button" class="map-full" aria-pressed="false" title="Карта на весь екран (Esc — вийти)"><span class="mf-on">⛶ На весь екран</span><span class="mf-off">✕ Згорнути</span></button>
   <noscript><p class="muted">Для інтерактивної карти увімкніть JavaScript.</p></noscript>
 </div>
 <div class="day-legend" aria-hidden="true"></div>
