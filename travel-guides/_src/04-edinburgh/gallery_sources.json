@@ -1,0 +1,130 @@
+{
+ "castle": [
+  "Edinburgh Castle from Princes Street Gardens",
+  "Edinburgh Castle from Grassmarket",
+  "Views of Edinburgh Castle",
+  "Esplanade, Edinburgh Castle",
+  "Great Hall, Edinburgh Castle"
+ ],
+ "royalmile": [
+  "Royal Mile",
+  "Camera Obscura (Edinburgh)",
+  "Victoria Street, Edinburgh"
+ ],
+ "museum": [
+  "National Museum of Scotland",
+  "Museum of Scotland",
+  "Grand Gallery, National Museum of Scotland"
+ ],
+ "holyrood": [
+  "Arthur's Seat",
+  "Views from Arthur's Seat"
+ ],
+ "dynamicearth": [
+  "Our Dynamic Earth"
+ ],
+ "calton": [
+  "Calton Hill"
+ ],
+ "deanvillage": [
+  "Dean Village"
+ ],
+ "zoo": [
+  "Mammals in Edinburgh Zoo",
+  "Edinburgh Zoo"
+ ],
+ "rosslyn": [
+  "Rosslyn Chapel",
+  "Rosslyn Chapel (interior)"
+ ],
+ "queensferry": [
+  "Forth Bridge",
+  "South Queensferry",
+  "Forth bridges"
+ ],
+ "blackness": [
+  "Blackness Castle"
+ ],
+ "linlithgow": [
+  "Linlithgow Palace",
+  "Courtyard of Linlithgow Palace"
+ ],
+ "kelpies": [
+  "The Kelpies"
+ ],
+ "falkirkwheel": [
+  "Falkirk Wheel"
+ ],
+ "stirling": [
+  "Stirling Castle"
+ ],
+ "northberwick": [
+  "North Berwick",
+  "Scottish Seabird Centre",
+  "Bass Rock"
+ ],
+ "tantallon": [
+  "Tantallon Castle"
+ ],
+ "culross": [
+  "Culross"
+ ],
+ "standrews": [
+  "St Andrews Castle",
+  "West Sands, St Andrews",
+  "St Andrews"
+ ],
+ "anstruther": [
+  "Anstruther",
+  "Crail harbour"
+ ],
+ "dunkeld": [
+  "The Hermitage, Perth and Kinross",
+  "Black Linn Falls",
+  "Ossian's Hall, The Hermitage"
+ ],
+ "pitlochry": [
+  "Pitlochry Dam and Power Station",
+  "Pitlochry fish ladder",
+  "Loch Faskally"
+ ],
+ "hike-arthur": [
+  "Views from Arthur's Seat",
+  "Arthur's Seat"
+ ],
+ "hike-leith": [
+  "Water of Leith Walkway",
+  "Dean Village"
+ ],
+ "hike-forthbridges": [
+  "Forth bridges",
+  "Forth Road Bridge",
+  "Queensferry Crossing"
+ ],
+ "hike-linlithgowloch": [
+  "Linlithgow Loch",
+  "Distant views of Linlithgow Palace"
+ ],
+ "hike-nblaw": [
+  "North Berwick Law"
+ ],
+ "hike-dumyat": [
+  "Dumyat"
+ ],
+ "hike-fcp": [
+  "Fife Coastal Path",
+  "Crail harbour"
+ ],
+ "hike-hermitage": [
+  "The Hermitage, Perth and Kinross",
+  "Black Linn Falls"
+ ],
+ "hike-craigower": [
+  "Craigower",
+  "Loch Faskally"
+ ],
+ "hike-birnam": [
+  "Birnam Hill",
+  "Birnam"
+ ]
+}

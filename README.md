@@ -22,6 +22,8 @@ New guide locations: write locations.json + gallery_sources.json, then
 `python3 travel-guides/_tools/geocode.py travel-guides/_src/<slug>` and
 `python3 travel-guides/_tools/commons_gallery.py travel-guides/_src/<slug>`; review and reorder in gallery_curation.json.
 Hikes (optional, not in plans): hikes.json (OSM relation ids) -> `python3 travel-guides/_tools/trails.py travel-guides/_src/<slug>` -> trails.json.
+A hike can use only a section of a long relation (`"bbox": [s, w, n, e]`), or have no relation at all:
+`"via": [[lat,lng], ...]` is then routed on foot paths (routing.openstreetmap.de).
 Trip variants: edit plans.json, then `python3 travel-guides/_tools/routes.py travel-guides/_src/<slug>` to recompute road geometry.
 Categories (icons in places.py): history, view, adventure, drone, hike. Hike levels: easy, medium, hard.
 
