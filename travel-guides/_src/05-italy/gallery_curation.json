@@ -1,0 +1,420 @@
+{
+ "_doc": "Order/selection of gallery.json photos by index (first = card thumbnail), picked from a contact sheet. Dropped: a military jeep and a marathon in Pisa, a protest banner and an old print in Bologna, Christmas baubles in Pienza, scaffolding at the Ferrari museum and Arena, near-duplicate San Biagio shots, aerial photos, plaques and signs.",
+ "montebaldo": {
+  "order": [
+   2,
+   0,
+   5,
+   3,
+   4,
+   1,
+   6,
+   7
+  ]
+ },
+ "gardaland": {
+  "order": [
+   7,
+   6,
+   0,
+   1,
+   3,
+   5,
+   4
+  ]
+ },
+ "bardolino": {
+  "order": [
+   7,
+   4,
+   1,
+   2,
+   5,
+   0,
+   6
+  ]
+ },
+ "sirmione": {
+  "order": [
+   2,
+   7,
+   5,
+   0,
+   1,
+   6,
+   4,
+   3
+  ]
+ },
+ "verona": {
+  "order": [
+   1,
+   7,
+   0,
+   4,
+   5,
+   6,
+   2
+  ]
+ },
+ "parmigiano": {
+  "order": [
+   0,
+   2,
+   6,
+   5,
+   1,
+   3,
+   7
+  ]
+ },
+ "acetaia": {
+  "order": [
+   2,
+   0,
+   3,
+   4,
+   1,
+   6,
+   7,
+   5
+  ]
+ },
+ "ferrari": {
+  "order": [
+   0,
+   6,
+   1,
+   5,
+   7,
+   4
+  ]
+ },
+ "modena": {
+  "order": [
+   6,
+   5,
+   1,
+   4,
+   0,
+   2,
+   7
+  ]
+ },
+ "parma": {
+  "order": [
+   6,
+   0,
+   2,
+   1,
+   4,
+   3,
+   7,
+   5
+  ]
+ },
+ "torrechiara": {
+  "order": [
+   5,
+   4,
+   3,
+   0,
+   2,
+   1,
+   6,
+   7
+  ]
+ },
+ "bologna": {
+  "order": [
+   7,
+   6,
+   4,
+   2,
+   5,
+   0
+  ]
+ },
+ "collodi": {
+  "order": [
+   7,
+   3,
+   6,
+   0,
+   1,
+   2,
+   4,
+   5
+  ]
+ },
+ "lucca": {
+  "order": [
+   7,
+   6,
+   0,
+   1,
+   4,
+   2,
+   5
+  ]
+ },
+ "pisa": {
+  "order": [
+   6,
+   0,
+   2,
+   5,
+   7,
+   4
+  ]
+ },
+ "florence": {
+  "order": [
+   7,
+   0,
+   3,
+   4,
+   1,
+   5,
+   6
+  ]
+ },
+ "michelangelo": {
+  "order": [
+   5,
+   2,
+   6,
+   3,
+   0,
+   4,
+   7,
+   1
+  ]
+ },
+ "chianti": {
+  "order": [
+   2,
+   7,
+   3,
+   4,
+   5,
+   6,
+   0
+  ]
+ },
+ "sangimignano": {
+  "order": [
+   5,
+   1,
+   0,
+   7,
+   3,
+   6,
+   2
+  ]
+ },
+ "monteriggioni": {
+  "order": [
+   7,
+   4,
+   6,
+   3,
+   5,
+   1
+  ]
+ },
+ "siena": {
+  "order": [
+   3,
+   7,
+   1,
+   5,
+   6,
+   4,
+   2,
+   0
+  ]
+ },
+ "pienza": {
+  "order": [
+   0,
+   7,
+   5,
+   6,
+   4,
+   2
+  ]
+ },
+ "montepulciano": {
+  "order": [
+   0,
+   3,
+   1,
+   7,
+   6
+  ]
+ },
+ "valdorcia": {
+  "order": [
+   7,
+   3,
+   0,
+   6,
+   1,
+   4,
+   5,
+   2
+  ]
+ },
+ "bagnovignoni": {
+  "order": [
+   6,
+   2,
+   7,
+   3,
+   1,
+   5,
+   0,
+   4
+  ]
+ },
+ "montalcino": {
+  "order": [
+   7,
+   3,
+   2,
+   5,
+   6,
+   1
+  ]
+ },
+ "civita": {
+  "order": [
+   3,
+   0,
+   4,
+   2,
+   6,
+   7,
+   1,
+   5
+  ]
+ },
+ "orvieto": {
+  "order": [
+   7,
+   0,
+   4,
+   3,
+   2,
+   1
+  ]
+ },
+ "colosseum": {
+  "order": [
+   5,
+   7,
+   4,
+   6,
+   0,
+   1
+  ]
+ },
+ "romecentro": {
+  "order": [
+   7,
+   1,
+   4,
+   2,
+   0,
+   6,
+   5
+  ]
+ },
+ "vatican": {
+  "order": [
+   6,
+   2,
+   3,
+   5,
+   1,
+   7
+  ]
+ },
+ "trastevere": {
+  "order": [
+   5,
+   4,
+   3,
+   6,
+   0,
+   2
+  ]
+ },
+ "hike-baldo": {
+  "order": [
+   5,
+   3,
+   7,
+   2,
+   4,
+   0,
+   6,
+   1
+  ]
+ },
+ "hike-sanluca": {
+  "order": [
+   7,
+   1,
+   5,
+   4,
+   3,
+   6,
+   2
+  ]
+ },
+ "hike-oltrarno": {
+  "order": [
+   6,
+   5,
+   4,
+   3,
+   1,
+   7
+  ]
+ },
+ "hike-vitaleta": {
+  "order": [
+   0,
+   5,
+   3,
+   2,
+   7,
+   4,
+   6
+  ]
+ },
+ "hike-sanfilippo": {
+  "order": [
+   5,
+   4,
+   1,
+   0,
+   3,
+   6,
+   7,
+   2
+  ]
+ },
+ "hike-rupe": {
+  "order": [
+   0,
+   7,
+   4,
+   3,
+   1,
+   2
+  ]
+ }
+}

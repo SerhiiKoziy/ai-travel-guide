@@ -14,6 +14,7 @@ CATS = {
     "history":   ("Історичне місце", "#b7791f"),
     "view":      ("Красивий вид", "#0e7490"),
     "adventure": ("Цікава пригода", "#e8590c"),
+    "food":      ("Гастрономія", "#c2255c"),
     "drone":     ("Для зйомки дроном", "#7048e8"),
     "hike":      ("Hiking", "#8a5a2b"),
 }
@@ -25,6 +26,7 @@ ICON_SPRITE = """<svg width="0" height="0" style="position:absolute" aria-hidden
  <symbol id="ic-history" viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5M4.5 10h15M6 10v8M10 10v8M14 10v8M18 10v8M3.5 20.5h17M4.5 18h15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
  <symbol id="ic-view" viewBox="0 0 24 24"><circle cx="17" cy="6.5" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 19.5 9 9.5l3.6 5.4 2.2-3 6.7 7.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m7.4 12 1.6 1.4 1.5-1.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
  <symbol id="ic-adventure" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m15.8 8.2-2.2 5.4-5.4 2.2 2.2-5.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="1" fill="currentColor"/></symbol>
+ <symbol id="ic-food" viewBox="0 0 24 24"><path d="M6 3v6.5a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3M8 3v18M17.5 21V3c-2.3 1.2-3.5 3.6-3.5 6.8V13h3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
  <symbol id="ic-hike" viewBox="0 0 24 24"><path d="M7 3.5h5l.6 6.2 4.9 2.4c1.6.8 2.5 2 2.5 3.6V18H4.5l1-6.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4.5 18v2.5H20V18M12.6 9.7l-2 1.3M14.6 10.7l-1.8 1.4M4.6 14h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
  <symbol id="ic-drone" viewBox="0 0 24 24"><rect x="9" y="9.5" width="6" height="5" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 10 6.2 7.2M15 10l2.8-2.8M9 14l-2.8 2.8M15 14l2.8 2.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><ellipse cx="5.5" cy="6.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="18.5" cy="6.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="5.5" cy="17.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="18.5" cy="17.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="16.6" r=".9" fill="currentColor"/></symbol>
 </svg>"""
@@ -398,8 +400,9 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
         f'<button type="button" class="lf-btn" data-level="{lv}" style="--lc:{col}"><i></i>{lab} '
         f'<b>{sum(h["level"] == lv for h in hk)}</b></button>' for lv, (lab, col) in LEVELS.items()))
     filters = [f'<button type="button" class="cf-btn is-on" data-cat="all">Усі <b class="cf-n"></b></button>']
+    used = {c for l in locs.values() for c in l["cats"]}
     for c, (label, color) in CATS.items():
-        if c == "hike":
+        if c == "hike" or c not in used:   # e.g. "food" only where a guide tags places with it
             continue
         filters.append(f'<button type="button" class="cf-btn" data-cat="{c}" style="--cc:{color}">'
                        f'{icon(c, 16)} {label} <b class="cf-n"></b></button>')

@@ -39,6 +39,7 @@ GUIDES = [
     {"slug": "02-north-spain", "file": "02-north-spain.html", "group": "europe", "nav": "2. 🇪🇸 Північ Іспанії: 7 днів"},
     {"slug": "03-panticosa", "file": "03-panticosa.html", "group": "europe", "nav": "3. 🏔 Пантікоса: гори з дітьми"},
     {"slug": "04-edinburgh", "file": "04-edinburgh.html", "group": "europe", "nav": "4. 🏰 Едінбург і околиці: 7 днів"},
+    {"slug": "05-italy", "file": "05-italy.html", "group": "europe", "nav": "5. 🍝 Італія без Венеції: 14 днів"},
 ]
 
 

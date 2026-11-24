@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer"><!-- Wikimedia refuses hotlinked CSS backgrounds that carry a Referer -->
 <title>Як влаштовані гайди — Travel Guides</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1016,6 +1017,7 @@
  <symbol id="ic-history" viewBox="0 0 24 24"><path d="M3 9.5 12 4l9 5.5M4.5 10h15M6 10v8M10 10v8M14 10v8M18 10v8M3.5 20.5h17M4.5 18h15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
  <symbol id="ic-view" viewBox="0 0 24 24"><circle cx="17" cy="6.5" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 19.5 9 9.5l3.6 5.4 2.2-3 6.7 7.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m7.4 12 1.6 1.4 1.5-1.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
  <symbol id="ic-adventure" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m15.8 8.2-2.2 5.4-5.4 2.2 2.2-5.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="1" fill="currentColor"/></symbol>
+ <symbol id="ic-food" viewBox="0 0 24 24"><path d="M6 3v6.5a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3M8 3v18M17.5 21V3c-2.3 1.2-3.5 3.6-3.5 6.8V13h3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
  <symbol id="ic-hike" viewBox="0 0 24 24"><path d="M7 3.5h5l.6 6.2 4.9 2.4c1.6.8 2.5 2 2.5 3.6V18H4.5l1-6.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4.5 18v2.5H20V18M12.6 9.7l-2 1.3M14.6 10.7l-1.8 1.4M4.6 14h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
  <symbol id="ic-drone" viewBox="0 0 24 24"><rect x="9" y="9.5" width="6" height="5" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 10 6.2 7.2M15 10l2.8-2.8M9 14l-2.8 2.8M15 14l2.8 2.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><ellipse cx="5.5" cy="6.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="18.5" cy="6.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="5.5" cy="17.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="18.5" cy="17.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="16.6" r=".9" fill="currentColor"/></symbol>
 </svg>
@@ -1026,7 +1028,7 @@
       <a class="brand" href="index.html">🧭 Travel Guides <span>· сімейні подорожі на авто</span></a>
       <nav class="hnav" aria-label="Гайди">
         <a class="hn-link is-current" href="index.html">🧭 Про гайди</a>
-        <div class="hn-group"><button type="button" class="hn-btn" aria-expanded="false">🇪🇺 Європа <span class="hn-chev" aria-hidden="true">▾</span></button><div class="hn-menu"><a href="01-madeira.html">1. 🇵🇹 Мадейра: 7 днів</a><a href="02-north-spain.html">2. 🇪🇸 Північ Іспанії: 7 днів</a><a href="03-panticosa.html">3. 🏔 Пантікоса: гори з дітьми</a><a href="04-edinburgh.html">4. 🏰 Едінбург і околиці: 7 днів</a></div></div>
+        <div class="hn-group"><button type="button" class="hn-btn" aria-expanded="false">🇪🇺 Європа <span class="hn-chev" aria-hidden="true">▾</span></button><div class="hn-menu"><a href="01-madeira.html">1. 🇵🇹 Мадейра: 7 днів</a><a href="02-north-spain.html">2. 🇪🇸 Північ Іспанії: 7 днів</a><a href="03-panticosa.html">3. 🏔 Пантікоса: гори з дітьми</a><a href="04-edinburgh.html">4. 🏰 Едінбург і околиці: 7 днів</a><a href="05-italy.html">5. 🍝 Італія без Венеції: 14 днів</a></div></div>
       </nav>
       <button type="button" class="theme-toggle" id="theme-toggle">🌙 Темна тема</button>
     </div>
@@ -1064,6 +1066,7 @@
         <a href="02-north-spain.html">2. 🇪🇸 Північ Іспанії: 7 днів</a>
         <a href="03-panticosa.html">3. 🏔 Пантікоса: гори з дітьми</a>
         <a href="04-edinburgh.html">4. 🏰 Едінбург і околиці: 7 днів</a>
+        <a href="05-italy.html">5. 🍝 Італія без Венеції: 14 днів</a>
       </nav>
   </aside>
 
@@ -1128,7 +1131,7 @@
 <section id="categories" data-step="Категорії">
   <h2><span class="num">04</span>Категорії локацій</h2>
   <p class="section-desc">Кожна локація на карті гайду має одну або кілька іконок, за якими її можна відфільтрувати.</p>
-  <div class="cat-legend"><span class="cat-chip" style="--cc:#b7791f" title="Історичне місце"><svg class="cat-ic" width="16" height="16" style="color:#b7791f" aria-hidden="true"><use href="#ic-history"/></svg><span>Історичне місце</span></span><span class="cat-chip" style="--cc:#0e7490" title="Красивий вид"><svg class="cat-ic" width="16" height="16" style="color:#0e7490" aria-hidden="true"><use href="#ic-view"/></svg><span>Красивий вид</span></span><span class="cat-chip" style="--cc:#e8590c" title="Цікава пригода"><svg class="cat-ic" width="16" height="16" style="color:#e8590c" aria-hidden="true"><use href="#ic-adventure"/></svg><span>Цікава пригода</span></span><span class="cat-chip" style="--cc:#7048e8" title="Для зйомки дроном"><svg class="cat-ic" width="16" height="16" style="color:#7048e8" aria-hidden="true"><use href="#ic-drone"/></svg><span>Для зйомки дроном</span></span><span class="cat-chip" style="--cc:#8a5a2b" title="Hiking"><svg class="cat-ic" width="16" height="16" style="color:#8a5a2b" aria-hidden="true"><use href="#ic-hike"/></svg><span>Hiking</span></span></div>
+  <div class="cat-legend"><span class="cat-chip" style="--cc:#b7791f" title="Історичне місце"><svg class="cat-ic" width="16" height="16" style="color:#b7791f" aria-hidden="true"><use href="#ic-history"/></svg><span>Історичне місце</span></span><span class="cat-chip" style="--cc:#0e7490" title="Красивий вид"><svg class="cat-ic" width="16" height="16" style="color:#0e7490" aria-hidden="true"><use href="#ic-view"/></svg><span>Красивий вид</span></span><span class="cat-chip" style="--cc:#e8590c" title="Цікава пригода"><svg class="cat-ic" width="16" height="16" style="color:#e8590c" aria-hidden="true"><use href="#ic-adventure"/></svg><span>Цікава пригода</span></span><span class="cat-chip" style="--cc:#c2255c" title="Гастрономія"><svg class="cat-ic" width="16" height="16" style="color:#c2255c" aria-hidden="true"><use href="#ic-food"/></svg><span>Гастрономія</span></span><span class="cat-chip" style="--cc:#7048e8" title="Для зйомки дроном"><svg class="cat-ic" width="16" height="16" style="color:#7048e8" aria-hidden="true"><use href="#ic-drone"/></svg><span>Для зйомки дроном</span></span><span class="cat-chip" style="--cc:#8a5a2b" title="Hiking"><svg class="cat-ic" width="16" height="16" style="color:#8a5a2b" aria-hidden="true"><use href="#ic-hike"/></svg><span>Hiking</span></span></div>
   <table>
     <tr><th>Категорія</th><th>Що означає</th></tr>
     <tr><td><b>Історичне місце</b></td><td>Є що розповісти дітям: відкриття острова, старі містечка, фабрики, легенди</td></tr>
@@ -1157,6 +1160,10 @@
     <a class="dir" href="04-edinburgh.html" style="text-decoration:none;color:inherit">
       <div class="dir-h">🏰 Едінбург і околиці <span class="lvl l1">готово</span></div>
       <p>Шотландія з аеропорту Едінбурга: замок і Трон Артура, мости Форт, Келпі й Колесо Фолкерка, Стерлінг, Норт-Берік і рибальські гавані Файфу. Дві бази, віза UK.</p>
+    </a>
+    <a class="dir" href="05-italy.html" style="text-decoration:none;color:inherit">
+      <div class="dir-h">🍝 Італія без Венеції <span class="lvl l1">готово</span></div>
+      <p>14 днів від Гарди до Рима: Гардаленд, сироварня пармезану й ацетая бальзаміку, Болонья, Флоренція, Піза, Сієна, кипариси Валь-д'Орчі й Чивіта. Нова категорія «Гастрономія».</p>
     </a>
   </div>
 </section>

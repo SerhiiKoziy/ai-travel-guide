@@ -57,7 +57,8 @@ def main():
     servers = ["https://overpass-api.de/api/interpreter", "https://overpass.private.coffee/api/interpreter",
                "https://maps.mail.ru/osm/tools/overpass/api/interpreter", "https://overpass.kumi.systems/api/interpreter",
                "https://overpass-api.de/api/interpreter", "https://overpass.private.coffee/api/interpreter"]
-    for i, url in enumerate(servers):
+    res = {"elements": []}
+    for i, url in enumerate(servers if ids else []):  # a guide with only "via" hikes needs no Overpass call
         try:
             res = json.load(urllib.request.urlopen(urllib.request.Request(url, data=body, headers=UA), timeout=180))
             break
