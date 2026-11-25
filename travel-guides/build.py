@@ -41,6 +41,7 @@ GUIDES = [
     {"slug": "04-edinburgh", "file": "04-edinburgh.html", "group": "europe", "nav": "4. 🏰 Едінбург і околиці: 7 днів"},
     {"slug": "05-italy", "file": "05-italy.html", "group": "europe", "nav": "5. 🍝 Італія без Венеції: 14 днів"},
     {"slug": "06-portugal", "file": "06-portugal.html", "group": "europe", "nav": "6. 🇵🇹 Португалія: Лісабон і Алгарве, 7 днів"},
+    {"slug": "07-north-france", "file": "07-north-france.html", "group": "europe", "nav": "7. 🇫🇷 Північ Франції: 7 днів"},
 ]
 
 
