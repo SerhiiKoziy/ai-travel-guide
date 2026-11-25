@@ -1,0 +1,123 @@
+{
+ "belem": [
+  "Mosteiro dos Jerónimos",
+  "Torre de Belém",
+  "Pastéis de Belém (dessert)"
+ ],
+ "oceanario": [
+  "Oceanário de Lisboa",
+  "Global ocean at Oceanário de Lisboa"
+ ],
+ "alfama": [
+  "Views of Alfama",
+  "Alfama (Lisbon)",
+  "Castelo de São Jorge"
+ ],
+ "timeout": [
+  "Mercado da Ribeira (Lisbon)",
+  "Pastéis de nata"
+ ],
+ "pena": [
+  "Palácio Nacional da Pena",
+  "Arco triunfal (Palácio da Pena)"
+ ],
+ "regaleira": [
+  "Quinta da Regaleira"
+ ],
+ "mouros": [
+  "Castelo dos Mouros",
+  "Views of Castelo dos Mouros from the walls"
+ ],
+ "cabodaroca": [
+  "Cabo da Roca",
+  "Coasts of Cabo da Roca",
+  "Cabo da Roca Lighthouse"
+ ],
+ "cascais": [
+  "Boca do Inferno (Cascais e Estoril)",
+  "Cascais"
+ ],
+ "guincho": [
+  "Praia do Guincho",
+  "Guincho-Cresmina dunefield"
+ ],
+ "obidos": [
+  "Óbidos",
+  "Castelo de Óbidos"
+ ],
+ "nazare": [
+  "Views of Praia da Nazaré from Sítio",
+  "Forte de São Miguel Arcanjo (Nazaré)"
+ ],
+ "batalha": [
+  "Mosteiro da Batalha"
+ ],
+ "arrabida": [
+  "Portinho da Arrábida",
+  "Serra da Arrábida"
+ ],
+ "setubal": [
+  "Setúbal",
+  "Mercado do Livramento"
+ ],
+ "azeitao": [
+  "Azeitão (São Lourenço e São Simão)",
+  "Queijo de Azeitão",
+  "José Maria da Fonseca"
+ ],
+ "evora": [
+  "Templo Romano de Évora",
+  "Capela dos Ossos",
+  "Sé de Évora"
+ ],
+ "monsaraz": [
+  "Monsaraz",
+  "Castelo de Monsaraz"
+ ],
+ "silves": [
+  "Alcáçova de Silves",
+  "Castelo de Silves"
+ ],
+ "benagil": [
+  "Gruta de Benagil",
+  "Praia de Benagil"
+ ],
+ "algarseco": [
+  "Algar Seco"
+ ],
+ "lagos": [
+  "Ponta da Piedade"
+ ],
+ "sagres": [
+  "Cabo de São Vicente",
+  "Cabo de São Vicente Lighthouse",
+  "Fortaleza de Sagres"
+ ],
+ "zoomarine": [
+  "Zoomarine",
+  "Zoomarine aquarium"
+ ],
+ "olhao": [
+  "Mercado Municipal de Olhão",
+  "Ria Formosa"
+ ],
+ "hike-sevenvalleys": [
+  "Praia da Marinha",
+  "Percurso dos Sete Vales Suspensos"
+ ],
+ "hike-piedade": [
+  "Ponta da Piedade Lighthouse",
+  "Praia do Camilo"
+ ],
+ "hike-sassetti": [
+  "Villa Sassetti (Sintra)",
+  "Castelo dos Mouros"
+ ],
+ "hike-cresmina": [
+  "Guincho-Cresmina dunefield"
+ ],
+ "hike-sagrespoint": [
+  "Fortaleza de Sagres",
+  "Ponta de Sagres"
+ ]
+}
