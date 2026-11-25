@@ -89,8 +89,20 @@ def fmt_drive(km: int, mins: int) -> str:
     return f"≈ {km} км · ≈ {t} за кермом"
 
 
+TRANSIT = {"train": "🚆 Потяг", "bus": "🚌 Автобус", "walk": "🚶 Пішки", "flight": "✈️ Переліт", "ferry": "⛴ Пором"}
+
+
+def is_transit_day(stops: list) -> bool:
+    return any(s.startswith("~") and s != "~" for s in stops)
+
+
 def gmaps_dir(stops: list, q_of) -> str:
-    """Google Maps driving link for a day; stops after a ferry leg ('~') are left out."""
+    """Google Maps link for a day: driving (stops after a ferry leg '~' are left out), or public
+    transport from the first to the last stop when the day has '~train'/'~bus' hops."""
+    if is_transit_day(stops):
+        qs = [q_of(s) for s in stops if not s.startswith("~")]
+        return ("https://www.google.com/maps/dir/?api=1&travelmode=transit"
+                f"&origin={quote(qs[0])}&destination={quote(qs[-1])}")
     if "~" in stops:
         stops = stops[:stops.index("~")]
     qs = [q_of(s) for s in stops]
@@ -120,11 +132,12 @@ def plan_model(plans: dict, routes: dict, locs: dict) -> dict:
             r = routes.get(pid, [{}] * len(plan["days"]))[n - 1] if routes else {}
             days.append({
                 "n": n, "title": day["title"], "note": day.get("note", ""), "color": colors[n - 1],
-                "stops": [s for s in day["stops"] if s != "~"],
+                "stops": [s for s in day["stops"] if not s.startswith("~")],
                 "loc_stops": [s for s in day["stops"] if s in locs],
-                "points": sorted({s for s in day["stops"] if s.startswith("@")}),
+                "points": sorted({s for s in day["stops"] if s.startswith("@") and not s.startswith("@via")}),
                 "km": r.get("km"), "min": r.get("min"),
-                "legs": r.get("legs", []), "ferry": r.get("ferry", []),
+                "legs": r.get("legs", []), "ferry": r.get("ferry", []), "transit": r.get("transit", []),
+                "move": day.get("move", ""), "by_transit": is_transit_day(day["stops"]),
                 "gmaps": gmaps_dir(day["stops"], q_of), "anchor": day.get("anchor") or f"p{pid}-day{n}",
                 "raw_stops": day["stops"], "food": day.get("food", ""), "rainy": day.get("rainy", ""),
                 "summer": day.get("summer", ""),
@@ -160,8 +173,14 @@ def render_day_plans(model: dict, locs: dict, gallery: dict, points: dict, defau
                     stops.append('<li class="pt"><span class="s-title">⛴ Пором Porto Santo Line</span>'
                                  '<p class="drive">≈ 2,5 год морем; авто лишається у Фуншалі.</p></li>')
                     continue
+                if s_.startswith("~"):
+                    stops.append(f'<li class="pt"><span class="s-title">{TRANSIT.get(s_[1:], s_[1:])}</span></li>')
+                    continue
+                if s_.startswith("@via"):
+                    continue  # shape point of a train line
                 if s_.startswith("@"):
-                    ico = "✈️" if s_.startswith("@airport") else ("⛴" if s_.startswith("@port") else "🛏")
+                    ico = ("✈️" if s_.startswith("@airport") else "⛴" if s_.startswith("@port")
+                           else "🚉" if s_.startswith("@station") else "🛏")
                     stops.append(f'<li class="pt"><span class="s-title">{ico} {html.escape(points[s_]["name"])}</span></li>')
                     continue
                 loc = locs[s_]
@@ -179,7 +198,9 @@ def render_day_plans(model: dict, locs: dict, gallery: dict, points: dict, defau
           <a class="gm" href="{html.escape(gm_link(loc['q']))}" target="_blank" rel="noopener">📍 Google Maps</a>
           <p>{loc['short']}</p>{fig}
           <p><a class="to-card" href="#place-{s_}">Детальніше про локацію, історія й фото ↑</a></p></li>""")
-            drive = fmt_drive(d["km"], d["min"]) if d["km"] is not None else ""
+            drive = fmt_drive(d["km"], d["min"]) if d["km"] else ""
+            if d["move"]:
+                drive = html.escape(d["move"]) + (" · " + drive if drive else "")
             extra = ""
             if d["note"]:
                 extra += f'<p class="day-note">💡 {d["note"]}</p>'
@@ -193,7 +214,7 @@ def render_day_plans(model: dict, locs: dict, gallery: dict, points: dict, defau
             days.append(f"""
   <div class="day" id="{d['anchor']}">
     <div class="day-head"><span class="day-num" style="background:{d['color']}">{d['n']}</span><span class="day-title">{html.escape(d['title'])}</span><span class="day-meta">{drive}</span></div>
-    <p><a class="gm route" href="{html.escape(d['gmaps'])}" target="_blank" rel="noopener">🚗 Маршрут дня {d['n']} у Google Maps</a></p>
+    <p><a class="gm route" href="{html.escape(d['gmaps'])}" target="_blank" rel="noopener">{'🚆' if d['by_transit'] else '🚗'} Маршрут дня {d['n']} у Google Maps</a></p>
     <ol class="stops">{''.join(stops)}
     </ol>
     {extra}
@@ -211,7 +232,9 @@ def render_itinerary(pid: str, p: dict, locs: dict, num: dict, active: bool) -> 
         chips = "".join(
             f'<span class="it-stop"><b style="background:{d["color"]}">{num[s]}</b>{html.escape(short_label(locs[s]))}</span>'
             for s in d["loc_stops"])
-        drive = fmt_drive(d["km"], d["min"]) if d["km"] is not None else ""
+        drive = fmt_drive(d["km"], d["min"]) if d["km"] else ""
+        if d["move"]:
+            drive = html.escape(d["move"]) + (" · " + drive if drive else "")
         more = f'<a class="it-more" href="#{d["anchor"]}">Детально про день ↓</a>'
         rows.append(f"""
   <li class="it-day" data-day="{d['n']}" style="--dc:{d['color']}">
@@ -221,7 +244,7 @@ def render_itinerary(pid: str, p: dict, locs: dict, num: dict, active: bool) -> 
     </button>
     <div class="it-stops">{chips}</div>
     {f'<p class="it-note">{d["note"]}</p>' if d['note'] else ''}
-    <div class="it-links"><a class="gm route" href="{html.escape(d['gmaps'])}" target="_blank" rel="noopener">🚗 Маршрут дня в Google Maps</a>{more}</div>
+    <div class="it-links"><a class="gm route" href="{html.escape(d['gmaps'])}" target="_blank" rel="noopener">{'🚆' if d['by_transit'] else '🚗'} Маршрут дня в Google Maps</a>{more}</div>
   </li>""")
     hidden = "" if active else " hidden"
     return f'<ol class="itinerary" data-plan="{pid}"{hidden}>{"".join(rows)}\n</ol>'
@@ -402,11 +425,12 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
                    for k, l in locs.items()},
         "points": plans["points"],
         "plans": {pid: {"order": p["order"], "dayOf": p["dayOf"],
-                        "days": [{k: d[k] for k in ("n", "title", "color", "legs", "ferry", "points")}
+                        "days": [{k: d[k] for k in ("n", "title", "color", "legs", "ferry", "transit", "points")}
                                  for d in p["days"]]}
                   for pid, p in model.items()},
         "default": default,
         "ferryLabel": plans.get("ferry_label", "⛴ Пором"),
+        "transitLabels": TRANSIT,
         "cats": {k: {"label": v[0], "color": v[1]} for k, v in CATS.items()},
         "hikes": {h["key"]: {"n": h["n"], "ref": h["ref"], "name": h["ua"], "label": h.get("label", h["ua"]),
                              "level": h["level"], "levelLabel": LEVELS[h["level"]][0], "color": LEVELS[h["level"]][1],

@@ -6,6 +6,9 @@ Reads  plans.json + locations.json, writes routes.json:
   {plan: [{"legs": [[[lat,lng],...], ...], "ferry": [[[lat,lng],[lat,lng]]], "km": 63.2, "min": 71}, ...]}
 Driving legs are routed by OSRM (router.project-osrm.org, 1 request per drive leg group,
 cached by coordinates); a "~" stop marks a ferry crossing drawn as a straight line.
+"~train" / "~bus" / "~walk" / "~flight" mark a public-transport hop: it is not routed, it is drawn
+as a dashed line through the stops (put intermediate stations as @points to follow the railway);
+consecutive hops of one mode merge into one line -> "transit": [{"mode": "train", "line": [...]}].
 Done once at authoring time so the published page never calls a routing API.
 """
 import json
@@ -57,12 +60,20 @@ def main():
     for pid, plan in plans["plans"].items():
         out[pid] = []
         for n, day in enumerate(plan["days"], 1):
-            groups, ferry, cur = [], [], []
+            groups, ferry, transit, cur = [], [], [], []
             stops = day["stops"]
             for i, s in enumerate(stops):
                 if s == "~":
                     groups.append(cur)
                     ferry.append([ll(stops[i - 1]), ll(stops[i + 1])])
+                    cur = []
+                elif s.startswith("~"):
+                    groups.append(cur)
+                    a, b = ll(stops[i - 1]), ll(stops[i + 1])
+                    if transit and transit[-1]["mode"] == s[1:] and transit[-1]["line"][-1] == a:
+                        transit[-1]["line"].append(b)
+                    else:
+                        transit.append({"mode": s[1:], "line": [a, b]})
                     cur = []
                 else:
                     cur.append(ll(s))
@@ -75,7 +86,7 @@ def main():
                 legs.append(r["line"])
                 km += r["km"]
                 mins += r["min"]
-            out[pid].append({"legs": legs, "ferry": ferry, "km": round(km), "min": round(mins)})
+            out[pid].append({"legs": legs, "ferry": ferry, "transit": transit, "km": round(km), "min": round(mins)})
             print(f"plan {pid} day {n}: {round(km)} km, {round(mins)} min", flush=True)
     (d / "routes.json").write_text(json.dumps(out, separators=(",", ":")))
 

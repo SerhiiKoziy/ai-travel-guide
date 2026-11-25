@@ -28,6 +28,9 @@ New guide locations: write locations.json + gallery_sources.json, then
 Hikes (optional, not in plans): hikes.json (OSM relation ids) -> `python3 travel-guides/_tools/trails.py travel-guides/_src/<slug>` -> trails.json.
 A hike can use only a section of a long relation (`"bbox": [s, w, n, e]`), or have no relation at all:
 `"via": [[lat,lng], ...]` is then routed on foot paths (routing.openstreetmap.de).
+Public transport in plans: stops `"~train"`, `"~bus"`, `"~walk"`, `"~ferry"` between two stops mark a hop that is drawn
+as a dashed line (not routed); put `@via…` shape points between stations to follow the railway or ferry line,
+`@station…` points get a 🚉 icon; a day may set `"move"` (e.g. "🚆 VR 19:29 → 07:20") shown instead of driving time.
 Trip variants: edit plans.json, then `python3 travel-guides/_tools/routes.py travel-guides/_src/<slug>` to recompute road geometry.
 Categories (icons in places.py): history, view, adventure, drone, hike. Hike levels: easy, medium, hard.
 

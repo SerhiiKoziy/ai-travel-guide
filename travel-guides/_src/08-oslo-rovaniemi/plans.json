@@ -1,0 +1,721 @@
+{
+ "_doc": "Train trip Oslo -> Stockholm -> (Silja ferry) -> Helsinki -> VR night train -> Rovaniemi, January 2027. '~train'/'~ferry'/'~bus'/'~walk' are public-transport hops drawn through @via shape points (railway / ferry line); only the Ranua day is driven (OSRM). Flights: WAW -> OSL, RVN -> WAW.",
+ "default": "7",
+ "colors": [
+  "#1971c2",
+  "#e8590c",
+  "#2b8a3e",
+  "#7048e8",
+  "#c2255c",
+  "#0c8599",
+  "#5c940d",
+  "#c99700",
+  "#6b4f3a"
+ ],
+ "points": {
+  "@airportOSL": {
+   "name": "Аеропорт Осло (OSL, Гардермуен)",
+   "ll": [
+    60.1939,
+    11.1004
+   ],
+   "q": "Oslo Airport Gardermoen"
+  },
+  "@stationOSL": {
+   "name": "Вокзал Oslo S",
+   "ll": [
+    59.9111,
+    10.7528
+   ],
+   "q": "Oslo Sentralstasjon"
+  },
+  "@baseOSL": {
+   "name": "Готель біля Oslo S (напр. Anker Hotel, сімейний номер)",
+   "ll": [
+    59.9172,
+    10.7579
+   ],
+   "q": "Anker Hotel Oslo"
+  },
+  "@stationSTO": {
+   "name": "Вокзал Stockholm C",
+   "ll": [
+    59.3302,
+    18.0581
+   ],
+   "q": "Stockholm Centralstation"
+  },
+  "@baseSTO": {
+   "name": "Готель біля Stockholm C (напр. Hotel C / Freys)",
+   "ll": [
+    59.3317,
+    18.0574
+   ],
+   "q": "Hotel C Stockholm"
+  },
+  "@portSTO": {
+   "name": "Поромний термінал Värtahamnen (Tallink Silja)",
+   "ll": [
+    59.3507,
+    18.1072
+   ],
+   "q": "Värtaterminalen Stockholm"
+  },
+  "@portHEL": {
+   "name": "Поромний термінал Olympia, Гельсінкі",
+   "ll": [
+    60.1597,
+    24.9555
+   ],
+   "q": "Olympiaterminaali Helsinki"
+  },
+  "@stationHEL": {
+   "name": "Центральний вокзал Гельсінкі",
+   "ll": [
+    60.1719,
+    24.9414
+   ],
+   "q": "Helsinki Central railway station"
+  },
+  "@stationROV": {
+   "name": "Вокзал Рованіемі",
+   "ll": [
+    66.4987,
+    25.7106
+   ],
+   "q": "Rovaniemi railway station"
+  },
+  "@baseROV": {
+   "name": "Апартаменти в центрі Рованіемі (напр. Kotimaailma) — з кухнею й сауною",
+   "ll": [
+    66.5012,
+    25.729
+   ],
+   "q": "Kotimaailma Apartments Rovaniemi"
+  },
+  "@airportRVN": {
+   "name": "Аеропорт Рованіемі (RVN)",
+   "ll": [
+    66.562,
+    25.8304
+   ],
+   "q": "Rovaniemi Airport"
+  },
+  "@viaLillestrom": {
+   "name": "Lillestrom",
+   "ll": [
+    59.9554,
+    11.0499
+   ],
+   "q": "Lillestrom"
+  },
+  "@viaKongsvinger": {
+   "name": "Kongsvinger",
+   "ll": [
+    60.1904,
+    11.9977
+   ],
+   "q": "Kongsvinger"
+  },
+  "@viaCharlottenberg": {
+   "name": "Charlottenberg",
+   "ll": [
+    59.8846,
+    12.2944
+   ],
+   "q": "Charlottenberg"
+  },
+  "@viaArvika": {
+   "name": "Arvika",
+   "ll": [
+    59.6547,
+    12.5872
+   ],
+   "q": "Arvika"
+  },
+  "@viaKil": {
+   "name": "Kil",
+   "ll": [
+    59.5048,
+    13.3184
+   ],
+   "q": "Kil"
+  },
+  "@viaKarlstad": {
+   "name": "Karlstad",
+   "ll": [
+    59.3784,
+    13.4991
+   ],
+   "q": "Karlstad"
+  },
+  "@viaKristinehamn": {
+   "name": "Kristinehamn",
+   "ll": [
+    59.3098,
+    14.1078
+   ],
+   "q": "Kristinehamn"
+  },
+  "@viaHallsberg": {
+   "name": "Hallsberg",
+   "ll": [
+    59.0664,
+    15.11
+   ],
+   "q": "Hallsberg"
+  },
+  "@viaKatrineholm": {
+   "name": "Katrineholm",
+   "ll": [
+    58.996,
+    16.2072
+   ],
+   "q": "Katrineholm"
+  },
+  "@viaFlemingsberg": {
+   "name": "Flemingsberg",
+   "ll": [
+    59.2196,
+    17.9465
+   ],
+   "q": "Flemingsberg"
+  },
+  "@viaF1": {
+   "name": "F1",
+   "ll": [
+    59.38,
+    18.3
+   ],
+   "q": "F1"
+  },
+  "@viaF2": {
+   "name": "F2",
+   "ll": [
+    59.47,
+    18.62
+   ],
+   "q": "F2"
+  },
+  "@viaF3": {
+   "name": "F3",
+   "ll": [
+    59.78,
+    19.15
+   ],
+   "q": "F3"
+  },
+  "@viaMariehamn": {
+   "name": "Mariehamn",
+   "ll": [
+    60.0928,
+    19.9256
+   ],
+   "q": "Mariehamn"
+  },
+  "@viaF4": {
+   "name": "F4",
+   "ll": [
+    59.93,
+    21.1
+   ],
+   "q": "F4"
+  },
+  "@viaF5": {
+   "name": "F5",
+   "ll": [
+    59.78,
+    22.6
+   ],
+   "q": "F5"
+  },
+  "@viaF6": {
+   "name": "F6",
+   "ll": [
+    59.98,
+    24.3
+   ],
+   "q": "F6"
+  },
+  "@viaF7": {
+   "name": "F7",
+   "ll": [
+    60.12,
+    24.9
+   ],
+   "q": "F7"
+  },
+  "@viaTikkurila": {
+   "name": "Tikkurila",
+   "ll": [
+    60.2924,
+    25.044
+   ],
+   "q": "Tikkurila"
+  },
+  "@viaRiihimaki": {
+   "name": "Riihimaki",
+   "ll": [
+    60.7377,
+    24.7726
+   ],
+   "q": "Riihimaki"
+  },
+  "@viaTampere": {
+   "name": "Tampere",
+   "ll": [
+    61.4981,
+    23.7737
+   ],
+   "q": "Tampere"
+  },
+  "@viaSeinajoki": {
+   "name": "Seinajoki",
+   "ll": [
+    62.7867,
+    22.8417
+   ],
+   "q": "Seinajoki"
+  },
+  "@viaKokkola": {
+   "name": "Kokkola",
+   "ll": [
+    63.8357,
+    23.1269
+   ],
+   "q": "Kokkola"
+  },
+  "@viaOulu": {
+   "name": "Oulu",
+   "ll": [
+    65.0115,
+    25.484
+   ],
+   "q": "Oulu"
+  },
+  "@viaKemi": {
+   "name": "Kemi",
+   "ll": [
+    65.7363,
+    24.5694
+   ],
+   "q": "Kemi"
+  },
+  "@viaTervola": {
+   "name": "Tervola",
+   "ll": [
+    66.085,
+    24.81
+   ],
+   "q": "Tervola"
+  }
+ },
+ "plans": {
+  "7": {
+   "label": "7 днів",
+   "nights": "6 ночей",
+   "bases": "Осло (1) · Стокгольм (1) · пором (1) · нічний потяг (1) · Рованіемі (2)",
+   "intro": "Мінімальна версія: по ночі в Осло й Стокгольмі, ніч на поромі, ніч у нічному потязі й два повні дні в Лапландії.",
+   "days": [
+    {
+     "title": "Приліт в Осло → Опера й фортеця Акерсхус",
+     "stops": [
+      "@airportOSL",
+      "~train",
+      "@stationOSL",
+      "~walk",
+      "opera",
+      "~walk",
+      "akershus",
+      "~walk",
+      "@baseOSL"
+     ],
+     "move": "✈️ WAW → OSL · 🚆 Flytoget 19 хв",
+     "note": "Flytoget: діти до 16 з дорослим — безкоштовно, тож для 2+2 ≈ NOK 552. Вечір короткий: о 15:30 уже темно, тож Опера — одразу після заселення.",
+     "food": "Вечеря біля Oslo S або на набережній Aker Brygge; продукти — Rema 1000 / Kiwi (найдешевші).",
+     "rainy": "Бібліотека Deichman біля Опери — дитячий поверх, безкоштовно."
+    },
+    {
+     "title": "Потягом Осло → Стокгольм (≈ 6 год)",
+     "stops": [
+      "@baseOSL",
+      "~walk",
+      "@stationOSL",
+      "~train",
+      "@viaLillestrom",
+      "~train",
+      "@viaKongsvinger",
+      "~train",
+      "@viaCharlottenberg",
+      "~train",
+      "@viaArvika",
+      "~train",
+      "@viaKil",
+      "~train",
+      "@viaKarlstad",
+      "~train",
+      "@viaKristinehamn",
+      "~train",
+      "@viaHallsberg",
+      "~train",
+      "@viaKatrineholm",
+      "~train",
+      "@viaFlemingsberg",
+      "~train",
+      "@stationSTO",
+      "~walk",
+      "gamlastan",
+      "~walk",
+      "@baseSTO"
+     ],
+     "move": "🚆 SJ, ≈ 5 год 40 хв без пересадок",
+     "note": "Ранковий потяг ≈ 6:00–8:00 → Стокгольм по обіді (<i>розклад на січень 2027 потрібно перевірити на sj.se</i>). Візьміть місця біля дитячої зони/вагона-бістро. Увечері — Гамла Стан, 15 хв пішки від вокзалу.",
+     "food": "Бістро у вагоні SJ; у Стокгольмі — фрикадельки й кардамонові булочки в Гамла Стані.",
+     "rainy": "Залишитися в теплі вокзалу/готелю: Hotel C через дорогу від Stockholm C."
+    },
+    {
+     "title": "«Васа» або Юнібакен → нічний пором до Гельсінкі",
+     "stops": [
+      "@baseSTO",
+      "~bus",
+      "vasa",
+      "~walk",
+      "junibacken",
+      "~bus",
+      "@portSTO",
+      "~ferry",
+      "@viaF1",
+      "~ferry",
+      "@viaF2",
+      "~ferry",
+      "@viaF3",
+      "~ferry",
+      "@viaMariehamn",
+      "~ferry",
+      "@viaF4",
+      "~ferry",
+      "@viaF5",
+      "~ferry",
+      "@viaF6",
+      "~ferry",
+      "@viaF7",
+      "~ferry",
+      "@portHEL"
+     ],
+     "move": "⛴ Tallink Silja ≈ 16:45 → 10:30, 1 ніч у каюті",
+     "note": "Бронюйте сімейну каюту (Family / Moomin, 14 м², з вікном): діти до 5 — без окремого ліжка. Реєстрація на пором закінчується ≈ за 30 хв до відходу; від Djurgården до Värtahamnen — автобус 67/ таксі ≈ 15 хв.",
+     "food": "Шведський стіл на поромі (діти до 5 — безкоштовно, <i>потрібно перевірити</i>) або кафе з дитячим меню.",
+     "rainy": "Обидва музеї — під дахом."
+    },
+    {
+     "title": "Гельсінкі → нічний «Санта-Клаус Експрес»",
+     "stops": [
+      "@portHEL",
+      "~bus",
+      "oodi",
+      "~walk",
+      "@stationHEL",
+      "~train",
+      "@viaTikkurila",
+      "~train",
+      "@viaRiihimaki",
+      "~train",
+      "@viaTampere",
+      "~train",
+      "@viaSeinajoki",
+      "~train",
+      "@viaKokkola",
+      "~train",
+      "@viaOulu",
+      "~train",
+      "@viaKemi",
+      "~train",
+      "@viaTervola",
+      "~train",
+      "@stationROV"
+     ],
+     "move": "🚆 VR P265 19:29 → 07:20, дві з'єднані каюти",
+     "note": "Пором о 10:30 → трамвай 7 до центру. Речі — у камеру схову на вокзалі. Активним дітям — Heureka (10 хв приміським потягом до Тіккуріли) замість Оді. Посадка в нічний потяг ≈ за 30 хв.",
+     "food": "Вагон-ресторан VR: вечеря й сніданок, персонал підігріє дитяче харчування. Воду з крана в потязі не пити — візьміть пляшки.",
+     "rainy": "Оді — і є «дощовий» варіант: тепло, безкоштовно, з дитячим поверхом."
+    },
+    {
+     "title": "Рованіемі: село Санти, олені, хаскі й Snowman World",
+     "stops": [
+      "@stationROV",
+      "~walk",
+      "@baseROV",
+      "~bus",
+      "santavillage",
+      "~walk",
+      "santareindeer",
+      "~walk",
+      "santashusky",
+      "~walk",
+      "snowmanworld",
+      "~bus",
+      "@baseROV"
+     ],
+     "move": "🚌 автобус 8, ≈ 30 хв",
+     "note": "Потяг о 7:20 → речі в апартаменти (ранній заїзд узгодити або лишити багаж) → до Санти до 10:00, поки немає черги. Хаскі й олені — забронювати слоти заздалегідь. Останній автобус з села у будні ≈ 19:35, у вихідні ≈ 18:05.",
+     "food": "Ланч у селі Санти (Santa's Salmon Place — лосось на вогні) або сніданок в апартаментах.",
+     "rainy": "Мороз −25 °C: пошта Санти, офіс Санти й крамниці — під дахом, а Snowman World лишити на інший день."
+    },
+    {
+     "title": "Арктикум, Pilke, міст-свічка → табір сяйва",
+     "stops": [
+      "@baseROV",
+      "~walk",
+      "arktikum",
+      "~walk",
+      "candlebridge",
+      "~walk",
+      "aurora",
+      "~walk",
+      "@baseROV"
+     ],
+     "move": "🚶 усе пішки, ≈ 2 км",
+     "note": "Ранок у теплі (Арктикум + Pilke), сонце о 14:00–15:00 — на мосту й річці, вечір — табір сяйва (Вт, Чт, Сб, 21:30–24:00) або власний «пошук» сяйва за прогнозом з вікна.",
+     "food": "Лосось і оленина в ресторанах центру (Roka, Nili — бронювати); суп у кафе Арктикуму.",
+     "rainy": "Pilke — найкраще для малюка в будь-яку погоду."
+    },
+    {
+     "title": "SantaPark → виліт з Рованіемі",
+     "stops": [
+      "@baseROV",
+      "~bus",
+      "santapark",
+      "~bus",
+      "@airportRVN"
+     ],
+     "move": "🚕 таксі ≈ €20–30",
+     "note": "SantaPark працює лише до 23 січня; пізніше — Унасваара (санки й снігова зона для малих). LOT RVN → WAW ≈ 16:40 (Чт, Нд — <i>потрібно перевірити</i>), бути в аеропорту за 2 год.",
+     "food": "Пряники в пекарні ельфів у SantaPark.",
+     "rainy": "SantaPark — під землею, ідеально в найсильніший мороз."
+    }
+   ]
+  },
+  "9": {
+   "label": "9 днів",
+   "nights": "8 ночей",
+   "bases": "Осло (2) · Стокгольм (1) · пором (1) · нічний потяг (1) · Рованіемі (3)",
+   "intro": "Спокійніша версія: день на санях і музеях Осло та день з авто до білих ведмедів Рануа.",
+   "days": [
+    {
+     "title": "Приліт в Осло → Опера й фортеця Акерсхус",
+     "stops": [
+      "@airportOSL",
+      "~train",
+      "@stationOSL",
+      "~walk",
+      "opera",
+      "~walk",
+      "akershus",
+      "~walk",
+      "@baseOSL"
+     ],
+     "move": "✈️ WAW → OSL · 🚆 Flytoget 19 хв",
+     "note": "Flytoget: діти до 16 з дорослим — безкоштовно, тож для 2+2 ≈ NOK 552. Вечір короткий: о 15:30 уже темно, тож Опера — одразу після заселення.",
+     "food": "Вечеря біля Oslo S або на набережній Aker Brygge; продукти — Rema 1000 / Kiwi (найдешевші).",
+     "rainy": "Бібліотека Deichman біля Опери — дитячий поверх, безкоштовно."
+    },
+    {
+     "title": "Осло: Голменколлен, санки, Вігеланд і «Фрам»",
+     "stops": [
+      "@baseOSL",
+      "~train",
+      "holmenkollen",
+      "~train",
+      "vigeland",
+      "~bus",
+      "fram",
+      "~bus",
+      "@baseOSL"
+     ],
+     "move": "🚇 метро 1 · трамвай 12 · автобус 30",
+     "note": "Квиток Ruter на 24 год для дорослих; діти до 6 — безкоштовно. На санну трасу — зранку, поки світло (≈ 9:30–15:00).",
+     "food": "Вафлі з брюнустом (коричневий сир) у кафе Frognerseteren на старті санної траси.",
+     "rainy": "Teknisk museum (сімейний квиток NOK 590) замість Вігеланда."
+    },
+    {
+     "title": "Потягом Осло → Стокгольм (≈ 6 год)",
+     "stops": [
+      "@baseOSL",
+      "~walk",
+      "@stationOSL",
+      "~train",
+      "@viaLillestrom",
+      "~train",
+      "@viaKongsvinger",
+      "~train",
+      "@viaCharlottenberg",
+      "~train",
+      "@viaArvika",
+      "~train",
+      "@viaKil",
+      "~train",
+      "@viaKarlstad",
+      "~train",
+      "@viaKristinehamn",
+      "~train",
+      "@viaHallsberg",
+      "~train",
+      "@viaKatrineholm",
+      "~train",
+      "@viaFlemingsberg",
+      "~train",
+      "@stationSTO",
+      "~walk",
+      "gamlastan",
+      "~walk",
+      "@baseSTO"
+     ],
+     "move": "🚆 SJ, ≈ 5 год 40 хв без пересадок",
+     "note": "Ранковий потяг ≈ 6:00–8:00 → Стокгольм по обіді (<i>розклад на січень 2027 потрібно перевірити на sj.se</i>). Візьміть місця біля дитячої зони/вагона-бістро. Увечері — Гамла Стан, 15 хв пішки від вокзалу.",
+     "food": "Бістро у вагоні SJ; у Стокгольмі — фрикадельки й кардамонові булочки в Гамла Стані.",
+     "rainy": "Залишитися в теплі вокзалу/готелю: Hotel C через дорогу від Stockholm C."
+    },
+    {
+     "title": "«Васа» або Юнібакен → нічний пором до Гельсінкі",
+     "stops": [
+      "@baseSTO",
+      "~bus",
+      "vasa",
+      "~walk",
+      "junibacken",
+      "~bus",
+      "@portSTO",
+      "~ferry",
+      "@viaF1",
+      "~ferry",
+      "@viaF2",
+      "~ferry",
+      "@viaF3",
+      "~ferry",
+      "@viaMariehamn",
+      "~ferry",
+      "@viaF4",
+      "~ferry",
+      "@viaF5",
+      "~ferry",
+      "@viaF6",
+      "~ferry",
+      "@viaF7",
+      "~ferry",
+      "@portHEL"
+     ],
+     "move": "⛴ Tallink Silja ≈ 16:45 → 10:30, 1 ніч у каюті",
+     "note": "Бронюйте сімейну каюту (Family / Moomin, 14 м², з вікном): діти до 5 — без окремого ліжка. Реєстрація на пором закінчується ≈ за 30 хв до відходу; від Djurgården до Värtahamnen — автобус 67/ таксі ≈ 15 хв.",
+     "food": "Шведський стіл на поромі (діти до 5 — безкоштовно, <i>потрібно перевірити</i>) або кафе з дитячим меню.",
+     "rainy": "Обидва музеї — під дахом."
+    },
+    {
+     "title": "Гельсінкі → нічний «Санта-Клаус Експрес»",
+     "stops": [
+      "@portHEL",
+      "~bus",
+      "oodi",
+      "~walk",
+      "@stationHEL",
+      "~train",
+      "@viaTikkurila",
+      "~train",
+      "@viaRiihimaki",
+      "~train",
+      "@viaTampere",
+      "~train",
+      "@viaSeinajoki",
+      "~train",
+      "@viaKokkola",
+      "~train",
+      "@viaOulu",
+      "~train",
+      "@viaKemi",
+      "~train",
+      "@viaTervola",
+      "~train",
+      "@stationROV"
+     ],
+     "move": "🚆 VR P265 19:29 → 07:20, дві з'єднані каюти",
+     "note": "Пором о 10:30 → трамвай 7 до центру. Речі — у камеру схову на вокзалі. Активним дітям — Heureka (10 хв приміським потягом до Тіккуріли) замість Оді. Посадка в нічний потяг ≈ за 30 хв.",
+     "food": "Вагон-ресторан VR: вечеря й сніданок, персонал підігріє дитяче харчування. Воду з крана в потязі не пити — візьміть пляшки.",
+     "rainy": "Оді — і є «дощовий» варіант: тепло, безкоштовно, з дитячим поверхом."
+    },
+    {
+     "title": "Рованіемі: село Санти, олені, хаскі й Snowman World",
+     "stops": [
+      "@stationROV",
+      "~walk",
+      "@baseROV",
+      "~bus",
+      "santavillage",
+      "~walk",
+      "santareindeer",
+      "~walk",
+      "santashusky",
+      "~walk",
+      "snowmanworld",
+      "~bus",
+      "@baseROV"
+     ],
+     "move": "🚌 автобус 8, ≈ 30 хв",
+     "note": "Потяг о 7:20 → речі в апартаменти (ранній заїзд узгодити або лишити багаж) → до Санти до 10:00, поки немає черги. Хаскі й олені — забронювати слоти заздалегідь. Останній автобус з села у будні ≈ 19:35, у вихідні ≈ 18:05.",
+     "food": "Ланч у селі Санти (Santa's Salmon Place — лосось на вогні) або сніданок в апартаментах.",
+     "rainy": "Мороз −25 °C: пошта Санти, офіс Санти й крамниці — під дахом, а Snowman World лишити на інший день."
+    },
+    {
+     "title": "Авто на день: зоопарк Рануа й пошук сяйва",
+     "stops": [
+      "@baseROV",
+      "ranua",
+      "@baseROV"
+     ],
+     "move": "🚗 прокат на 1 день",
+     "note": "Брати авто лише з досвідом зимового водіння: зимові шини обов'язкові, кабель підігріву двигуна — у багажнику, на дорогах олені. Увечері — 20–30 хв від міста на темну парковку й чекати сяйва за прогнозом.",
+     "food": "Ланч у ресторані зоопарку Рануа; термос з какао в машині.",
+     "rainy": "Якщо −30 °C — замість Рануа SantaPark або Arctic SnowHotel (26 км, теж на авто)."
+    },
+    {
+     "title": "Ферма Sieriporo, Арктикум і міст-свічка",
+     "stops": [
+      "@baseROV",
+      "~bus",
+      "sieriporo",
+      "~bus",
+      "@baseROV",
+      "~walk",
+      "arktikum",
+      "~walk",
+      "candlebridge",
+      "~walk",
+      "aurora",
+      "~walk",
+      "@baseROV"
+     ],
+     "move": "🚐 трансфер ферми · далі пішки",
+     "note": "Ферма — зранку з трансфером від готелю (від €89). Після обіду — Арктикум і Pilke, захід сонця на мосту. Табір сяйва — за бажанням (Вт, Чт, Сб).",
+     "food": "Суп з оленини біля вогнища на фермі.",
+     "rainy": "Pilke й Арктикум."
+    },
+    {
+     "title": "SantaPark → виліт з Рованіемі",
+     "stops": [
+      "@baseROV",
+      "~bus",
+      "santapark",
+      "~bus",
+      "@airportRVN"
+     ],
+     "move": "🚕 таксі ≈ €20–30",
+     "note": "SantaPark працює лише до 23 січня; пізніше — Унасваара (санки й снігова зона для малих). LOT RVN → WAW ≈ 16:40 (Чт, Нд — <i>потрібно перевірити</i>), бути в аеропорту за 2 год.",
+     "food": "Пряники в пекарні ельфів у SantaPark.",
+     "rainy": "SantaPark — під землею, ідеально в найсильніший мороз."
+    }
+   ]
+  }
+ },
+ "labels": {
+  "food": "🍽 Їжа:",
+  "rainy": "🥶 Якщо мороз нижче −25 °C:"
+ }
+}

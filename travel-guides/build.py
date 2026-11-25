@@ -42,6 +42,7 @@ GUIDES = [
     {"slug": "05-italy", "file": "05-italy.html", "group": "europe", "nav": "5. 🍝 Італія без Венеції: 14 днів"},
     {"slug": "06-portugal", "file": "06-portugal.html", "group": "europe", "nav": "6. 🇵🇹 Португалія: Лісабон і Алгарве, 7 днів"},
     {"slug": "07-north-france", "file": "07-north-france.html", "group": "europe", "nav": "7. 🇫🇷 Північ Франції: 7 днів"},
+    {"slug": "08-oslo-rovaniemi", "file": "08-oslo-rovaniemi.html", "group": "europe", "nav": "8. 🎅 Потягом з Осло до Санти: 7 днів"},
 ]
 
 

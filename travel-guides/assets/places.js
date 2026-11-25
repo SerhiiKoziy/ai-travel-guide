@@ -90,7 +90,7 @@
       '<p>' + p.short + '</p>' + moreBtn('place-' + key) + '</div></div>';
   }
   function pointIcon(id) {
-    var ico = id.indexOf('@airport') === 0 ? '✈️' : (id.indexOf('@port') === 0 ? '⛴' : '🛏');
+    var ico = id.indexOf('@airport') === 0 ? '✈️' : id.indexOf('@port') === 0 ? '⛴' : id.indexOf('@station') === 0 ? '🚉' : '🛏';
     return L.divIcon({ className: 'pin-wrap', html: '<span class="pin base">' + ico + '</span>', iconSize: [30, 30], iconAnchor: [15, 15] });
   }
   function hikeStartIcon(k) {
@@ -142,6 +142,7 @@
       ]);
     });
     Object.keys(DATA.points).forEach(function (id) {
+      if (id.indexOf('@via') === 0) return;  // shape points of a train line, no marker
       pointMarkers[id] = L.marker(DATA.points[id].ll, { icon: pointIcon(id), zIndexOffset: -100 })
         .bindPopup('<div class="pop-b"><b>' + DATA.points[id].name + '</b></div>');
     });
@@ -224,6 +225,14 @@
         L.polyline(seg, { color: d.color, weight: 3, opacity: dim ? 0.2 : 0.9, dashArray: '2 9', lineCap: 'round' })
           .bindTooltip(DATA.ferryLabel || '⛴ Пором', { sticky: true }).addTo(routeLayer);
       });
+      (d.transit || []).forEach(function (t) {
+        var dash = { train: '10 6', bus: '4 6', walk: '1 6', flight: '2 10', ferry: '2 9' }[t.mode] || '6 6';
+        L.polyline(t.line, { color: '#fff', weight: 7, opacity: dim ? 0.12 : 0.8, interactive: false }).addTo(routeLayer);
+        L.polyline(t.line, { color: d.color, weight: 4, opacity: dim ? 0.2 : 0.95, dashArray: dash, lineCap: 'butt' })
+          .bindTooltip('День ' + d.n + ' · ' + ((DATA.transitLabels || {})[t.mode] || t.mode), { sticky: true })
+          .on('click', function () { focusDay(state.focus === d.n ? 0 : d.n); })
+          .addTo(routeLayer);
+      });
     });
   }
 
@@ -252,7 +261,7 @@
       HIKE_KEYS.forEach(function (k) { if (hikeVisible(k)) pts.push(HIKES[k].start, HIKES[k].end); });
     } else if (state.focus) {
       var d = plan().days[state.focus - 1];
-      d.legs.concat(d.ferry).forEach(function (l) { pts = pts.concat(l); });
+      d.legs.concat(d.ferry, (d.transit || []).map(function (t) { return t.line; })).forEach(function (l) { pts = pts.concat(l); });
     } else {
       plan().order.forEach(function (k) { if (visible(k)) pts.push(DATA.places[k].ll); });
       if (state.mode === 'route') plan().days.forEach(function (d) { d.points.forEach(function (p) { pts.push(DATA.points[p].ll); }); });

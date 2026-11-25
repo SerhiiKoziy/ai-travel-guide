@@ -9,7 +9,8 @@ and writes simplified SVG paths:
   countries: [{"iso": "FRA", "d": "M..."}]          base map, clipped to the view
   guides:    {slug: {"d": "M...", "units": [...], "pin": [x, y]}}
 A guide's highlighted area = every admin-1 unit (province / department / district)
-that contains at least one point of its locations.json; the pin = mean of its points.
+that contains at least one point of its locations.json (only the main country, unless
+meta.json "home_map": {"all_countries": true}); the pin = mean of its points or home_map.pin.
 Re-run after adding a guide (it reads the GUIDES list from build.py).
 """
 import json
@@ -187,9 +188,13 @@ def main():
         for f, n in hits:
             by_cc[f["properties"]["adm0_a3"]] = by_cc.get(f["properties"]["adm0_a3"], 0) + n
         main_cc = max(by_cc, key=by_cc.get) if by_cc else ""
-        units = [f for f, _ in hits if f["properties"]["adm0_a3"] == main_cc]
+        # meta.json "home_map": {"all_countries": true, "pin": [lat, lng]} — for multi-country trips
+        hm = json.loads((locf.parent / "meta.json").read_text()).get("home_map", {})
+        units = [f for f, _ in hits if hm.get("all_countries") or f["properties"]["adm0_a3"] == main_cc]
         lat = sum(p[0] for p in pts) / len(pts)
         lng = sum(p[1] for p in pts) / len(pts)
+        if hm.get("pin"):
+            lat, lng = hm["pin"]
         guides[g["slug"]] = {
             "units": [u["properties"]["name"] for u in units],
             "country": units[0]["properties"]["adm0_a3"] if units else "",
