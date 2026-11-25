@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="no-referrer">
+<title>Travel Guides — карта подорожей</title>
+<meta name="description" content="Сімейні гайди для подорожей на авто: оберіть регіон на карті Європи.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@700;800&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2790%27%3E🧭%3C/text%3E%3C/svg%3E">
+<script>
+(function(){
+  try{ var t = localStorage.getItem('docs-theme'); if(t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t); }catch(e){}
+})();
+</script>
+<style>
+  :root{
+    --bg:#fbf7f0; --bg-soft:#f4ede2; --card:#ffffff; --border:#eadfcd;
+    --fg:#1d2b36; --fg-muted:#62707c; --accent:#0e7490; --accent-soft:#e0f2f5; --sun:#f2643d;
+    --sea:#d9ecf0; --sea-2:#c6e1e8; --land:#fbf7f0; --land-line:#dccfb8; --land-guide:#f6ead3;
+    --pin-ring:#ffffff; --shadow:0 1px 2px rgba(60,40,10,.06), 0 14px 32px -12px rgba(60,40,10,.28);
+    --radius:18px;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d1820; --bg-soft:#13222c; --card:#162733; --border:#253a48;
+      --fg:#e8eef2; --fg-muted:#9db0bd; --accent:#4fc3d6; --accent-soft:#12303a; --sun:#ff8a5c;
+      --sea:#0b1a24; --sea-2:#08141c; --land:#1b2c38; --land-line:#2f4555; --land-guide:#24394a;
+      --pin-ring:#0d1820; --shadow:0 1px 2px rgba(0,0,0,.3), 0 14px 32px -14px rgba(0,0,0,.7);
+      color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0d1820; --bg-soft:#13222c; --card:#162733; --border:#253a48;
+      --fg:#e8eef2; --fg-muted:#9db0bd; --accent:#4fc3d6; --accent-soft:#12303a; --sun:#ff8a5c;
+      --sea:#0b1a24; --sea-2:#08141c; --land:#1b2c38; --land-line:#2f4555; --land-guide:#24394a;
+      --pin-ring:#0d1820; --shadow:0 1px 2px rgba(0,0,0,.3), 0 14px 32px -14px rgba(0,0,0,.7);
+    color-scheme:dark;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--fg); line-height:1.55; font-size:16px;
+    font-family:Nunito,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}
+  a{color:inherit;}
+
+  header.top{position:sticky; top:0; z-index:30; border-bottom:1px solid var(--border);
+    background:color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter:blur(8px);}
+  .top-row{max-width:1320px; margin:0 auto; padding:12px 24px; display:flex; align-items:center; gap:14px;}
+  .brand{font-family:"Playfair Display",Georgia,serif; font-weight:800; font-size:17px; white-space:nowrap; text-decoration:none;}
+  .brand span{color:var(--sun); font-family:Caveat,cursive; font-size:19px; font-weight:700;}
+  .top-row .sp{flex:1;}
+  .top-link, .theme-toggle{font:inherit; font-size:13px; font-weight:700; color:var(--fg-muted); text-decoration:none;
+    padding:6px 12px; border-radius:999px; border:1px solid var(--border); background:var(--bg-soft); cursor:pointer; white-space:nowrap;}
+  .top-link:hover, .theme-toggle:hover{border-color:var(--accent); color:var(--fg);}
+
+  .intro{max-width:1320px; margin:0 auto; padding:34px 24px 10px;}
+  .intro .kicker{color:var(--sun); font-family:Caveat,cursive; font-weight:700; font-size:26px; line-height:1;}
+  .intro h1{font-family:"Playfair Display",Georgia,serif; font-size:clamp(30px,4.4vw,48px); line-height:1.1; margin:8px 0 10px; letter-spacing:-.01em;}
+  .intro p{color:var(--fg-muted); font-size:17px; max-width:760px; margin:0;}
+
+  .stage{max-width:1320px; margin:0 auto; padding:18px 24px 60px; display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:20px; align-items:start;}
+  @media (max-width:980px){ .stage{grid-template-columns:1fr;} }
+
+  .map-box{position:relative; border:1px solid var(--border); border-radius:var(--radius); overflow:hidden;
+    background:radial-gradient(ellipse at 40% 35%, var(--sea), var(--sea-2)); touch-action:none; user-select:none;}
+  .map-box svg{display:block; width:100%; height:auto; cursor:grab;}
+  .map-box.dragging svg{cursor:grabbing;}
+  .country{fill:var(--land); stroke:var(--land-line); stroke-width:.6; vector-effect:non-scaling-stroke; stroke-linejoin:round;}
+  .country.has-guide{fill:var(--land-guide);}
+  .guide{cursor:pointer; outline:none;}
+  .guide .area{fill:var(--c); fill-opacity:.55; stroke:var(--c); stroke-width:1.2; vector-effect:non-scaling-stroke; stroke-linejoin:round;
+    transition:fill-opacity .18s, stroke-width .18s, filter .18s;}
+  .guide .hit{fill:transparent;}
+  .guide .pin circle.dot{fill:var(--c); stroke:var(--pin-ring); stroke-width:2.2; vector-effect:non-scaling-stroke; transition:r .18s;}
+  .guide .pin circle.halo{fill:var(--c); opacity:0; transform-box:fill-box; transform-origin:center;}
+  .guide .pin text{fill:#fff; font-size:11px; font-weight:800; text-anchor:middle; dominant-baseline:central; pointer-events:none; font-family:Nunito,sans-serif;}
+  .guide.on .area{fill-opacity:.9; stroke-width:2.4; filter:drop-shadow(0 0 6px var(--c));}
+  .guide.on .pin circle.dot{r:13;}
+  .guide.on .pin circle.halo{animation:halo 1.4s ease-out infinite;}
+  @keyframes halo{from{opacity:.55; transform:scale(1);} to{opacity:0; transform:scale(2.6);}}
+  @media (prefers-reduced-motion: reduce){ .guide.on .pin circle.halo{animation:none;} }
+  .stage.has-on .guide:not(.on) .area{fill-opacity:.3;}
+
+  .zoom{position:absolute; right:12px; top:12px; display:flex; flex-direction:column; gap:6px; z-index:5;}
+  .zoom button{width:34px; height:34px; border-radius:10px; border:1px solid var(--border); background:var(--card); color:var(--fg);
+    font:inherit; font-size:18px; font-weight:800; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.08);}
+  .zoom button:hover{border-color:var(--accent);}
+  .hint{position:absolute; right:12px; bottom:10px; font-size:12px; color:var(--fg-muted); background:color-mix(in srgb, var(--card) 80%, transparent);
+    padding:4px 10px; border-radius:999px; pointer-events:none;}
+
+  .tip{position:absolute; z-index:10; width:270px; background:var(--card); border:1px solid var(--border); border-radius:var(--radius);
+    box-shadow:var(--shadow); overflow:hidden; pointer-events:none; opacity:0; transform:translateY(6px); transition:opacity .15s, transform .15s;}
+  .tip.show{opacity:1; transform:none; pointer-events:auto;}
+  .tip .ph{height:120px; background:var(--bg-soft) center/cover no-repeat; border-bottom:3px solid var(--c);}
+  .tip .bd{padding:10px 14px 12px;}
+  .tip .k{font-size:11.5px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--c);}
+  .tip h3{margin:3px 0 6px; font-size:16px; line-height:1.25;}
+  .tip .pills{display:flex; flex-wrap:wrap; gap:4px; margin-bottom:8px;}
+  .tip .pills span{font-size:11.5px; font-weight:700; padding:2px 8px; border-radius:999px; background:var(--bg-soft); border:1px solid var(--border); color:var(--fg-muted);}
+  .tip a.go{display:inline-block; font-size:13px; font-weight:800; color:#fff; background:var(--c); text-decoration:none; padding:6px 12px; border-radius:999px;}
+
+  .list{display:flex; flex-direction:column; gap:10px;}
+  .list h2{font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--fg-muted); margin:2px 0 2px;}
+  .card{--c:var(--accent); display:grid; grid-template-columns:64px 1fr; gap:12px; align-items:center; text-decoration:none;
+    background:var(--card); border:1px solid var(--border); border-left:4px solid var(--c); border-radius:12px; padding:8px 12px 8px 8px;
+    transition:transform .15s, box-shadow .15s, border-color .15s;}
+  .card .th{width:64px; height:64px; border-radius:9px; background:var(--bg-soft) center/cover no-repeat; position:relative;}
+  .card .th b{position:absolute; left:-6px; top:-6px; width:22px; height:22px; border-radius:50%; background:var(--c); color:#fff;
+    font-size:12px; display:grid; place-items:center; border:2px solid var(--card);}
+  .card .t{font-weight:800; font-size:14.5px; line-height:1.25;}
+  .card .s{font-size:12.5px; color:var(--fg-muted); line-height:1.35; margin-top:2px;}
+  .card:hover, .card.on, .card:focus-visible{transform:translateX(3px); box-shadow:0 6px 18px rgba(0,0,0,.1); border-color:var(--c); outline:none;}
+  .list .about{font-size:13.5px; color:var(--fg-muted); margin-top:6px;}
+  .list .about a{color:var(--accent); font-weight:700;}
+
+  footer{border-top:1px solid var(--border); color:var(--fg-muted); font-size:13px; text-align:center; padding:22px 24px;}
+  @media (max-width:600px){
+    .top-row{padding:10px 16px; gap:8px;} .brand span{display:none;}
+    .intro{padding:22px 16px 6px;} .stage{padding:12px 16px 40px;}
+    .tip{width:min(260px, calc(100% - 24px));} .tip .ph{height:60px;} .tip .pills span:nth-child(n+2){display:none;} .tip .bd{padding:8px 12px 10px;} .tip h3{font-size:14.5px; margin:2px 0 5px;}
+    .hint{display:none;} .hide-m{display:none;}
+  }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <a class="brand" href="./">🧭 Travel Guides <span>· сімейні подорожі на авто</span></a>
+    <span class="sp"></span>
+    <a class="top-link" href="travel-guides/index.html">Як влаштовані<span class="hide-m"> гайди</span></a>
+    <button type="button" class="theme-toggle" id="theme-toggle">🌙</button>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="kicker">{{COUNT}} · Європа</div>
+  <h1>Куди поїдемо цього разу?</h1>
+  <p>Наведіть на підсвічений регіон — побачите, що там на вас чекає. Клік відкриває гайд: маршрут на авто від аеропорту до аеропорту, житло до $160/ніч і місця, де буде цікаво і дорослим, і малюкам.</p>
+</section>
+
+<main class="stage" id="stage">
+  <div class="map-box" id="map-box">
+{{SVG}}
+    <div class="zoom">
+      <button type="button" data-z="in" aria-label="Наблизити">+</button>
+      <button type="button" data-z="out" aria-label="Віддалити">−</button>
+      <button type="button" data-z="reset" aria-label="Уся Європа / регіони гайдів" title="Уся Європа ⇄ регіони гайдів" style="font-size:15px">⟲</button>
+    </div>
+    <div class="hint">Колесо — масштаб · тягніть, щоб рухати карту</div>
+    <div class="tip" id="tip" role="tooltip"></div>
+  </div>
+  <aside class="list" aria-label="Усі гайди">
+    <h2>Усі гайди</h2>
+{{CARDS}}
+    <p class="about">Як ми обираємо місця, категорії на картах і стандарти маршрутів — <a href="travel-guides/index.html">у довідці</a>.</p>
+  </aside>
+</main>
+
+<footer>Travel Guides · гайди для подорожей на авто від аеропорту до аеропорту. Межі регіонів — Natural Earth.</footer>
+
+<script>
+var GUIDES = {{DATA}};
+(function(){
+  var stage = document.getElementById('stage'), box = document.getElementById('map-box'), tip = document.getElementById('tip');
+  var svg = box.querySelector('svg'), vp = svg.querySelector('#vp');
+  var W = +svg.dataset.w, H = +svg.dataset.h;
+  var groups = {}, cards = {};
+  svg.querySelectorAll('.guide').forEach(function(g){ groups[g.dataset.slug] = g; });
+  document.querySelectorAll('.card').forEach(function(c){ cards[c.dataset.slug] = c; });
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+  /* ---------- view: zoom & pan via viewBox ---------- */
+  var MIN_W = W / 14;
+  function homeView(){  // fit every guide area (+ padding), keeping the map's aspect ratio
+    var bb = svg.querySelector('.guides').getBBox(), pad = 0.08;
+    var w = Math.max(bb.width * (1 + 2 * pad), bb.height * (1 + 2 * pad) * W / H, W * 0.42);
+    var v = {w:Math.min(W, w)}; v.h = v.w * H / W;
+    v.x = Math.min(W - v.w, Math.max(0, bb.x + bb.width / 2 - v.w / 2));
+    v.y = Math.min(H - v.h, Math.max(0, bb.y + bb.height / 2 - v.h / 2));
+    return v;
+  }
+  var view = homeView();
+  function apply(){
+    svg.setAttribute('viewBox', view.x + ' ' + view.y + ' ' + view.w + ' ' + view.h);
+    var k = view.w / W;  // keep pins the same size on screen
+    svg.querySelectorAll('.pin').forEach(function(p){
+      p.setAttribute('transform', 'translate(' + p.dataset.x + ' ' + p.dataset.y + ') scale(' + k + ')');
+    });
+    hideTip();
+  }
+  function clamp(){
+    view.w = Math.min(W, Math.max(MIN_W, view.w)); view.h = view.w * H / W;
+    view.x = Math.min(W - view.w, Math.max(0, view.x)); view.y = Math.min(H - view.h, Math.max(0, view.y));
+  }
+  function zoomAt(f, cx, cy){  // cx, cy in svg units
+    var nw = Math.min(W, Math.max(MIN_W, view.w * f)), r = nw / view.w;
+    view.x = cx - (cx - view.x) * r; view.y = cy - (cy - view.y) * r; view.w = nw; clamp(); apply();
+  }
+  function toSvg(clientX, clientY){
+    var b = svg.getBoundingClientRect();
+    return [view.x + (clientX - b.left) / b.width * view.w, view.y + (clientY - b.top) / b.height * view.h];
+  }
+  box.querySelectorAll('.zoom button').forEach(function(b){
+    b.addEventListener('click', function(){
+      if(b.dataset.z === 'reset'){ view = view.w >= W * 0.99 ? homeView() : {x:0, y:0, w:W, h:H}; apply(); return; }
+      zoomAt(b.dataset.z === 'in' ? 0.6 : 1 / 0.6, view.x + view.w / 2, view.y + view.h / 2);
+    });
+  });
+  svg.addEventListener('wheel', function(e){
+    e.preventDefault();
+    var p = toSvg(e.clientX, e.clientY);
+    zoomAt(Math.exp(e.deltaY * 0.0022), p[0], p[1]);
+  }, {passive:false});
+
+  var ptrs = {}, drag = null, moved = false;
+  svg.addEventListener('pointerdown', function(e){
+    ptrs[e.pointerId] = [e.clientX, e.clientY]; moved = false;
+    drag = {x:e.clientX, y:e.clientY, vx:view.x, vy:view.y, dist:pinchDist()};
+  });
+  function pinchDist(){
+    var k = Object.keys(ptrs); if(k.length < 2) return 0;
+    var a = ptrs[k[0]], b = ptrs[k[1]]; return Math.hypot(a[0] - b[0], a[1] - b[1]);
+  }
+  window.addEventListener('pointermove', function(e){
+    if(!drag || !ptrs[e.pointerId]) return;
+    ptrs[e.pointerId] = [e.clientX, e.clientY];
+    var b = svg.getBoundingClientRect();
+    if(Object.keys(ptrs).length >= 2){
+      var d = pinchDist(); if(drag.dist && d){
+        var k = Object.keys(ptrs), mx = (ptrs[k[0]][0] + ptrs[k[1]][0]) / 2, my = (ptrs[k[0]][1] + ptrs[k[1]][1]) / 2, p = toSvg(mx, my);
+        zoomAt(drag.dist / d, p[0], p[1]); drag.dist = d; moved = true;
+      }
+      return;
+    }
+    var dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+    if(!moved && Math.hypot(dx, dy) < 5) return;
+    if(!moved){ moved = true; box.classList.add('dragging'); try{ svg.setPointerCapture(e.pointerId); }catch(_){} }
+    view.x = drag.vx - dx / b.width * view.w; view.y = drag.vy - dy / b.height * view.h; clamp(); apply();
+  });
+  function up(e){
+    delete ptrs[e.pointerId];
+    if(!Object.keys(ptrs).length){ drag = null; box.classList.remove('dragging'); }
+    else drag = {x:e.clientX, y:e.clientY, vx:view.x, vy:view.y, dist:pinchDist()};
+  }
+  window.addEventListener('pointerup', up); window.addEventListener('pointercancel', up);
+
+  /* ---------- highlight + tooltip ---------- */
+  var active = null, touchArmed = null;
+  function setOn(slug, on){
+    if(groups[slug]) groups[slug].classList.toggle('on', on);
+    if(cards[slug]) cards[slug].classList.toggle('on', on);
+  }
+  function activate(slug, fromMap){
+    if(active && active !== slug) setOn(active, false);
+    active = slug; setOn(slug, true); stage.classList.add('has-on');
+    var g = groups[slug]; if(g) g.parentNode.appendChild(g);  // raise above neighbours
+    showTip(slug);
+  }
+  function deactivate(slug){
+    if(active !== slug) return;
+    setOn(slug, false); active = null; stage.classList.remove('has-on'); hideTip();
+  }
+  function showTip(slug){
+    var d = GUIDES[slug]; if(!d) return;
+    tip.style.setProperty('--c', d.color);
+    tip.innerHTML = '<div class="ph" style="background-image:url(\'' + esc(d.thumb) + '\')"></div><div class="bd">' +
+      '<div class="k">' + esc(d.kicker) + '</div><h3>' + esc(d.title) + '</h3>' +
+      '<div class="pills">' + d.pills.map(function(p){ return '<span>' + esc(p) + '</span>'; }).join('') + '</div>' +
+      '<a class="go" href="' + esc(d.href) + '">Відкрити гайд →</a></div>';
+    // place next to the pin, inside the map box
+    var pin = groups[slug].querySelector('.pin'), pb = pin.getBoundingClientRect(), bb = box.getBoundingClientRect();
+    var tw = tip.offsetWidth || 270, th = tip.offsetHeight || 260;
+    var x = pb.left - bb.left + pb.width / 2 + 18, y = pb.top - bb.top + pb.height / 2 - th / 2;
+    if(x + tw > bb.width - 8) x = pb.left - bb.left + pb.width / 2 - tw - 18;
+    if(x < 8) x = Math.max(8, (bb.width - tw) / 2);
+    y = Math.min(bb.height - th - 8, Math.max(8, y));
+    if(th > bb.height - 16) y = 8;
+    tip.style.left = x + 'px'; tip.style.top = y + 'px'; tip.classList.add('show');
+  }
+  function hideTip(){ tip.classList.remove('show'); }
+  var hideTimer = null;
+  function soon(slug){ clearTimeout(hideTimer); hideTimer = setTimeout(function(){ deactivate(slug); }, 220); }
+  tip.addEventListener('pointerenter', function(){ clearTimeout(hideTimer); });
+  tip.addEventListener('pointerleave', function(){ if(active) soon(active); });
+
+  Object.keys(groups).forEach(function(slug){
+    var g = groups[slug];
+    g.addEventListener('pointerenter', function(e){ if(e.pointerType !== 'touch' && !drag){ clearTimeout(hideTimer); activate(slug, true); } });
+    g.addEventListener('pointerleave', function(e){ if(e.pointerType !== 'touch') soon(slug); });
+    g.addEventListener('focus', function(){ activate(slug, true); });
+    g.addEventListener('blur', function(){ soon(slug); });
+    g.addEventListener('click', function(e){
+      if(moved){ e.preventDefault(); return; }
+      // touch: first tap shows the card, second tap opens the guide
+      if(touchArmed !== slug && matchMedia('(hover: none)').matches){ e.preventDefault(); touchArmed = slug; activate(slug, true); }
+    });
+  });
+  Object.keys(cards).forEach(function(slug){
+    var c = cards[slug];
+    c.addEventListener('pointerenter', function(){ clearTimeout(hideTimer); activate(slug, false); });
+    c.addEventListener('pointerleave', function(){ soon(slug); });
+    c.addEventListener('focus', function(){ activate(slug, false); });
+    c.addEventListener('blur', function(){ soon(slug); });
+  });
+  document.addEventListener('pointerdown', function(e){
+    if(!e.target.closest('.guide, .tip, .card') && active){ touchArmed = null; deactivate(active); }
+  });
+  apply();
+})();
+
+(function(){
+  var root = document.documentElement, btn = document.getElementById('theme-toggle');
+  var mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+  function current(){ var t = root.getAttribute('data-theme'); return t === 'light' || t === 'dark' ? t : (mq && mq.matches ? 'dark' : 'light'); }
+  function render(){ var dark = current() === 'dark'; btn.textContent = dark ? '☀️' : '🌙'; btn.setAttribute('aria-label', dark ? 'Увімкнути світлу тему' : 'Увімкнути темну тему'); }
+  btn.addEventListener('click', function(){ var next = current() === 'dark' ? 'light' : 'dark'; root.setAttribute('data-theme', next); try{ localStorage.setItem('docs-theme', next); }catch(e){} render(); });
+  if(mq && mq.addEventListener) mq.addEventListener('change', render);
+  render();
+})();
+</script>
+</body>
+</html>

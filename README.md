@@ -17,6 +17,10 @@ travel-guides/
   index.html, 01-madeira.html   # GENERATED — edit _src and rebuild
 ```
 
+Home page (repo-root `index.html`, also GENERATED): interactive Europe map from `_src/home/home.html` + `_src/home/map.json`;
+the guide's highlighted provinces = admin-1 units that contain its locations. After adding a guide run
+`python3 travel-guides/_tools/europe_map.py` (downloads Natural Earth into `_tools/.cache/` once), then build.
+
 Add a country: register it in `GUIDES` in `build.py`, create `_src/<slug>/`, run `python3 travel-guides/build.py`.
 New guide locations: write locations.json + gallery_sources.json, then
 `python3 travel-guides/_tools/geocode.py travel-guides/_src/<slug>` and

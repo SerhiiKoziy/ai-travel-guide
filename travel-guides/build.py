@@ -317,11 +317,64 @@ def bust_assets(page: str) -> str:
     return re.sub(r'(assets/[\w.-]+\.(?:js|css))"', ver, page)
 
 
+# One colour per guide on the home map (cycled), readable on light and dark land.
+HOME_COLORS = ["#2f9e44", "#e8590c", "#1c7ed6", "#7048e8", "#d6336c", "#0c8599", "#f08c00", "#c2255c", "#5c940d"]
+
+
+def build_home() -> str:
+    """Repo-root index.html: interactive Europe map (_src/home/map.json from _tools/europe_map.py)
+    where each guide's provinces light up on hover and open the guide on click."""
+    tpl = (SRC / "home" / "home.html").read_text()
+    geo = json.loads((SRC / "home" / "map.json").read_text())
+    guides = [g for g in GUIDES if g["slug"] in geo["guides"]]
+    data, cards, layers = {}, [], []
+    countries_with = {geo["guides"][g["slug"]]["country"] for g in guides}
+    for i, g in enumerate(guides):
+        meta = json.loads((SRC / g["slug"] / "meta.json").read_text())
+        gm, color, num = geo["guides"][g["slug"]], HOME_COLORS[i % len(HOME_COLORS)], i + 1
+        title = re.sub(r"^\d+\.\s*", "", g["nav"])
+        sub = re.sub(r"^Гайд #\d+\s*·\s*", "", meta.get("kicker", ""))
+        hero = meta.get("hero", "")
+        thumb = hero.replace("/1280px-", "/500px-")
+        pills = meta.get("pills", [])
+        pick = pills[:2] + [p for p in pills[2:] if p[:1] in "🌤❄"][:1]
+        href = "travel-guides/" + g["file"]
+        data[g["slug"]] = {"title": title, "kicker": sub.split("·")[0].strip(), "thumb": thumb,
+                           "pills": pick, "href": href, "color": color}
+        x, y = gm["pin"]
+        layers.append(
+            f'<a class="guide" href="{href}" data-slug="{g["slug"]}" style="--c:{color}" aria-label="{html.escape(title)}">'
+            f'<path class="area" d="{gm["d"]}" fill-rule="evenodd"/>'
+            f'<g class="pin" data-x="{x}" data-y="{y}" transform="translate({x} {y})">'
+            f'<circle class="hit" r="20" fill="transparent"/><circle class="halo" r="11"/><circle class="dot" r="10"/>'
+            f'<text>{num}</text></g></a>')
+        cards.append(
+            f'    <a class="card" href="{href}" data-slug="{g["slug"]}" style="--c:{color}">'
+            f'<span class="th" style="background-image:url(\'{html.escape(hero.replace("/1280px-", "/330px-"))}\')"><b>{num}</b></span>'
+            f'<span><span class="t">{html.escape(title)}</span><span class="s" style="display:block">{html.escape(sub)}</span></span></a>')
+    countries = "".join(
+        f'<path class="country{" has-guide" if c["iso"] in countries_with else ""}" d="{c["d"]}"><title>{html.escape(c["name"])}</title></path>'
+        for c in geo["countries"])
+    w, h = int(geo["w"]), int(geo["h"])
+    svg = (f'<svg viewBox="0 0 {w} {h}" data-w="{w}" data-h="{h}" role="img" aria-label="Карта Європи з регіонами гайдів">'
+           f'<g id="vp"><g class="countries">{countries}</g><g class="guides">{"".join(layers)}</g></g></svg>')
+    n = len(guides)
+    count = f"{n} " + ("гайд" if n % 10 == 1 and n % 100 != 11 else "гайди" if 2 <= n % 10 <= 4 and not 12 <= n % 100 <= 14 else "гайдів")
+    out = tpl
+    for key, val in {"SVG": svg, "CARDS": "\n".join(cards), "COUNT": count,
+                     "DATA": json.dumps(data, ensure_ascii=False)}.items():
+        out = out.replace("{{" + key + "}}", val)
+    assert not re.search(r"\{\{[A-Z_]+\}\}", out), "home: unexpanded placeholders"
+    return out
+
+
 def main():
     template = (ROOT / "_template.html").read_text()
     for g in GUIDES:
         (ROOT / g["file"]).write_text(bust_assets(build_page(g, template)))
         print("built", g["file"])
+    (ROOT.parent / "index.html").write_text(build_home())
+    print("built ../index.html (home map)")
 
 
 if __name__ == "__main__":
