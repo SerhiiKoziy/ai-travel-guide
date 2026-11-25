@@ -1,0 +1,316 @@
+{
+ "_doc": "Order/selection of gallery.json photos by index (first = card thumbnail), picked from a contact sheet. Dropped: car park at Chantilly, maps and timetables of the Somme railway, duplicate gulls at Le Hourdel, a dark frame in Nausicaá, info boards at the capes and Pointe du Grouin, a map and a sign in the Pays d'Auge, a plaque and ceremony crowds at Omaha, a price board at Chenonceau.",
+ "chantilly": {
+  "order": [
+   7,
+   4,
+   3,
+   1,
+   0,
+   2,
+   6
+  ]
+ },
+ "crotoy": {
+  "order": [
+   2,
+   1,
+   4,
+   0,
+   3,
+   5
+  ]
+ },
+ "hourdel": {
+  "order": [
+   3,
+   4,
+   2,
+   0,
+   1,
+   5,
+   7
+  ]
+ },
+ "marquenterre": {
+  "order": [
+   0,
+   3,
+   5,
+   4,
+   6,
+   1,
+   7,
+   2
+  ]
+ },
+ "stvalery": {
+  "order": [
+   3,
+   4,
+   7,
+   5,
+   6
+  ]
+ },
+ "nausicaa": {
+  "order": [
+   0,
+   7,
+   1,
+   3,
+   4,
+   5,
+   2
+  ]
+ },
+ "blancnez": {
+  "order": [
+   2,
+   1,
+   7,
+   0,
+   4,
+   3,
+   5
+  ]
+ },
+ "grisnez": {
+  "order": [
+   3,
+   2,
+   1,
+   0,
+   4,
+   5
+  ]
+ },
+ "etretat": {
+  "order": [
+   4,
+   2,
+   1,
+   7,
+   3,
+   0,
+   5,
+   6
+  ]
+ },
+ "honfleur": {
+  "order": [
+   5,
+   1,
+   4,
+   3,
+   2,
+   6,
+   7,
+   0
+  ]
+ },
+ "paysdauge": {
+  "order": [
+   4,
+   1,
+   0,
+   2,
+   7,
+   5
+  ]
+ },
+ "giverny": {
+  "order": [
+   3,
+   6,
+   0,
+   4,
+   5,
+   7,
+   1,
+   2
+  ]
+ },
+ "gaillard": {
+  "order": [
+   5,
+   3,
+   2,
+   1,
+   4,
+   7,
+   6,
+   0
+  ]
+ },
+ "arromanches": {
+  "order": [
+   1,
+   3,
+   2,
+   0,
+   6,
+   4,
+   5,
+   7
+  ]
+ },
+ "omaha": {
+  "order": [
+   5,
+   3,
+   2,
+   4,
+   7
+  ]
+ },
+ "falaise": {
+  "order": [
+   0,
+   1,
+   5,
+   4,
+   7,
+   6,
+   3
+  ]
+ },
+ "cancale": {
+  "order": [
+   6,
+   4,
+   2,
+   3,
+   0,
+   7,
+   5,
+   1
+  ]
+ },
+ "stmalo": {
+  "order": [
+   4,
+   2,
+   3,
+   1,
+   7,
+   0,
+   6,
+   5
+  ]
+ },
+ "chambord": {
+  "order": [
+   0,
+   4,
+   6,
+   1,
+   3,
+   5,
+   7,
+   2
+  ]
+ },
+ "closluce": {
+  "order": [
+   1,
+   0,
+   5,
+   2,
+   6,
+   7,
+   3
+  ]
+ },
+ "chenonceau": {
+  "order": [
+   7,
+   6,
+   4,
+   2,
+   3,
+   5,
+   1
+  ]
+ },
+ "hike-aval": {
+  "order": [
+   3,
+   4,
+   1,
+   5,
+   2,
+   7,
+   6,
+   0
+  ]
+ },
+ "hike-blancnez": {
+  "order": [
+   3,
+   1,
+   2,
+   0,
+   4,
+   7,
+   5
+  ]
+ },
+ "hike-hourdel": {
+  "order": [
+   3,
+   4,
+   0,
+   2,
+   1,
+   5
+  ]
+ },
+ "hike-grouin": {
+  "order": [
+   0,
+   2,
+   5,
+   4,
+   6,
+   1,
+   3
+  ]
+ },
+ "hike-remparts": {
+  "order": [
+   0,
+   2,
+   3,
+   1,
+   4,
+   6,
+   7,
+   5
+  ]
+ },
+ "pierrefonds": {
+  "order": [
+   6,
+   0,
+   2,
+   4,
+   5,
+   3,
+   7,
+   1
+  ]
+ },
+ "msm": {
+  "order": [
+   3,
+   0,
+   1,
+   6,
+   4,
+   2,
+   7,
+   5
+  ]
+ }
+}

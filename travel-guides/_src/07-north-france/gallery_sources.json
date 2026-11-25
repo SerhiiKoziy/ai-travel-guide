@@ -1,7 +1,7 @@
 {
  "pierrefonds": [
-  "Château de Pierrefonds",
-  "Salle des Preuses of the Château de Pierrefonds"
+  "Exterior of the Château de Pierrefonds",
+  "Courtyard of the Château de Pierrefonds"
  ],
  "chantilly": [
   "Château de Chantilly",
@@ -48,9 +48,10 @@
   "Église Sainte-Catherine d'Honfleur"
  ],
  "paysdauge": [
-  "Route du cidre",
-  "Cider in Normandy",
-  "Calvados (brandy)"
+  "Calvados (spirit)",
+  "Horse-driven cider mills in France",
+  "Manoir de Cantepie (Cambremer)",
+  "Cambremer"
  ],
  "giverny": [
   "Water-lily pond (Giverny)",
@@ -72,9 +73,10 @@
   "Château de Falaise"
  ],
  "msm": [
-  "Mont Saint-Michel",
+  "Mont Saint-Michel at night",
   "Bay of Mont-Saint-Michel",
-  "Ramparts of Mont Saint-Michel"
+  "Abbey of Mont Saint-Michel",
+  "Views from Mont Saint-Michel"
  ],
  "cancale": [
   "Cancale",
