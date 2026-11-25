@@ -62,7 +62,7 @@
   });
 
   /* ---------- map ---------- */
-  var map, markers = {}, pointMarkers = {}, hikeStart = {}, hikeEnd = {}, routeLayer, trailLayer;
+  var map, markers = {}, pointMarkers = {}, hikeStart = {}, hikeEnd = {}, routeLayer, trailLayer, shotLayer, shotMarkers = {};
   var TILE = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}';
   var ATTR = 'Tiles &copy; <a href="https://www.esri.com">Esri</a> — Esri, HERE, Garmin, &copy; OpenStreetMap contributors';
 
@@ -128,6 +128,18 @@
     Object.keys(DATA.places).forEach(function (key) {
       markers[key] = L.marker(DATA.places[key].ll, { riseOnHover: true }).bindPopup('', { maxWidth: 260, minWidth: 220 });
       markers[key].on('popupopen', function (e) { e.popup.setContent(popupHtml(key)); });
+    });
+    // photo spots: a camera pin where the photographer stands + a dashed line to the place (only in the "photo" filter)
+    shotLayer = L.layerGroup().addTo(map);
+    Object.keys(DATA.places).forEach(function (key) {
+      var sh = DATA.places[key].shot;
+      if (!sh) return;
+      shotMarkers[key] = L.layerGroup([
+        L.polyline([sh.ll, DATA.places[key].ll], { color: '#e64980', weight: 2, dashArray: '4 5', opacity: .8, interactive: false }),
+        L.marker(sh.ll, { icon: L.divIcon({ className: 'pin-wrap', html: '<span class="pin shot-pin"><svg width="15" height="15"><use href="#ic-photo"/></svg></span>', iconSize: [26, 26], iconAnchor: [13, 13] }), zIndexOffset: 200 })
+          .bindPopup('<div class="pop-b"><b>📸 ' + DATA.places[key].name + '</b><br>' + sh.where +
+            '<br><a href="https://www.google.com/maps/search/?api=1&query=' + sh.ll[0] + ',' + sh.ll[1] + '" target="_blank" rel="noopener">Точка в Google Maps</a></div>', { maxWidth: 260 })
+      ]);
     });
     Object.keys(DATA.points).forEach(function (id) {
       pointMarkers[id] = L.marker(DATA.points[id].ll, { icon: pointIcon(id), zIndexOffset: -100 })
@@ -260,6 +272,10 @@
       var on = visible(k) && (!state.focus || dayOf(k) === state.focus);
       if (on) { markers[k].setIcon(pinIcon(k)); if (!map.hasLayer(markers[k])) markers[k].addTo(map); }
       else if (map.hasLayer(markers[k])) map.removeLayer(markers[k]);
+    });
+    shotLayer.clearLayers();
+    if (state.cat === 'photo') Object.keys(shotMarkers).forEach(function (k) {
+      if (map.hasLayer(markers[k])) shotLayer.addLayer(shotMarkers[k]);
     });
     Object.keys(pointMarkers).forEach(function (id) {
       var on = !!used[id] && (state.mode === 'route' || id.indexOf('@airport') === 0 || id.indexOf('@base') === 0);

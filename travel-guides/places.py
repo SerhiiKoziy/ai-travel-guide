@@ -15,6 +15,7 @@ CATS = {
     "view":      ("Красивий вид", "#0e7490"),
     "adventure": ("Цікава пригода", "#e8590c"),
     "food":      ("Гастрономія", "#c2255c"),
+    "photo":     ("Інста-місце", "#e64980"),
     "drone":     ("Для зйомки дроном", "#7048e8"),
     "hike":      ("Hiking", "#8a5a2b"),
 }
@@ -27,6 +28,7 @@ ICON_SPRITE = """<svg width="0" height="0" style="position:absolute" aria-hidden
  <symbol id="ic-view" viewBox="0 0 24 24"><circle cx="17" cy="6.5" r="2.3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 19.5 9 9.5l3.6 5.4 2.2-3 6.7 7.6z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m7.4 12 1.6 1.4 1.5-1.2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
  <symbol id="ic-adventure" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m15.8 8.2-2.2 5.4-5.4 2.2 2.2-5.4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="12" r="1" fill="currentColor"/></symbol>
  <symbol id="ic-food" viewBox="0 0 24 24"><path d="M6 3v6.5a2 2 0 0 0 2 2h0a2 2 0 0 0 2-2V3M8 3v18M17.5 21V3c-2.3 1.2-3.5 3.6-3.5 6.8V13h3.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+ <symbol id="ic-photo" viewBox="0 0 24 24"><path d="M3.5 8.5A1.5 1.5 0 0 1 5 7h2.6l1.6-2.5h5.6L16.4 7H19a1.5 1.5 0 0 1 1.5 1.5v9.5A1.5 1.5 0 0 1 19 19.5H5A1.5 1.5 0 0 1 3.5 18z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="13" r="3.4" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
  <symbol id="ic-hike" viewBox="0 0 24 24"><path d="M7 3.5h5l.6 6.2 4.9 2.4c1.6.8 2.5 2 2.5 3.6V18H4.5l1-6.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M4.5 18v2.5H20V18M12.6 9.7l-2 1.3M14.6 10.7l-1.8 1.4M4.6 14h6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
  <symbol id="ic-drone" viewBox="0 0 24 24"><rect x="9" y="9.5" width="6" height="5" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M9 10 6.2 7.2M15 10l2.8-2.8M9 14l-2.8 2.8M15 14l2.8 2.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><ellipse cx="5.5" cy="6.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="18.5" cy="6.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="5.5" cy="17.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><ellipse cx="18.5" cy="17.5" rx="3" ry="1.1" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="16.6" r=".9" fill="currentColor"/></symbol>
 </svg>"""
@@ -312,6 +314,25 @@ def render_hikes(hikes: list, gallery: dict, locs: dict) -> str:
 </div>"""
 
 
+def shot_link(loc: dict) -> str:
+    sh = loc.get("shot")
+    if not sh:
+        return ""
+    return f'<a class="gm shot" href="{html.escape(ll_link(sh["ll"]))}" target="_blank" rel="noopener">📸 Точка для фото</a>'
+
+
+def shot_block(loc: dict) -> str:
+    sh = loc.get("shot")
+    if not sh:
+        return ""
+    rows = [f'<p><b>Звідки:</b> {sh["where"]}</p>']
+    if sh.get("time"):
+        rows.append(f'<p><b>Коли:</b> {sh["time"]}</p>')
+    if sh.get("tip"):
+        rows.append(f'<p><b>Порада:</b> {sh["tip"]}</p>')
+    return f'<div class="shot-box"><h4>📸 Інста-кадр</h4>{"".join(rows)}<p>{shot_link(loc)}</p></div>'
+
+
 def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
                   hikes: list = None, trails: dict = None) -> str:
     locs = {l["key"]: l for l in locs_list}
@@ -348,7 +369,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
       <div class="place-meta">
         <span class="day-chip" style="--dc:{color}">{f'День {day}' if day else ''}</span>
         <span class="kid {kid_cls}">{kid_txt}</span>
-        <a class="gm" href="{html.escape(gm_link(loc['q']))}" target="_blank" rel="noopener">📍 Google Maps</a>
+        <a class="gm" href="{html.escape(gm_link(loc['q']))}" target="_blank" rel="noopener">📍 Google Maps</a>{shot_link(loc)}
       </div>
     </div>
   </div>
@@ -358,6 +379,7 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
       {slider(key, photos)}
       <div class="place-text">
         <h4>🧭 Що робити</h4>{loc['full']}
+        {shot_block(loc)}
         <h4>📜 Історія</h4>{loc['history']}
       </div>
     </div>
@@ -375,7 +397,8 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
 
     data = {
         "places": {k: {"name": l["name"], "label": short_label(l), "ll": l["ll"], "cats": l["cats"],
-                       "short": l["short"], "thumb": wm_size((gallery.get(k) or [{"url": ""}])[0]["url"], 500)}
+                       "short": l["short"], "thumb": wm_size((gallery.get(k) or [{"url": ""}])[0]["url"], 500),
+                       **({"shot": {"ll": l["shot"]["ll"], "where": l["shot"]["where"]}} if l.get("shot") else {})}
                    for k, l in locs.items()},
         "points": plans["points"],
         "plans": {pid: {"order": p["order"], "dayOf": p["dayOf"],

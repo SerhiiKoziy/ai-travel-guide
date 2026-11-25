@@ -45,6 +45,21 @@ GUIDES = [
 ]
 
 
+def load_locations(d: Path) -> list:
+    """locations.json + optional photo_spots.json {key: {where, ll, time, tip}}:
+    a place with a known photo spot gets the "photo" category and a "shot" block."""
+    locs = json.loads((d / "locations.json").read_text())
+    sp = d / "photo_spots.json"
+    spots = json.loads(sp.read_text()) if sp.exists() else {}
+    for loc in locs:
+        shot = spots.get(loc["key"])
+        if shot:
+            loc["shot"] = shot
+            if "photo" not in loc["cats"]:
+                loc["cats"] = loc["cats"] + ["photo"]
+    return locs
+
+
 def render_nav(active_file: str) -> str:
     active_group = next(g["group"] for g in GUIDES if g["file"] == active_file)
     used = [g for g in GROUPS if any(p["group"] == g[1] for p in GUIDES)]
@@ -255,7 +270,7 @@ def build_page(guide: dict, template: str) -> str:
         routes = json.loads((d / "routes.json").read_text()) if (d / "routes.json").exists() else {}
         if "{{DAYS_PLANS}}" in content:
             plans = json.loads((d / "plans.json").read_text())
-            lmap = {l["key"]: l for l in json.loads((d / "locations.json").read_text())}
+            lmap = {l["key"]: l for l in load_locations(d)}
             model = places.plan_model(plans, routes, lmap)
             content = content.replace("{{DAYS_SWITCH}}", places.render_days_switch(model, plans["default"]))
             # a plan written by hand in content.html (<div class="days-plan" data-plan="7">) is not generated
@@ -264,7 +279,7 @@ def build_page(guide: dict, template: str) -> str:
                 model, lmap, gallery, plans["points"], plans["default"], skip=set(manual),
                 labels=plans.get("labels")))
         content = content.replace("{{PLACES}}", places.render_places(
-            json.loads((d / "locations.json").read_text()), gallery,
+            load_locations(d), gallery,
             json.loads((d / "plans.json").read_text()), routes,
             json.loads((d / "hikes.json").read_text()) if (d / "hikes.json").exists() else None,
             json.loads((d / "trails.json").read_text()) if (d / "trails.json").exists() else None))

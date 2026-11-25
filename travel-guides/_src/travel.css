@@ -271,6 +271,11 @@
     padding:3px 10px; border-radius:999px;
   }
   .place-meta a.gm{margin:0;}
+  a.gm.shot{border-color:#e6498055; background:#e6498014; color:#c2255c;}
+  .shot-box{margin:14px 0; padding:10px 14px 4px; border-left:3px solid #e64980; background:#e6498010; border-radius:0 10px 10px 0;}
+  .shot-box h4{margin-top:0;}
+  .pin.shot-pin{transform:none; background:#e64980; color:#fff; width:26px; height:26px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,.35);}
+  .shot-box p{margin:0 0 8px;}
   @media (max-width:640px){
     .place-top{grid-template-columns:1fr;}
     .place-thumb{height:170px;}
