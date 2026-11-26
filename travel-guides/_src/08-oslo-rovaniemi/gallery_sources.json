@@ -1,13 +1,20 @@
 {
+ "_winter": true,
  "opera": [
+  "Snow in Oslo|Opera|Operahus",
+  "Winter in Oslo|Opera|Operahus",
   "Oslo Opera house rooftop",
   "Oslo Opera house"
  ],
  "akershus": [
+  "Snow in Oslo|Akershus",
+  "Winter in Oslo|Akershus",
   "Akershus Fortress",
   "Akershus slott (castle)"
  ],
  "holmenkollen": [
+  "Snow in Oslo|Holmenkol|Korketrekker|Frognerseter",
+  "Winter in Oslo|Holmenkol|Korketrekker|Frognerseter",
   "Holmenkollbakken",
   "Korketrekkeren, Oslo (bobsleigh track)",
   "Skimuseet"
@@ -17,29 +24,36 @@
   "Fram museum"
  ],
  "vigeland": [
+  "Snow in Oslo|Vigeland",
+  "Winter in Oslo|Vigeland",
   "Vigelandsanlegget",
   "Sinnataggen"
  ],
  "gamlastan": [
+  "Snow in Stockholm|Gamla|Old Town|Riddarholm|Stortorget|Slottsbacken|Skeppsbron",
+  "Winter in Stockholm|Gamla|Old Town|Riddarholm|Stortorget|Slottsbacken|Skeppsbron",
   "Gamla stan"
  ],
  "vasa": [
-  "Vasa Museum",
-  "Vasa (ship, 1627)"
+  "Vasa (ship, 1627)",
+  "Vasa (ship, 1627) - The crew"
  ],
  "junibacken": [
   "Junibacken"
  ],
  "oodi": [
+  "Snow in Helsinki|Oodi|Töölönlahti|Kansalaistori|Musiikkitalo",
+  "Winter in Helsinki|Oodi|Töölönlahti|Kansalaistori",
   "Helsinki Central Library Oodi",
   "Interior of Helsinki Central Library Oodi"
  ],
  "heureka": [
-  "Heureka, Vantaa"
+  "Winter in Vantaa|Heureka|Tikkurila"
  ],
  "santavillage": [
   "Santa Claus' Village",
-  "Arctic Circle line at Santa Claus' Village"
+  "Arctic Circle line at Santa Claus' Village",
+  "Rovaniemi in winter"
  ],
  "snowmanworld": [
   "Snow sculptures in Finland",
@@ -62,11 +76,14 @@
   "Pilke House"
  ],
  "candlebridge": [
-  "Jätkänkynttilä Bridge"
+  "Jätkänkynttilä Bridge",
+  "Kemijoki in Rovaniemi",
+  "Rovaniemi in winter"
  ],
  "ounasvaara": [
   "Ounasvaara",
-  "Views from Ounasvaara"
+  "Views from Ounasvaara",
+  "Rovaniemi in winter"
  ],
  "ranua": [
   "Ursus maritimus in Ranua Zoo",

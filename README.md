@@ -25,13 +25,19 @@ Add a country: register it in `GUIDES` in `build.py`, create `_src/<slug>/`, run
 New guide locations: write locations.json + gallery_sources.json, then
 `python3 travel-guides/_tools/geocode.py travel-guides/_src/<slug>` and
 `python3 travel-guides/_tools/commons_gallery.py travel-guides/_src/<slug>`; review and reorder in gallery_curation.json.
+Winter trips: `"_winter": true` in gallery_sources.json keeps only Dec–Mar / snowy photos; a source
+`"Snow in Oslo|Opera"` takes files of a broad category whose title matches the regex.
 Hikes (optional, not in plans): hikes.json (OSM relation ids) -> `python3 travel-guides/_tools/trails.py travel-guides/_src/<slug>` -> trails.json.
 A hike can use only a section of a long relation (`"bbox": [s, w, n, e]`), or have no relation at all:
 `"via": [[lat,lng], ...]` is then routed on foot paths (routing.openstreetmap.de).
-Public transport in plans: stops `"~train"`, `"~bus"`, `"~walk"`, `"~ferry"` between two stops mark a hop that is drawn
+Public transport in plans: stops `"~train"`, `"~bus"`, `"~taxi"`, `"~walk"`, `"~ferry"` between two stops mark a hop that is drawn
 as a dashed line (not routed); put `@via…` shape points between stations to follow the railway or ferry line,
 `@station…` points get a 🚉 icon; a day may set `"move"` (e.g. "🚆 VR 19:29 → 07:20") shown instead of driving time.
 Trip variants: edit plans.json, then `python3 travel-guides/_tools/routes.py travel-guides/_src/<slug>` to recompute road geometry.
 Categories (icons in places.py): history, view, adventure, drone, hike. Hike levels: easy, medium, hard.
+
+Seasonal skin: meta.json `"theme": "winter"` adds `body.theme-winter`, `_src/themes/winter.css` (icy palette,
+garland, baubles, snowdrift) and `assets/winter.js` (snowfall with a ❄ toggle, off with reduced motion).
+Price comparison: `<div class="ladder">` of `.rung` cards (see 09-spain-rovaniemi), cheapest first.
 
 Macros in content.html: `{{PLACES}}`, `{{CATS_LEGEND}}`, `[[gm:Label|query]]`, `[[dir:Label|origin|dest|wp1;wp2]]`, `[[photo:key|caption]]`, `{{MAP}}`.

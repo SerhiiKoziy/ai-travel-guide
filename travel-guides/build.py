@@ -43,6 +43,7 @@ GUIDES = [
     {"slug": "06-portugal", "file": "06-portugal.html", "group": "europe", "nav": "6. 🇵🇹 Португалія: Лісабон і Алгарве, 7 днів"},
     {"slug": "07-north-france", "file": "07-north-france.html", "group": "europe", "nav": "7. 🇫🇷 Північ Франції: 7 днів"},
     {"slug": "08-oslo-rovaniemi", "file": "08-oslo-rovaniemi.html", "group": "europe", "nav": "8. 🎅 Потягом з Осло до Санти: 7 днів"},
+    {"slug": "09-spain-rovaniemi", "file": "09-spain-rovaniemi.html", "group": "europe", "nav": "9. 🎄 Рованіемі з Іспанії: 7 днів"},
 ]
 
 
@@ -253,6 +254,12 @@ def hero_style(meta: dict) -> str:
     return f' style="--hero:url(\'{html.escape(url)}\')"' if url else ""
 
 
+def theme_css(meta: dict) -> str:
+    """Optional seasonal skin: meta.json "theme": "winter" -> _src/themes/winter.css."""
+    f = ROOT / "_src" / "themes" / f'{meta.get("theme", "")}.css'
+    return "\n" + f.read_text() if meta.get("theme") and f.exists() else ""
+
+
 def build_page(guide: dict, template: str) -> str:
     d = SRC / guide["slug"]
     meta = json.loads((d / "meta.json").read_text())
@@ -298,11 +305,15 @@ def build_page(guide: dict, template: str) -> str:
         "PILLS": pills, "NAV": render_nav(guide["file"]), "TOC": build_toc(content),
         "HNAV": render_header_nav(guide["file"]), "STEPS": render_steps(content),
         "CONTENT": content, "FOOTER": meta.get("footer", ""),
-        "EXTRA_CSS": (ROOT / "_src" / "travel.css").read_text(),
+        "EXTRA_CSS": (ROOT / "_src" / "travel.css").read_text() + theme_css(meta),
         "ICONS": places.ICON_SPRITE,
         "HERO_STYLE": hero_style(meta),
     }.items():
         page = page.replace("{{" + key + "}}", val)
+    if meta.get("theme"):  # e.g. "winter": body class + _src/themes/<theme>.css + assets/<theme>.js
+        page = page.replace("<body>", f'<body class="theme-{meta["theme"]}">', 1)
+        if (ROOT / "assets" / f'{meta["theme"]}.js').exists():
+            page = page.replace("</body>", f'<script src="assets/{meta["theme"]}.js"></script>\n</body>', 1)
     left = re.findall(r"\{\{[A-Z_]+\}\}|\[\[(?:gm|dir):", page)
     assert not left, f"{guide['file']}: unexpanded placeholders {left}"
     return page

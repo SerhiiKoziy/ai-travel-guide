@@ -89,7 +89,7 @@ def fmt_drive(km: int, mins: int) -> str:
     return f"≈ {km} км · ≈ {t} за кермом"
 
 
-TRANSIT = {"train": "🚆 Потяг", "bus": "🚌 Автобус", "walk": "🚶 Пішки", "flight": "✈️ Переліт", "ferry": "⛴ Пором"}
+TRANSIT = {"train": "🚆 Потяг", "bus": "🚌 Автобус", "taxi": "🚕 Таксі", "walk": "🚶 Пішки", "flight": "✈️ Переліт", "ferry": "⛴ Пором"}
 
 
 def is_transit_day(stops: list) -> bool:
@@ -101,6 +101,8 @@ def gmaps_dir(stops: list, q_of) -> str:
     transport from the first to the last stop when the day has '~train'/'~bus' hops."""
     if is_transit_day(stops):
         qs = [q_of(s) for s in stops if not s.startswith("~")]
+        # a loop day (base -> ... -> base): Maps transit has no waypoints, so aim at the last real stop
+        qs = qs if qs[-1] != qs[0] else [qs[0]] + [q for q in qs if q != qs[0]][-1:] or qs
         return ("https://www.google.com/maps/dir/?api=1&travelmode=transit"
                 f"&origin={quote(qs[0])}&destination={quote(qs[-1])}")
     if "~" in stops:

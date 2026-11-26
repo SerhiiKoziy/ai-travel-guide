@@ -1,0 +1,98 @@
+  /* ===== Winter / New Year theme (meta.json "theme": "winter") =====
+     icy palette, a twinkling garland under the header, baubles and a snowdrift on the hero,
+     snowflake section dividers; snowfall itself is assets/winter.js (off with prefers-reduced-motion). */
+  body.theme-winter{
+    --bg:#f2f6fb; --bg-soft:#e7eef7; --card:#ffffff; --border:#d5e1ee;
+    --fg:#13273a; --fg-muted:#566b80;
+    --accent:#1d6fb8; --accent-soft:#e2eefa;
+    --sun:#c92a3e; --sun-soft:#fbe3e6; --sand:#8fb8dc; --gold:#c9970c;
+    --info:#1d6fb8; --info-bg:#e5f0fb; --info-border:#bcd6ef;
+    --interview:#b02a37; --interview-bg:#fde8ea; --interview-border:#f3c0c6;
+    --shadow:0 1px 2px rgba(20,50,90,.06), 0 8px 24px -12px rgba(20,50,90,.22);
+    --flake:rgba(29,111,184,.07);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='none' stroke='%231d6fb8' stroke-opacity='.07' stroke-width='1.4' stroke-linecap='round'%3E%3Cpath d='M30 18v24M18 30h24M21.5 21.5l17 17M38.5 21.5l-17 17'/%3E%3Cpath d='M118 98v18M109 107h18M111.6 100.6l12.8 12.8M124.4 100.6l-12.8 12.8'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) body.theme-winter{
+      --bg:#0a1424; --bg-soft:#0f1d32; --card:#13243c; --border:#223a59;
+      --fg:#e9f1fb; --fg-muted:#9fb4cc;
+      --accent:#7cc4ff; --accent-soft:#13304f;
+      --sun:#ff6577; --sun-soft:#3a1620; --sand:#3e6b96; --gold:#f2c94c;
+      --info:#7cc4ff; --info-bg:#102844; --info-border:#24476f;
+      --interview:#ff8f9c; --interview-bg:#3a1620; --interview-border:#6b2834;
+      --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -14px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] body.theme-winter{
+    --bg:#0a1424; --bg-soft:#0f1d32; --card:#13243c; --border:#223a59;
+    --fg:#e9f1fb; --fg-muted:#9fb4cc;
+    --accent:#7cc4ff; --accent-soft:#13304f;
+    --sun:#ff6577; --sun-soft:#3a1620; --sand:#3e6b96; --gold:#f2c94c;
+    --info:#7cc4ff; --info-bg:#102844; --info-border:#24476f;
+    --interview:#ff8f9c; --interview-bg:#3a1620; --interview-border:#6b2834;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+
+  /* garland under the sticky header */
+  .theme-winter header.top{position:sticky;}
+  .theme-winter header.top::after, .theme-winter header.top::before{
+    content:""; position:absolute; left:0; right:0; bottom:-15px; height:16px; pointer-events:none;
+    background-repeat:repeat-x; background-size:96px 16px;
+  }
+  .theme-winter header.top::before{   /* wire */
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='16'%3E%3Cpath d='M0 2q24 9 48 0t48 0' fill='none' stroke='%23445' stroke-opacity='.45' stroke-width='1.2'/%3E%3C/svg%3E");
+  }
+  .theme-winter header.top::after{    /* bulbs */
+    background-image:
+      radial-gradient(circle at 12px 8px, #ff4d5e 3.6px, transparent 4.4px),
+      radial-gradient(circle at 36px 10px, #ffd23f 3.6px, transparent 4.4px),
+      radial-gradient(circle at 60px 10px, #3ddc84 3.6px, transparent 4.4px),
+      radial-gradient(circle at 84px 8px, #4dabf7 3.6px, transparent 4.4px);
+    filter:drop-shadow(0 0 4px rgba(255,220,120,.7));
+    animation:wt-twinkle 2.4s ease-in-out infinite alternate;
+  }
+  @keyframes wt-twinkle{ 0%{opacity:.55; filter:drop-shadow(0 0 1px rgba(255,220,120,.3));} 100%{opacity:1;} }
+
+  /* hero: cooler overlay, hanging baubles, snowdrift edge */
+  .theme-winter .hero-wrap::before{
+    background:linear-gradient(180deg, rgba(6,22,48,.30) 0%, rgba(6,22,48,.50) 45%, rgba(6,18,40,.86) 100%);
+  }
+  .theme-winter .hero{position:relative; padding-bottom:70px;}
+  .theme-winter .hero .kicker{color:#bfe3ff;}
+  .theme-winter .hero::before{
+    content:""; position:absolute; top:0; right:24px; width:220px; height:150px; pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='150'%3E%3Cg stroke='%23fff' stroke-opacity='.55'%3E%3Cpath d='M30 0v62M95 0v96M160 0v48M200 0v78'/%3E%3C/g%3E%3Cg%3E%3Ccircle cx='30' cy='76' r='14' fill='%23e03131'/%3E%3Ccircle cx='95' cy='112' r='17' fill='%23f2c94c'/%3E%3Ccircle cx='160' cy='61' r='13' fill='%231c7ed6'/%3E%3Ccircle cx='200' cy='91' r='12' fill='%232f9e44'/%3E%3C/g%3E%3Cg fill='%23fff' fill-opacity='.55'%3E%3Ccircle cx='25' cy='71' r='4'/%3E%3Ccircle cx='89' cy='105' r='5'/%3E%3Ccircle cx='155' cy='56' r='3.5'/%3E%3Ccircle cx='196' cy='87' r='3.5'/%3E%3C/g%3E%3Cg fill='%23d9d9d9'%3E%3Crect x='26' y='59' width='8' height='5' rx='1'/%3E%3Crect x='91' y='92' width='8' height='6' rx='1'/%3E%3Crect x='156' y='45' width='8' height='5' rx='1'/%3E%3Crect x='196' y='76' width='8' height='5' rx='1'/%3E%3C/g%3E%3C/svg%3E") no-repeat;
+    transform-origin:top center; animation:wt-swing 5s ease-in-out infinite alternate;
+  }
+  @keyframes wt-swing{ from{transform:rotate(-1.5deg);} to{transform:rotate(1.5deg);} }
+  .theme-winter .hero-wrap::after{
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:42px; z-index:0; pointer-events:none;
+    background:var(--bg);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='42' preserveAspectRatio='none'%3E%3Cpath d='M0 26C60 8 110 30 170 20s110-18 170 0 120 22 180 4 60-6 80 0V42H0z'/%3E%3C/svg%3E") 0 0/600px 42px repeat-x;
+            mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='42' preserveAspectRatio='none'%3E%3Cpath d='M0 26C60 8 110 30 170 20s110-18 170 0 120 22 180 4 60-6 80 0V42H0z'/%3E%3C/svg%3E") 0 0/600px 42px repeat-x;
+  }
+  .theme-winter .hero .pill{background:rgba(190,225,255,.16); border-color:rgba(210,235,255,.45);}
+  @media (max-width:700px){ .theme-winter .hero::before{width:150px; height:110px; right:0; background-size:150px auto;} }
+
+  /* headings and dividers */
+  .theme-winter article h2 .num{
+    background:var(--sun); box-shadow:0 4px 12px -4px var(--sun), inset 0 3px 0 rgba(255,255,255,.85);
+  }
+  .theme-winter article section + section::before{content:"❄ ✦ ❄"; color:var(--sand);}
+  .theme-winter .section-desc{color:var(--accent);}
+  .theme-winter .card, .theme-winter .day, .theme-winter .hotel, .theme-winter .stat, .theme-winter .decision, .theme-winter .blogger{
+    background-image:linear-gradient(180deg, color-mix(in srgb, var(--accent) 6%, transparent), transparent 70px);
+  }
+  .theme-winter footer.page::before{content:"🎄 ❄ 🎁 ❄ 🦌"; display:block; letter-spacing:.5em; margin-bottom:8px;}
+
+  /* snowfall canvas + toggle (assets/winter.js) */
+  .snow-canvas{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:15;}
+  .snow-toggle{
+    position:fixed; right:14px; bottom:14px; z-index:30; width:42px; height:42px; border-radius:50%;
+    border:1px solid var(--border); background:var(--card); color:var(--accent); font-size:20px; cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .snow-toggle[aria-pressed="false"]{opacity:.55;}
+  @media (prefers-reduced-motion: reduce){
+    .theme-winter header.top::after, .theme-winter .hero::before{animation:none;}
+  }

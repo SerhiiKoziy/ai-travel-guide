@@ -226,7 +226,7 @@
           .bindTooltip(DATA.ferryLabel || '⛴ Пором', { sticky: true }).addTo(routeLayer);
       });
       (d.transit || []).forEach(function (t) {
-        var dash = { train: '10 6', bus: '4 6', walk: '1 6', flight: '2 10', ferry: '2 9' }[t.mode] || '6 6';
+        var dash = { train: '10 6', bus: '4 6', taxi: '8 4', walk: '1 6', flight: '2 10', ferry: '2 9' }[t.mode] || '6 6';
         L.polyline(t.line, { color: '#fff', weight: 7, opacity: dim ? 0.12 : 0.8, interactive: false }).addTo(routeLayer);
         L.polyline(t.line, { color: d.color, weight: 4, opacity: dim ? 0.2 : 0.95, dashArray: dash, lineCap: 'butt' })
           .bindTooltip('День ' + d.n + ' · ' + ((DATA.transitLabels || {})[t.mode] || t.mode), { sticky: true })

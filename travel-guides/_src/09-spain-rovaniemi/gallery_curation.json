@@ -1,0 +1,120 @@
+{
+ "_doc": "Winter-only photos (gallery_sources _winter), reviewed on a contact sheet 2026-11-26: dropped snowless, archival and poster shots.",
+ "santavillage": {
+  "order": [
+   0,
+   4,
+   2,
+   3,
+   6,
+   7
+  ]
+ },
+ "santareindeer": {
+  "order": [
+   7,
+   3,
+   5,
+   2,
+   1,
+   0
+  ]
+ },
+ "santashusky": {
+  "order": [
+   1,
+   3,
+   7,
+   5,
+   2,
+   6,
+   0,
+   4
+  ]
+ },
+ "snowmanworld": {
+  "order": [
+   0,
+   2,
+   3,
+   6,
+   1,
+   5
+  ]
+ },
+ "santapark": {
+  "order": [
+   1,
+   4,
+   0,
+   2,
+   3,
+   5
+  ]
+ },
+ "arktikum": {
+  "order": [
+   0,
+   2,
+   4,
+   1,
+   5
+  ]
+ },
+ "candlebridge": {
+  "order": [
+   3,
+   4,
+   2,
+   1
+  ]
+ },
+ "ounasvaara": {
+  "order": [
+   7,
+   0,
+   2,
+   3,
+   1
+  ]
+ },
+ "ranua": {
+  "order": [
+   7,
+   6,
+   0,
+   3,
+   5,
+   2
+  ]
+ },
+ "snowhotel": {
+  "order": [
+   0,
+   1,
+   3,
+   2
+  ]
+ },
+ "sieriporo": {
+  "order": [
+   4,
+   1,
+   3,
+   7,
+   2,
+   5
+  ]
+ },
+ "aurora": {
+  "order": [
+   1,
+   5,
+   7,
+   2,
+   6,
+   3,
+   4
+  ]
+ }
+}

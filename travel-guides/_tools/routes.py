@@ -6,7 +6,7 @@ Reads  plans.json + locations.json, writes routes.json:
   {plan: [{"legs": [[[lat,lng],...], ...], "ferry": [[[lat,lng],[lat,lng]]], "km": 63.2, "min": 71}, ...]}
 Driving legs are routed by OSRM (router.project-osrm.org, 1 request per drive leg group,
 cached by coordinates); a "~" stop marks a ferry crossing drawn as a straight line.
-"~train" / "~bus" / "~walk" / "~flight" mark a public-transport hop: it is not routed, it is drawn
+"~train" / "~bus" / "~taxi" / "~walk" / "~flight" mark a public-transport hop: it is not routed, it is drawn
 as a dashed line through the stops (put intermediate stations as @points to follow the railway);
 consecutive hops of one mode merge into one line -> "transit": [{"mode": "train", "line": [...]}].
 Done once at authoring time so the published page never calls a routing API.
