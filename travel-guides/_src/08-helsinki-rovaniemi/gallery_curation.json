@@ -1,5 +1,5 @@
 {
- "_doc": "Winter-only photos (gallery_sources _winter; city keys use 'Snow in <city>|<place regex>'), re-curated 2026-11-26 on contact sheets. Museums (fram, vasa, junibacken) keep interiors. heureka shows winter Tikkurila around it (no winter photo of the building itself).",
+ "_doc": "Winter-only photos (gallery_sources _winter; city keys use 'Snow in <city>|<place regex>'), curated on contact sheets. Helsinki keys added 2026-11-27 when the guide became Helsinki → Rovaniemi.",
  "santavillage": {
   "order": [
    0,
@@ -117,77 +117,6 @@
    2
   ]
  },
- "opera": {
-  "order": [
-   6,
-   2,
-   4,
-   3,
-   0
-  ]
- },
- "akershus": {
-  "order": [
-   3,
-   5,
-   0,
-   1,
-   2
-  ]
- },
- "holmenkollen": {
-  "order": [
-   5,
-   0,
-   4,
-   7,
-   6,
-   3
-  ]
- },
- "fram": {
-  "order": [
-   4,
-   6,
-   7,
-   0,
-   2,
-   5
-  ]
- },
- "vigeland": {
-  "order": [
-   0,
-   5,
-   7
-  ]
- },
- "gamlastan": {
-  "order": [
-   0,
-   3,
-   6,
-   7,
-   4,
-   1
-  ]
- },
- "vasa": {
-  "order": [
-   1,
-   5,
-   0,
-   4,
-   2
-  ]
- },
- "junibacken": {
-  "order": [
-   1,
-   0,
-   2
-  ]
- },
  "oodi": {
   "order": [
    0,
@@ -202,6 +131,44 @@
    2,
    1,
    0
+  ]
+ },
+ "senate": {
+  "order": [
+   0,
+   4,
+   3,
+   7,
+   6,
+   5
+  ]
+ },
+ "suomenlinna": {
+  "order": [
+   5,
+   7,
+   0,
+   2,
+   4,
+   1,
+   6
+  ]
+ },
+ "korkeasaari": {
+  "order": [
+   1,
+   6,
+   5,
+   3,
+   0
+  ]
+ },
+ "allas": {
+  "order": [
+   1,
+   0,
+   3,
+   2
   ]
  }
 }

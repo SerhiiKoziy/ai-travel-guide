@@ -1,46 +1,5 @@
 {
  "_winter": true,
- "opera": [
-  "Snow in Oslo|Opera|Operahus",
-  "Winter in Oslo|Opera|Operahus",
-  "Oslo Opera house rooftop",
-  "Oslo Opera house"
- ],
- "akershus": [
-  "Snow in Oslo|Akershus",
-  "Winter in Oslo|Akershus",
-  "Akershus Fortress",
-  "Akershus slott (castle)"
- ],
- "holmenkollen": [
-  "Snow in Oslo|Holmenkol|Korketrekker|Frognerseter",
-  "Winter in Oslo|Holmenkol|Korketrekker|Frognerseter",
-  "Holmenkollbakken",
-  "Korketrekkeren, Oslo (bobsleigh track)",
-  "Skimuseet"
- ],
- "fram": [
-  "Fram (ship in museum)",
-  "Fram museum"
- ],
- "vigeland": [
-  "Snow in Oslo|Vigeland",
-  "Winter in Oslo|Vigeland",
-  "Vigelandsanlegget",
-  "Sinnataggen"
- ],
- "gamlastan": [
-  "Snow in Stockholm|Gamla|Old Town|Riddarholm|Stortorget|Slottsbacken|Skeppsbron",
-  "Winter in Stockholm|Gamla|Old Town|Riddarholm|Stortorget|Slottsbacken|Skeppsbron",
-  "Gamla stan"
- ],
- "vasa": [
-  "Vasa (ship, 1627)",
-  "Vasa (ship, 1627) - The crew"
- ],
- "junibacken": [
-  "Junibacken"
- ],
  "oodi": [
   "Snow in Helsinki|Oodi|Töölönlahti|Kansalaistori|Musiikkitalo",
   "Winter in Helsinki|Oodi|Töölönlahti|Kansalaistori",
@@ -99,5 +58,28 @@
  "sieriporo": [
   "Reindeer husbandry in Finland",
   "Rangifer tarandus in Finland"
+ ],
+ "senate": [
+  "Helsinki Cathedral",
+  "Exterior of Helsinki Cathedral",
+  "Senate Square, Helsinki",
+  "Snow in Helsinki|Senate|Senaatintori|Cathedral|Tuomiokirkko"
+ ],
+ "suomenlinna": [
+  "Suomenlinna in winter",
+  "Snow in Helsinki|Suomenlinna|Sveaborg",
+  "Winter in Helsinki|Suomenlinna|Sveaborg",
+  "Suomenlinna"
+ ],
+ "korkeasaari": [
+  "Snow in Helsinki|Korkeasaari|Zoo",
+  "Winter in Helsinki|Korkeasaari|Zoo",
+  "Korkeasaari Zoo",
+  "Panthera uncia in Korkeasaari Zoo"
+ ],
+ "allas": [
+  "Allas Sea Pool",
+  "Snow in Helsinki|Allas|Katajanokka",
+  "Winter in Helsinki|Allas|Katajanokka"
  ]
 }
