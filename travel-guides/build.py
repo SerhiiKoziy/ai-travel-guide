@@ -45,6 +45,7 @@ GUIDES = [
     {"slug": "08-helsinki-rovaniemi", "file": "08-helsinki-rovaniemi.html", "group": "europe", "nav": "8. 🎅 Потягом з Гельсінкі до Санти: 7 днів"},
     {"slug": "09-spain-rovaniemi", "file": "09-spain-rovaniemi.html", "group": "europe", "nav": "9. 🎄 Рованіемі з Іспанії: 7 днів"},
     {"slug": "10-lofoten-winter", "file": "10-lofoten-winter.html", "group": "europe", "nav": "10. 🌌 Лофотени взимку: потяг + авто, 7 днів"},
+    {"slug": "11-montenegro", "file": "11-montenegro.html", "group": "europe", "nav": "11. ☀️ Чорногорія: море й гори, 7 днів"},
 ]
 
 

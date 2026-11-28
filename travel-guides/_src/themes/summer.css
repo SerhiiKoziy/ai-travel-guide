@@ -1,0 +1,99 @@
+  /* ===== Summer / Adriatic theme (meta.json "theme": "summer") =====
+     sunny palette (Adriatic turquoise, terracotta roofs, lemon), bunting under the header,
+     a slowly turning sun and a moving wave edge on the hero, wave section dividers;
+     rising sea bubbles are assets/summer.js (off with prefers-reduced-motion). */
+  body.theme-summer{
+    --bg:#fffaf0; --bg-soft:#fdf0da; --card:#ffffff; --border:#f1dfbf;
+    --fg:#1b2b33; --fg-muted:#5f6f76;
+    --accent:#078a99; --accent-soft:#dcf4f5;
+    --sun:#e4572e; --sun-soft:#fde4da; --sand:#ffd166; --gold:#e0a100;
+    --info:#078a99; --info-bg:#e0f5f6; --info-border:#b2e2e6;
+    --interview:#c2410c; --interview-bg:#fff0e6; --interview-border:#f8cbb0;
+    --shadow:0 1px 2px rgba(120,70,10,.06), 0 8px 24px -12px rgba(120,70,10,.2);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='90'%3E%3Cpath d='M0 45q22.5-14 45 0t45 0 45 0 45 0' fill='none' stroke='%23078a99' stroke-opacity='.06' stroke-width='2'/%3E%3C/svg%3E");
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) body.theme-summer{
+      --bg:#0b1a1f; --bg-soft:#10242b; --card:#142b33; --border:#24414b;
+      --fg:#eaf3f4; --fg-muted:#9fb6bb;
+      --accent:#3fd0dc; --accent-soft:#0f343b;
+      --sun:#ff8a5c; --sun-soft:#3a1d14; --sand:#8a6a1f; --gold:#ffd166;
+      --info:#3fd0dc; --info-bg:#0f2d34; --info-border:#215560;
+      --interview:#ffa27a; --interview-bg:#33190f; --interview-border:#6b3420;
+      --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -14px rgba(0,0,0,.7);
+    }
+  }
+  :root[data-theme="dark"] body.theme-summer{
+    --bg:#0b1a1f; --bg-soft:#10242b; --card:#142b33; --border:#24414b;
+    --fg:#eaf3f4; --fg-muted:#9fb6bb;
+    --accent:#3fd0dc; --accent-soft:#0f343b;
+    --sun:#ff8a5c; --sun-soft:#3a1d14; --sand:#8a6a1f; --gold:#ffd166;
+    --info:#3fd0dc; --info-bg:#0f2d34; --info-border:#215560;
+    --interview:#ffa27a; --interview-bg:#33190f; --interview-border:#6b3420;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -14px rgba(0,0,0,.7);
+  }
+
+  /* bunting under the sticky header */
+  .theme-summer header.top{position:sticky;}
+  .theme-summer header.top::after{
+    content:""; position:absolute; left:0; right:0; bottom:-14px; height:15px; pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='15'%3E%3Cpath d='M0 1q60 5 120 0' fill='none' stroke='%23876' stroke-opacity='.45'/%3E%3Cpath d='M6 2.4l8 11 8-10.6z' fill='%23e4572e'/%3E%3Cpath d='M36 3.6l8 11 8-10.6z' fill='%23ffd166'/%3E%3Cpath d='M66 3.8l8 11 8-10.7z' fill='%23078a99'/%3E%3Cpath d='M96 2.8l8 11 8-10.6z' fill='%23ffffff' stroke='%23e9d6b5' stroke-width='.8'/%3E%3C/svg%3E") 0 0/120px 15px repeat-x;
+    transform-origin:top; animation:st-flutter 3.2s ease-in-out infinite alternate;
+  }
+  @keyframes st-flutter{ from{transform:skewX(-2deg);} to{transform:skewX(2deg);} }
+
+  /* hero: warm sunset overlay, turning sun, gulls, moving wave edge */
+  .theme-summer .hero-wrap::before{
+    background:linear-gradient(180deg, rgba(255,170,80,.10) 0%, rgba(10,60,80,.38) 50%, rgba(6,40,56,.84) 100%);
+  }
+  .theme-summer .hero{position:relative; padding-bottom:78px;}
+  .theme-summer .hero .kicker{color:#ffe08a;}
+  .theme-summer .hero::before{          /* sun */
+    content:""; position:absolute; top:22px; right:34px; width:150px; height:150px; pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-75 -75 150 150'%3E%3Cg stroke='%23ffd166' stroke-width='5' stroke-linecap='round' stroke-opacity='.85'%3E%3Cpath d='M0-70v16M0 54v16M-70 0h16M54 0h16M-49.5-49.5l11 11M38.5 38.5l11 11M-49.5 49.5l11-11M38.5-38.5l11-11'/%3E%3C/g%3E%3Ccircle r='38' fill='%23ffd166'/%3E%3Ccircle r='38' fill='%23ffb347' fill-opacity='.45'/%3E%3C/svg%3E") center/contain no-repeat;
+    filter:drop-shadow(0 0 18px rgba(255,200,90,.75)); animation:st-spin 60s linear infinite;
+  }
+  .theme-summer .hero::after{           /* gulls */
+    content:""; position:absolute; top:150px; right:190px; width:90px; height:40px; pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='40'%3E%3Cg fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-opacity='.85'%3E%3Cpath d='M4 14q8-9 14 0q6-9 14 0'/%3E%3Cpath d='M50 30q6-7 11 0q5-7 11 0'/%3E%3Cpath d='M62 8q4-5 8 0q4-5 8 0'/%3E%3C/g%3E%3C/svg%3E") no-repeat;
+    animation:st-glide 9s ease-in-out infinite alternate;
+  }
+  @keyframes st-spin{ to{transform:rotate(360deg);} }
+  @keyframes st-glide{ from{transform:translate(0,0);} to{transform:translate(-26px,8px);} }
+  .theme-summer .hero-wrap::after{
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:46px; z-index:0; pointer-events:none;
+    background:var(--bg);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='46' preserveAspectRatio='none'%3E%3Cpath d='M0 24C50 4 100 4 150 22s100 22 150 4 70-14 100-4V46H0z'/%3E%3C/svg%3E") 0 0/400px 46px repeat-x;
+            mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='46' preserveAspectRatio='none'%3E%3Cpath d='M0 24C50 4 100 4 150 22s100 22 150 4 70-14 100-4V46H0z'/%3E%3C/svg%3E") 0 0/400px 46px repeat-x;
+    animation:st-wave 14s linear infinite;
+  }
+  @keyframes st-wave{ to{-webkit-mask-position:400px 0; mask-position:400px 0;} }
+  .theme-summer .hero .pill{background:rgba(255,240,200,.16); border-color:rgba(255,230,170,.5);}
+  @media (max-width:700px){
+    .theme-summer .hero::before{width:92px; height:92px; top:14px; right:12px;}
+    .theme-summer .hero::after{display:none;}
+  }
+
+  /* headings and dividers */
+  .theme-summer article h2 .num{
+    background:var(--sun); box-shadow:0 4px 12px -4px var(--sun), inset 0 3px 0 rgba(255,255,255,.7);
+  }
+  .theme-summer article section + section::before{content:"〰 ☀ 〰"; color:var(--accent); letter-spacing:.3em;}
+  .theme-summer .section-desc{color:var(--accent);}
+  .theme-summer .card, .theme-summer .day, .theme-summer .hotel, .theme-summer .stat, .theme-summer .decision, .theme-summer .blogger{
+    background-image:linear-gradient(180deg, color-mix(in srgb, var(--sand) 16%, transparent), transparent 70px);
+  }
+  .theme-summer footer.page::before{content:"🏖 ⛵ 🐚 🍉 ☀️"; display:block; letter-spacing:.5em; margin-bottom:8px;}
+
+  /* rising bubbles canvas + toggle (assets/summer.js) */
+  .bubble-canvas{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:15;}
+  .bubble-toggle{
+    position:fixed; right:14px; bottom:14px; z-index:30; width:42px; height:42px; border-radius:50%;
+    border:1px solid var(--border); background:var(--card); color:var(--accent); font-size:20px; cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .bubble-toggle[aria-pressed="false"]{opacity:.55;}
+  @media (prefers-reduced-motion: reduce){
+    .theme-summer header.top::after, .theme-summer .hero::before, .theme-summer .hero::after,
+    .theme-summer .hero-wrap::after{animation:none;}
+  }
