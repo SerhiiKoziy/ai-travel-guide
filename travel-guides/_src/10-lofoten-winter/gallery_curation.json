@@ -1,0 +1,140 @@
+{
+ "_doc": "Winter-only photos (gallery_sources _winter), curated on a contact sheet 2026-11-28. magicice has no Commons photos (category search returned Svolvær harbour shots) — gallery dropped.",
+ "trondheim": {
+  "order": [
+   0,
+   3,
+   1,
+   5,
+   2,
+   6
+  ]
+ },
+ "polarsirkel": {
+  "order": [
+   0,
+   1,
+   3,
+   2
+  ]
+ },
+ "luftfart": {
+  "order": [
+   2,
+   1,
+   3,
+   0
+  ]
+ },
+ "saltstraumen": {
+  "order": [
+   0,
+   3,
+   1
+  ]
+ },
+ "reine": {
+  "order": [
+   1,
+   3,
+   2,
+   0,
+   4
+  ]
+ },
+ "hamnoy": {
+  "order": [
+   5,
+   1,
+   6,
+   7,
+   4,
+   2
+  ]
+ },
+ "sakrisoy": {
+  "order": [
+   0,
+   2,
+   3,
+   1,
+   4
+  ]
+ },
+ "aa": {
+  "order": [
+   0,
+   4,
+   3
+  ]
+ },
+ "nusfjord": {
+  "order": [
+   2,
+   1,
+   3,
+   0,
+   5,
+   4
+  ]
+ },
+ "ramberg": {
+  "order": [
+   0,
+   1,
+   2,
+   3
+  ]
+ },
+ "skagsanden": {
+  "order": [
+   1,
+   6,
+   5,
+   0,
+   2,
+   3
+  ]
+ },
+ "haukland": {
+  "order": [
+   0
+  ]
+ },
+ "lofotr": {
+  "order": [
+   0,
+   2,
+   4,
+   3,
+   1
+  ]
+ },
+ "henningsvaer": {
+  "order": [
+   7,
+   4,
+   0,
+   2,
+   1
+  ]
+ },
+ "kabelvag": {
+  "order": [
+   4,
+   1,
+   2,
+   3
+  ]
+ },
+ "svolvaer": {
+  "order": [
+   7,
+   2,
+   0,
+   3,
+   1,
+   4
+  ]
+ }
+}
