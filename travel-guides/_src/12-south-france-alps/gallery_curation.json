@@ -1,0 +1,235 @@
+{
+ "_doc": "Curated on a contact sheet 2026-11-28. vesubia has no Commons photos; hike-boreonsnow has a single winter forest photo.",
+ "loup": {
+  "order": [
+   0,
+   2,
+   1,
+   6,
+   4
+  ]
+ },
+ "gourdon": {
+  "order": [
+   0,
+   2,
+   3,
+   1,
+   4,
+   7
+  ]
+ },
+ "moustiers": {
+  "order": [
+   4,
+   7,
+   6,
+   0,
+   1
+  ]
+ },
+ "saintecroix": {
+  "order": [
+   2,
+   0,
+   1,
+   3,
+   7,
+   6,
+   4
+  ]
+ },
+ "valensole": {
+  "order": [
+   0,
+   7,
+   2,
+   1,
+   6,
+   4
+  ]
+ },
+ "routecretes": {
+  "order": [
+   7,
+   2,
+   0,
+   6,
+   4,
+   5,
+   3
+  ]
+ },
+ "pointsublime": {
+  "order": [
+   2,
+   0,
+   4,
+   3,
+   5,
+   7,
+   1
+  ]
+ },
+ "castellane": {
+  "order": [
+   3,
+   1,
+   4,
+   2,
+   5,
+   6
+  ]
+ },
+ "entrevaux": {
+  "order": [
+   5,
+   7,
+   1,
+   2,
+   4,
+   6,
+   0
+  ]
+ },
+ "stmartin": {
+  "order": [
+   2,
+   4,
+   6,
+   5,
+   1,
+   7
+  ]
+ },
+ "alpha": {
+  "order": [
+   7,
+   2,
+   0,
+   5,
+   3,
+   6,
+   4
+  ]
+ },
+ "boreon": {
+  "order": [
+   0,
+   1,
+   2,
+   3,
+   5,
+   6
+  ]
+ },
+ "colmiane": {
+  "order": [
+   7,
+   4,
+   5,
+   3,
+   2
+  ]
+ },
+ "utelle": {
+  "order": [
+   3,
+   6,
+   7,
+   4,
+   2,
+   0
+  ]
+ },
+ "eze": {
+  "order": [
+   2,
+   6,
+   0,
+   4,
+   7,
+   3,
+   1
+  ]
+ },
+ "auron": {
+  "order": [
+   6,
+   7,
+   2,
+   1,
+   0,
+   5
+  ]
+ },
+ "isola": {
+  "order": [
+   1,
+   0,
+   6,
+   5,
+   2
+  ]
+ },
+ "stetienne": {
+  "order": [
+   0,
+   2,
+   1,
+   6,
+   5
+  ]
+ },
+ "nice": {
+  "order": [
+   0,
+   4,
+   3,
+   2,
+   6
+  ]
+ },
+ "monaco": {
+  "order": [
+   2,
+   7,
+   5,
+   0,
+   1,
+   6
+  ]
+ },
+ "menton": {
+  "order": [
+   0,
+   3,
+   2,
+   1,
+   4,
+   5,
+   6,
+   7
+  ]
+ },
+ "hike-beauvoir": {
+  "order": [
+   0,
+   4,
+   6,
+   7,
+   1,
+   5
+  ]
+ },
+ "hike-trecolpas": {
+  "order": [
+   0,
+   1,
+   2,
+   3,
+   6,
+   5
+  ]
+ }
+}

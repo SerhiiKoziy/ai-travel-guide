@@ -1,0 +1,140 @@
+  /* ===== Alpine two-season theme (meta.json "theme": "alpine") =====
+     body[data-season="summer"|"winter"] follows the plan switch (assets/alpine.js):
+     summer = lavender + pine + ochre, butterflies; winter = ice blue, snowfall.
+     Shared: mountain-ridge edge on the hero, peaks in section dividers. */
+  body.theme-alpine{
+    --bg:#fbf8f4; --bg-soft:#f3edf7; --card:#ffffff; --border:#e6dcef;
+    --fg:#1f2430; --fg-muted:#636a78;
+    --accent:#6a4fb3; --accent-soft:#ece6f8;
+    --sun:#d9730d; --sun-soft:#fdebd8; --sand:#c7b8ea; --gold:#c99700;
+    --info:#2f7d4f; --info-bg:#e6f4ea; --info-border:#bfe0c9;
+    --interview:#b0457b; --interview-bg:#fbe9f2; --interview-border:#efc3d9;
+    --shadow:0 1px 2px rgba(60,40,90,.06), 0 8px 24px -12px rgba(60,40,90,.22);
+    --peak:#6a4fb3;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='120'%3E%3Cpath d='M0 110 40 60l22 24 38-50 30 36 24-22 66 62' fill='none' stroke='%236a4fb3' stroke-opacity='.05' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E");
+    transition:background-color .5s;
+  }
+  body.theme-alpine[data-season="winter"]{
+    --bg:#f2f6fb; --bg-soft:#e7eef7; --card:#ffffff; --border:#d5e1ee;
+    --fg:#13273a; --fg-muted:#566b80;
+    --accent:#1d6fb8; --accent-soft:#e2eefa;
+    --sun:#c92a3e; --sun-soft:#fbe3e6; --sand:#a9c8e6; --gold:#c9970c;
+    --info:#1d6fb8; --info-bg:#e5f0fb; --info-border:#bcd6ef;
+    --interview:#b02a37; --interview-bg:#fde8ea; --interview-border:#f3c0c6;
+    --shadow:0 1px 2px rgba(20,50,90,.06), 0 8px 24px -12px rgba(20,50,90,.22);
+    --peak:#1d6fb8;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='none' stroke='%231d6fb8' stroke-opacity='.07' stroke-width='1.4' stroke-linecap='round'%3E%3Cpath d='M30 18v24M18 30h24M21.5 21.5l17 17M38.5 21.5l-17 17'/%3E%3Cpath d='M118 98v18M109 107h18M111.6 100.6l12.8 12.8M124.4 100.6l-12.8 12.8'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]) body.theme-alpine{
+      --bg:#14121c; --bg-soft:#1c1828; --card:#211d2f; --border:#352e4a;
+      --fg:#eeeaf6; --fg-muted:#aaa3bd;
+      --accent:#b9a2f2; --accent-soft:#2c2442;
+      --sun:#ffa94d; --sun-soft:#3a2614; --sand:#4b3f73; --gold:#ffd166;
+      --info:#69db9a; --info-bg:#143223; --info-border:#25573b;
+      --interview:#f597c4; --interview-bg:#3a1a2b; --interview-border:#6b2f4e;
+      --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -14px rgba(0,0,0,.7);
+      --peak:#b9a2f2;
+    }
+    :root:not([data-theme="light"]) body.theme-alpine[data-season="winter"]{
+      --bg:#0a1424; --bg-soft:#0f1d32; --card:#13243c; --border:#223a59;
+      --fg:#e9f1fb; --fg-muted:#9fb4cc;
+      --accent:#7cc4ff; --accent-soft:#13304f;
+      --sun:#ff6577; --sun-soft:#3a1620; --sand:#3e6b96; --gold:#f2c94c;
+      --info:#7cc4ff; --info-bg:#102844; --info-border:#24476f;
+      --interview:#ff8f9c; --interview-bg:#3a1620; --interview-border:#6b2834;
+      --peak:#7cc4ff;
+    }
+  }
+  :root[data-theme="dark"] body.theme-alpine{
+    --bg:#14121c; --bg-soft:#1c1828; --card:#211d2f; --border:#352e4a;
+    --fg:#eeeaf6; --fg-muted:#aaa3bd;
+    --accent:#b9a2f2; --accent-soft:#2c2442;
+    --sun:#ffa94d; --sun-soft:#3a2614; --sand:#4b3f73; --gold:#ffd166;
+    --info:#69db9a; --info-bg:#143223; --info-border:#25573b;
+    --interview:#f597c4; --interview-bg:#3a1a2b; --interview-border:#6b2f4e;
+    --shadow:0 1px 2px rgba(0,0,0,.35), 0 10px 28px -14px rgba(0,0,0,.7);
+    --peak:#b9a2f2;
+  }
+  :root[data-theme="dark"] body.theme-alpine[data-season="winter"]{
+    --bg:#0a1424; --bg-soft:#0f1d32; --card:#13243c; --border:#223a59;
+    --fg:#e9f1fb; --fg-muted:#9fb4cc;
+    --accent:#7cc4ff; --accent-soft:#13304f;
+    --sun:#ff6577; --sun-soft:#3a1620; --sand:#3e6b96; --gold:#f2c94c;
+    --info:#7cc4ff; --info-bg:#102844; --info-border:#24476f;
+    --interview:#ff8f9c; --interview-bg:#3a1620; --interview-border:#6b2834;
+    --peak:#7cc4ff;
+  }
+
+  /* hero: the photo follows the season (--hero-winter comes from meta.json "hero_winter" via build.py) */
+  .theme-alpine .hero-wrap{transition:background-image .6s;}
+  .theme-alpine[data-season="winter"] .hero-wrap[style]{background-image:var(--hero-winter, var(--hero)) !important;}
+  .theme-alpine .hero-wrap::before{
+    background:linear-gradient(180deg, rgba(60,30,90,.18) 0%, rgba(40,25,70,.42) 50%, rgba(25,15,45,.86) 100%);
+  }
+  .theme-alpine[data-season="winter"] .hero-wrap::before{
+    background:linear-gradient(180deg, rgba(6,22,48,.25) 0%, rgba(6,22,48,.48) 45%, rgba(6,18,40,.86) 100%);
+  }
+  .theme-alpine .hero{position:relative; padding-bottom:84px;}
+  .theme-alpine .hero .kicker{color:#e5d4ff;}
+  .theme-alpine[data-season="winter"] .hero .kicker{color:#cfe6ff;}
+  .theme-alpine .hero .pill{background:rgba(240,230,255,.14); border-color:rgba(230,215,255,.45);}
+  .theme-alpine[data-season="winter"] .hero .pill{background:rgba(220,236,255,.14); border-color:rgba(200,225,255,.5);}
+  /* sun (summer) / crescent moon with stars (winter), top right */
+  .theme-alpine .hero::before{
+    content:""; position:absolute; top:24px; right:36px; width:120px; height:120px; pointer-events:none;
+    background:radial-gradient(circle, #ffe08a 0 34%, rgba(255,190,90,.55) 35% 46%, transparent 62%);
+    filter:drop-shadow(0 0 22px rgba(255,200,100,.7)); animation:al-glow 6s ease-in-out infinite alternate;
+  }
+  .theme-alpine[data-season="winter"] .hero::before{
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Cpath d='M70 22a38 38 0 1 0 28 62A32 32 0 1 1 70 22z' fill='%23eef6ff'/%3E%3Cg fill='%23fff'%3E%3Ccircle cx='22' cy='30' r='2'/%3E%3Ccircle cx='100' cy='20' r='1.6'/%3E%3Ccircle cx='108' cy='60' r='2.2'/%3E%3Ccircle cx='14' cy='88' r='1.4'/%3E%3C/g%3E%3C/svg%3E") center/contain no-repeat;
+    filter:drop-shadow(0 0 16px rgba(200,225,255,.8));
+  }
+  @keyframes al-glow{ from{transform:scale(.94); opacity:.85;} to{transform:scale(1.04); opacity:1;} }
+  /* mountain ridge instead of a straight hero edge; snow caps appear in winter */
+  .theme-alpine .hero-wrap::after{
+    content:""; position:absolute; left:0; right:0; bottom:-1px; height:64px; z-index:0; pointer-events:none;
+    background:var(--bg);
+    -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='64' preserveAspectRatio='none'%3E%3Cpath d='M0 50 60 22l38 20 70-38 52 30 40-16 64 34 58-28 46 18 70-34 54 28 48-12V64H0z'/%3E%3C/svg%3E") 0 100%/600px 64px repeat-x;
+            mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='64' preserveAspectRatio='none'%3E%3Cpath d='M0 50 60 22l38 20 70-38 52 30 40-16 64 34 58-28 46 18 70-34 54 28 48-12V64H0z'/%3E%3C/svg%3E") 0 100%/600px 64px repeat-x;
+  }
+  /* bunting of lavender sprigs (summer) / garland of snowflakes (winter) under the header */
+  .theme-alpine header.top{position:sticky;}
+  .theme-alpine header.top::after{
+    content:""; position:absolute; left:0; right:0; bottom:-13px; height:14px; pointer-events:none;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='14'%3E%3Cg fill='%237b5bc9'%3E%3Cellipse cx='12' cy='4' rx='2' ry='3'/%3E%3Cellipse cx='12' cy='9' rx='2' ry='3'/%3E%3Cellipse cx='57' cy='4' rx='2' ry='3'/%3E%3Cellipse cx='57' cy='9' rx='2' ry='3'/%3E%3C/g%3E%3Cg fill='%233f8f5a'%3E%3Cellipse cx='34' cy='6' rx='5' ry='1.6' transform='rotate(-20 34 6)'/%3E%3Cellipse cx='79' cy='6' rx='5' ry='1.6' transform='rotate(20 79 6)'/%3E%3C/g%3E%3C/svg%3E") 0 0/90px 14px repeat-x;
+    opacity:.8;
+  }
+  .theme-alpine[data-season="winter"] header.top::after{
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='14'%3E%3Cg fill='none' stroke='%231d6fb8' stroke-opacity='.6' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M20 1v12M14.8 4l10.4 6M14.8 10l10.4-6'/%3E%3Cpath d='M60 3v8M56.5 5l7 4M56.5 9l7-4'/%3E%3C/g%3E%3C/svg%3E") 0 0/80px 14px repeat-x;
+  }
+
+  /* headings and dividers */
+  .theme-alpine article h2 .num{background:var(--accent); box-shadow:0 4px 12px -4px var(--accent), inset 0 3px 0 rgba(255,255,255,.6);}
+  .theme-alpine article section + section::before{content:"⛰ ☀ ⛰"; color:var(--accent); letter-spacing:.3em;}
+  .theme-alpine[data-season="winter"] article section + section::before{content:"⛰ ❄ ⛰";}
+  .theme-alpine .section-desc{color:var(--accent);}
+  .theme-alpine .card, .theme-alpine .day, .theme-alpine .hotel, .theme-alpine .stat, .theme-alpine .decision, .theme-alpine .blogger{
+    background-image:linear-gradient(180deg, color-mix(in srgb, var(--sand) 18%, transparent), transparent 70px);
+  }
+  .theme-alpine footer.page::before{content:"🏔 🌿 🦋 🧀 ☀️"; display:block; letter-spacing:.5em; margin-bottom:8px;}
+  .theme-alpine[data-season="winter"] footer.page::before{content:"🏔 🎿 ❄️ 🐺 🍋";}
+
+  /* content blocks that belong to one season: <div data-only="summer|winter"> */
+  .theme-alpine[data-season="summer"] [data-only="winter"],
+  .theme-alpine[data-season="winter"] [data-only="summer"]{display:none;}
+  .season-tabs{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin:14px 0;}
+  @media (max-width:760px){ .season-tabs{grid-template-columns:1fr;} }
+  .theme-alpine article .is-current[data-season]{outline:2px solid var(--accent); outline-offset:2px;}
+  .theme-alpine [data-go-season]{margin-top:6px; border:1px solid var(--accent); border-radius:999px; padding:6px 14px; background:var(--accent-soft); color:var(--accent); font-weight:700; cursor:pointer;}
+
+  /* season particles canvas + toggle (assets/alpine.js) */
+  .alpine-canvas{position:fixed; inset:0; width:100%; height:100%; pointer-events:none; z-index:15;}
+  .alpine-toggle{
+    position:fixed; right:14px; bottom:14px; z-index:30; width:42px; height:42px; border-radius:50%;
+    border:1px solid var(--border); background:var(--card); color:var(--accent); font-size:20px; cursor:pointer;
+    box-shadow:var(--shadow);
+  }
+  .alpine-toggle[aria-pressed="false"]{opacity:.55;}
+  @media (max-width:700px){ .theme-alpine .hero::before{width:80px; height:80px; top:14px; right:12px;} }
+  @media (prefers-reduced-motion: reduce){ .theme-alpine .hero::before{animation:none;} }

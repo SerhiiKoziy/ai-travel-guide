@@ -149,13 +149,13 @@ def plan_model(plans: dict, routes: dict, locs: dict) -> dict:
     return model
 
 
-def render_days_switch(model: dict, default: str) -> str:
+def render_days_switch(model: dict, default: str, label: str = "Тривалість:") -> str:
     btns = "".join(
         f'<button type="button" class="seg-btn{" is-on" if pid == default else ""}" data-plan="{pid}" '
         f'aria-pressed="{"true" if pid == default else "false"}">{p["label"]}</button>'
         for pid, p in model.items())
-    return (f'<div class="days-switch"><div class="seg seg-days" role="group" aria-label="Тривалість поїздки">'
-            f'<span class="seg-label">Тривалість:</span>{btns}</div></div>')
+    return (f'<div class="days-switch"><div class="seg seg-days" role="group" aria-label="Варіант поїздки">'
+            f'<span class="seg-label">{label}</span>{btns}</div></div>')
 
 
 def render_day_plans(model: dict, locs: dict, gallery: dict, points: dict, default: str, skip=(),
@@ -464,8 +464,8 @@ def render_places(locs_list: list, gallery: dict, plans: dict, routes: dict,
     <button type="button" class="seg-btn" data-mode="route" aria-pressed="false">🛣 Маршрут по днях</button>
     {f'<button type="button" class="seg-btn seg-hike" data-mode="hike" aria-pressed="false"><svg class="cat-ic" width="17" height="17" aria-hidden="true"><use href="#ic-hike"/></svg> Hiking</button>' if hk else ''}
   </div>
-  <div class="seg seg-plan" role="group" aria-label="Тривалість поїздки">
-    <span class="seg-label">Тривалість:</span>{plan_btns}
+  <div class="seg seg-plan" role="group" aria-label="Варіант поїздки">
+    <span class="seg-label">{plans.get("switch_label", "Тривалість:")}</span>{plan_btns}
   </div>
 </div>
 {''.join(summaries)}

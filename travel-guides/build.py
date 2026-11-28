@@ -46,6 +46,7 @@ GUIDES = [
     {"slug": "09-spain-rovaniemi", "file": "09-spain-rovaniemi.html", "group": "europe", "nav": "9. 🎄 Рованіемі з Іспанії: 7 днів"},
     {"slug": "10-lofoten-winter", "file": "10-lofoten-winter.html", "group": "europe", "nav": "10. 🌌 Лофотени взимку: потяг + авто, 7 днів"},
     {"slug": "11-montenegro", "file": "11-montenegro.html", "group": "europe", "nav": "11. ☀️ Чорногорія: море й гори, 7 днів"},
+    {"slug": "12-south-france-alps", "file": "12-south-france-alps.html", "group": "europe", "nav": "12. 🏔 Південь Франції: гори влітку й узимку"},
 ]
 
 
@@ -253,7 +254,10 @@ def hero_style(meta: dict) -> str:
     """Background photo for the hero: meta["hero"] is a photos.json key or a full URL."""
     hero = meta.get("hero", "")
     url = PHOTOS.get(hero, {}).get("url", hero)
-    return f' style="--hero:url(\'{html.escape(url)}\')"' if url else ""
+    # two-season guides: a second photo the theme CSS swaps in (theme "alpine", winter plan)
+    alt = meta.get("hero_winter", "")
+    alt = f";--hero-winter:url(\'{html.escape(alt)}\')" if alt else ""
+    return f' style="--hero:url(\'{html.escape(url)}\'){alt}"' if url else ""
 
 
 def theme_css(meta: dict) -> str:
@@ -282,7 +286,7 @@ def build_page(guide: dict, template: str) -> str:
             plans = json.loads((d / "plans.json").read_text())
             lmap = {l["key"]: l for l in load_locations(d)}
             model = places.plan_model(plans, routes, lmap)
-            content = content.replace("{{DAYS_SWITCH}}", places.render_days_switch(model, plans["default"]))
+            content = content.replace("{{DAYS_SWITCH}}", places.render_days_switch(model, plans["default"], plans.get("switch_label", "Тривалість:")))
             # a plan written by hand in content.html (<div class="days-plan" data-plan="7">) is not generated
             manual = re.findall(r'<div class="days-plan" data-plan="([^"]+)"', content)
             content = content.replace("{{DAYS_PLANS}}", places.render_day_plans(
